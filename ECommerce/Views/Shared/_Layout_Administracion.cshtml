@@ -1,0 +1,795 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>E-Commerce </title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="codedthemes" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="~/assets/images/ico.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/jquery.mCustomScrollbar.css">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <style>
+
+        /*   Typography    */
+        .alert, button.close {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /*     Alert    */
+        .alert {
+            border: 0px;
+            position: relative;
+            padding: .95rem 1.25rem;
+            border-radius: 1px;
+            color: inherit;
+            background-color: #ffffff;
+            -webkit-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            -moz-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+        }
+
+            .alert [data-notify="icon"] {
+                display: block;
+            }
+
+                .alert [data-notify="icon"]::before {
+                    line-height: 35px;
+                    font-size: 22px;
+                    display: block;
+                    left: 15px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 30px;
+                    text-align: center;
+                    color: #fff;
+                }
+
+            .alert [data-notify="title"] {
+                display: block;
+                color: #2b2b2b;
+                font-weight: 700;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .alert [data-notify="message"] {
+                font-size: 13px;
+                color: #908e8e;
+            }
+
+            .alert .close {
+                background: rgba(255, 255, 255, 0.8);
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                top: 12px !important;
+                border-radius: 50%;
+            }
+
+        /*    Alert States    */
+        .alert-default {
+            border-left: 4px solid #1a2035;
+        }
+
+            .alert-default [data-notify="icon"]:before {
+                background: #1a2035;
+            }
+
+        .alert-primary {
+            border-left: 4px solid #1572E8;
+        }
+
+            .alert-primary [data-notify="icon"]:before {
+                background: #1572E8;
+            }
+
+        .alert-secondary {
+            border-left: 4px solid #6861CE;
+        }
+
+            .alert-secondary [data-notify="icon"]:before {
+                background: #6861CE;
+            }
+
+        .alert-info {
+            border-left: 4px solid #48ABF7;
+        }
+
+            .alert-info [data-notify="icon"]:before {
+                background: #48ABF7;
+            }
+
+        .alert-success {
+            border-left: 4px solid #31CE36;
+        }
+
+            .alert-success [data-notify="icon"]:before {
+                background: #31CE36;
+            }
+
+        .alert-warning {
+            border-left: 4px solid #FFAD46;
+        }
+
+            .alert-warning [data-notify="icon"]:before {
+                background: #FFAD46;
+            }
+
+        .alert-danger {
+            border-left: 4px solid #F25961;
+        }
+
+            .alert-danger [data-notify="icon"]:before {
+                background: #F25961;
+                z-index: 9999;
+            }
+
+        [data-notify] {
+            z-index: 999999999991 !important;
+        }
+
+        .pcoded .pcoded-header[header-theme="theme1"] {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+            color: #fff !important;
+        }
+
+        .pcoded[fream-type="theme1"] .page-header:before, .pcoded[fream-type="theme1"] .main-menu .main-menu-header:before {
+            background: linear-gradient(to right, #185a9deb, #9c27b0c2);
+        }
+
+        .bg-c-purple {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .card .card-header h5:after {
+            content: "";
+            background-color: #9a28b0;
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 20px;
+        }
+
+        .text-c-purple {
+            color: #9c28b0;
+        }
+
+        .pcoded .pcoded-navbar .pcoded-navigation-label[menu-title-theme="theme1"] {
+            color: #5d40a7;
+        }
+
+        
+
+        .md-tabs .nav-item.open .nav-link, .md-tabs .nav-item.open .nav-link:focus, .md-tabs .nav-item.open .nav-link:hover, .md-tabs .nav-link.active, .md-tabs .nav-link.active:focus, .md-tabs .nav-link.active:hover {
+            color: #5d40a7;
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        .nav-tabs .slide {
+            background: #9a27af;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            -webkit-transition: left 0.3s ease-out;
+            transition: left 0.3s ease-out;
+            bottom: 0;
+        }
+
+        .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
+            background-color: #448aff;
+            background: linear-gradient(310deg,#133199,#11849f);
+            border-color: #448aff;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+            .btn-primary.btn-mat, .sweet-alert button.btn-mat.confirm, .wizard > .actions a.btn-mat {
+                background: linear-gradient(310deg,#2152ff,#21d4fd);
+                border-radius: 5px;
+            }
+
+        .btn-success {
+            background: linear-gradient(310deg,#17ad37,#7bd10e);
+            background-color: #8ae52e;
+            border-color: #72cd11;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-info {
+            background: linear-gradient(310deg,#007989,#00bcd4);
+            /* background-color: #00bcd4; */
+            border-color: #00bcd4;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-danger {
+            background: linear-gradient(310deg,#ea0606,#ff667c);
+            border-color: #fd5d71;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-warning {
+            background: linear-gradient(310deg,#f53939,#fbcf33);
+            border-color: #fbc234;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(310deg,#007989,#00bcd4);
+            /* background-color: #00bcd4; */
+            border-color: #00b6ce;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+       
+        .bg-primary {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <nav class="navbar header-navbar pcoded-header">
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo">
+                        <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
+                            <i class="ti-menu"></i>
+                        </a>
+                        <div class="mobile-search waves-effect waves-light">
+                            <div class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <input type="text" class="form-control" placeholder="Enter Keyword">
+                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="index.html">
+                        </a>
+                        <a class="mobile-options waves-effect waves-light">
+                            <i class="ti-more"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-container container-fluid">
+                        <ul class="nav-left">
+                            <li>
+                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+                            </li>
+                            <li class="header-search">
+                                <div class="main-search morphsearch-search">
+                                    <div class="input-group">
+                                        <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                        <input type="text" class="form-control">
+                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                                    <i class="ti-fullscreen"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav-right">
+                            <li class="header-notification">
+                                <a href="#!" class="waves-effect waves-light">
+                                    <i class="ti-bell"></i>
+                                    <span class=" "></span>
+                                </a>
+                                <ul class="show-notification">
+                                    <li>
+                                        <h6>Notifications</h6>
+
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="user-profile header-notification">
+                                <a href="#!" class="waves-effect waves-light">
+                                    <img src="~/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <span>Nombre Usuario</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="show-notification profile-notification">
+                                    <li class="waves-effect waves-light">
+                                        <a href="#!">
+                                            <i class="ti-settings"></i> Ajustes
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <a href="#!">
+                                            <i class="ti-user"></i> Perfil
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <a href="#!">
+                                            <i class="ti-email"></i> Mis mensajes
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect waves-light">
+                                        <a href="#!" onclick="CerrarSesion();">
+                                            <i class="ti-layout-sidebar-left"></i> Cerrar sesión
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <nav class="pcoded-navbar">
+                        <div class="sidebar_toggle"><a href="#"><i class="icon-close icons"></i></a></div>
+                        <div class="pcoded-inner-navbar main-menu">
+                            <div class="">
+                                <div class="main-menu-header">
+                                    <img class="img-80 img-radius" src="~/assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                                    <div class="user-details">
+                                        <span id="more-details">Nombre Usuario<i class="fa fa-caret-down"></i></span>
+                                    </div>
+                                </div>
+
+                                <div class="main-menu-content">
+                                    <ul>
+                                        <li class="more-details">
+                                            <a href="user-profile.html"><i class="ti-user"></i>Ver perfil</a>
+                                            <a href="#!"><i class="ti-settings"></i>Ajustes</a>
+                                            <a href="#!" onclick="CerrarSesion();"><i class="ti-layout-sidebar-left"></i>Cerrar sesión</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            @if (((ECommerce.Models.Usuarios)System.Web.HttpContext.Current.Session["Sesion"]).IdRol == 1)
+                            {
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Menú de navegación </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li id="IdMenuDashboard">
+                                        <a href="@Url.Action("Index", "Administracion")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Artículos </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li id="IdMenuCategorias">
+                                        <a href="@Url.Action("Index", "Categoria")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Categorías </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li id="IdMenuProductos" class="pcoded-hasmenu ">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Artículos</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li id="IdSubMenuNuevo" class="">
+                                                <a href="@Url.Action("NuevoArticulo", "Articulos")" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Nuevo</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+
+                                            <li id="IdSubMenuAtributos" class=" ">
+                                                <a href="@Url.Action("Index", "Atributos")" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Atributos </span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+
+                                            <li id="IdMenuArticuloAdministracion" class=" ">
+                                                <a href="@Url.Action("Index", "ArticuloAdministracion")" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Administración</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+
+                                    <li id="IdMenuPromocion" class="pcoded-hasmenu ">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-cup"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Promociones </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li id="IdMenuPromocionNuevo" class="">
+                                                <a href="@Url.Action("Index", "Promociones")" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Nuevo</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li id="" class=" ">
+                                                <a href="#" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Administración</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-shopping-cart"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Ordenes  </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-write"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Comentarios  </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+
+                                    <li id="IdMenuFlujo" class="pcoded-hasmenu ">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-briefcase"></i></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Flujos operación </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                            <li id="IdMenuFlujoNuevo" class="">
+                                                <a href="@Url.Action("Index", "FlujoTrabajo")" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Nuevo</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="#" class="waves-effect waves-dark">
+                                                    <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                    <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Administración</span>
+                                                    <span class="pcoded-mcaret"></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layers-alt"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Catálogos   </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Sucursales    </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li id="IdEnvioSucursal">
+                                        <a href="@Url.Action("Index", "Sucursal")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-truck"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Envíos por sucursal </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Campañas   </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Suscriptores de boletín   </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Administración  </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-user"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Usuarios   </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Roles   </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Configuración    </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-settings"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Configuración   </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
+                            else if (((ECommerce.Models.Usuarios)System.Web.HttpContext.Current.Session["Sesion"]).IdRol == 2)
+                            {
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Menú de navegación </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li id="IdMenuDashboard">
+                                        <a href="@Url.Action("Index", "Operador")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Operación  </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li id="IdMenuOrdenes">
+                                        <a href="@Url.Action("Ordenes", "Operador")" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-import"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Ordenes  </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="pcoded-navigation-label" data-i18n="nav.category.forms">Configuración    </div>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li>
+                                        <a href="#" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="ti-settings"></i><b>FC</b></span>
+                                            <span class="pcoded-mtext" data-i18n="nav.form-components.main">Configuración   </span>
+                                            <span class="pcoded-mcaret"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </nav>
+
+                    @RenderBody()
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="assets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="assets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="assets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="assets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="assets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
+    @*<script type="text/javascript" src="~/assets/js/jquery/jquery.min.js"></script>*@
+    <script type="text/javascript" src="~/assets/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="~/assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="~/assets/pages/widget/excanvas.js "></script>
+    <!-- waves js -->
+    <script src="~/assets/pages/waves/js/waves.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="~/assets/js/jquery-slimscroll/jquery.slimscroll.js "></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="~/assets/js/modernizr/modernizr.js "></script>
+    <!-- slimscroll js -->
+    <script type="text/javascript" src="~/assets/js/SmoothScroll.js"></script>
+    <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="~/assets/js/chart.js/Chart.js"></script>
+    <!-- amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="~/assets/pages/widget/amchart/gauge.js"></script>
+    <script src="~/assets/pages/widget/amchart/serial.js"></script>
+    <script src="~/assets/pages/widget/amchart/light.js"></script>
+    <script src="~/assets/pages/widget/amchart/pie.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <!-- menu js -->
+    <script src="~/assets/js/pcoded.min.js"></script>
+    <script src="~/assets/js/vertical-layout.min.js "></script>
+    <script src="~/assets/js/sweetalert/sweetalert.min.js"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="~/assets/pages/dashboard/custom-dashboard.js"></script>
+    <script type="text/javascript" src="~/assets/js/script.js "></script>
+
+    <script>
+        function CerrarSesion() {
+            swal({
+              title: "Confirmación de cierre de sesión",
+              text: "Deseas cerrar tu sesión!",
+              icon: "warning",
+              buttons: true,
+                dangerMode: true,
+              buttons: ["Cancelar", "Aceptar"],
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("CerrarSesion", "Adm")",
+                        type: "POST",
+                        data: '',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        error: function (response) {
+                            swal({
+                                title: "Algo ocurrió !",
+                                text: "Ha ocurrido un problema, inténtalo mas tarde ",
+                                icon: "warning",
+                                button: "Aceptar",
+                            });
+                        },
+                        success: function (response) {
+                            if (response.IdRol != 0) {
+                                window.location.href = "@Url.Action("Index", "Adm")";
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+    
+
+</body>
+
+</html>

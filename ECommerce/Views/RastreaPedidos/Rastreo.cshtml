@@ -1,0 +1,205 @@
+﻿
+@{
+    ViewBag.Title = "Rastreo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="top-content">
+    <br /><br /><br /><br />
+    <div class=" bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm" style="border-top: 1px solid #e6e6e6; border-radius: 5px; background: linear-gradient(to right, #185a9d, #4927b0); color: #e6e6e6 ">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 m-lr-auto m-b-20 text-center">
+                <h1 style="font-size: 22px; padding-bottom: 0px;">Numero de pedido: <strong> @ViewBag.Venta.Venta_Folio.FolioCompuesto</strong> </h1>
+            </div>
+            <div class="col-lg-5 text-center">
+            </div>
+            <div class="col-sm-2 col-lg-2 text-center">
+                <a href="/Store" class="flex-c-m cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04" onclick="javascript: window.print();">
+                    <i class="fa fa-print" aria-hidden="true"></i>  &nbsp;&nbsp;  Imprimir
+                </a>
+            </div>
+            <div class="col-lg-5 text-center">
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="bor15 col-sm-5" style="border-top: 1px solid #e6e6e6; border-radius: 5px; background: linear-gradient(to right, #f7f7f7, #f5f5f5); ">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12 m-lr-auto m-b-50">
+                        <br />
+                        <h1 style="font-size: 22px; color: #403f3f;" class="text-center"><strong> Resumen de compra </strong>  </h1>
+                        <br />
+
+                        <div class="flex-w  bor12 p-b-13" style="background-color: #e9ecef; padding: 20px;">
+
+                            <div class="size-208">
+                                <h1 style="font-size: 18px; padding-bottom: 20px; color: #403f3f;">Subtotal: </h1>
+                            </div>
+
+                            <div class="size-209">
+                                <span class="mtext-110 cl2 text-right" id="SubTotal_">
+                                    $@ViewBag.Venta.Venta.Total
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex-w  bor12 p-b-13" style="background-color: #ffffff; padding: 20px;">
+
+                            <div class="size-208">
+                                <h1 style="font-size: 18px; padding-bottom: 20px; color: #403f3f;">Envio: </h1>
+                            </div>
+
+                            <div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+                                <p class="mtext-110 cl2" id="TotalEnvio_">
+                                    $0.00
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex-w p-t-27 p-b-33" style="background-color: #e9ecef; padding: 20px;">
+                            <div class="size-208">
+                                <h1 style="font-size: 18px; padding-bottom: 20px; color: #403f3f;">Total: </h1>
+                            </div>
+
+                            <div class="size-209 p-t-1">
+                                <span class="mtext-110 cl2" id="Total_">
+                                    $@ViewBag.Venta.Venta.Total
+                                </span>
+                            </div>
+                        </div>
+
+                        <br />
+                        <h5 class="mtext-109 cl2 p-b-5 text-center">Entrega a domicilio</h5>
+                        <div class="flex-w bor12 p-t-15 p-b-30">
+                            <div class=" p-r-18 p-r-0-sm w-full-ssm">
+                                <strong><label style="font-size: 16px; color: #222222;"><i class="fa fa-address-book"></i> Información del cliente</label></strong>
+                                <p class="stext-111  p-t-2"><strong>Nombre: </strong> @ViewBag.Venta.Usuarios.Nombre @ViewBag.Venta.Usuarios.ApellidoPaterno @ViewBag.Venta.Usuarios.ApellidoMaterno</p>
+                                <p class="stext-111  p-t-2"><strong>Correo electrónico: </strong> @ViewBag.Venta.Usuarios.Correo </p>
+                                <p class="stext-111  p-t-2"><strong>Telefono: </strong> @ViewBag.Venta.Usuarios.Telefono - @ViewBag.Venta.Usuarios.TipoTelefono</p>
+                                <hr />
+                                <strong><label style="font-size: 16px; color: #222222;"><i class="fa fa-map-marker"></i> Dirección </label></strong>
+
+                                <p class="stext-111  p-t-2">
+                                    @ViewBag.Venta.Cat_Estados.Estado, @ViewBag.Venta.Cat_Poblacion.Poblacion, @ViewBag.Venta.Cat_Colonias.Colonia,
+                                    @ViewBag.Venta.Cat_CP.CP, @ViewBag.Venta.Usuarios_Direcciones.Calle, @ViewBag.Venta.Usuarios_Direcciones.NumExterior,
+                                    @if (ViewBag.Venta.Usuarios_Direcciones.NumInteriror.Length > 0)
+                                    {
+                                        @ViewBag.Venta.Usuarios_Direcciones.NumInteriror <span>, </span>
+                                    }
+                                    @if (ViewBag.Venta.Usuarios_Direcciones.EntreCalles.Length > 0)
+                                    {
+                                        @ViewBag.Venta.Usuarios_Direcciones.EntreCalles <span>, </span>
+                                    }
+                                    @if (ViewBag.Venta.Usuarios_Direcciones.Referencias.Length > 0)
+                                    {
+                                        @ViewBag.Venta.Usuarios_Direcciones.Referencias <span>, </span>
+                                    }
+                                </p>
+
+                                @if (ViewBag.Venta.Usuarios_Direcciones.RecibirPedido > 0)
+                                {
+                                    <p class="stext-111  p-t-2"><strong>Persona quien recibirá el pedido: </strong> </p>
+                                    <p class="stext-111  p-t-2"><strong>Nombre: </strong> @ViewBag.Venta.Usuarios_Direcciones.Recibe_Nombre @ViewBag.Venta.Usuarios_Direcciones.Recibe_Apellidos </p>
+                                    <p class="stext-111  p-t-2"><strong>Telefono: </strong> @ViewBag.Venta.Usuarios_Direcciones.Recibe_Telefono - @ViewBag.Venta.Usuarios_Direcciones.Recibe_TipoTelefono</p>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class=" col-sm-1">
+            </div>
+
+            <div class=" bor15 col-sm-6" style="border-top: 1px solid #e6e6e6; border-radius: 5px; ">
+                <div class="row">
+                    <div class="col-sm-12 col-lg-12">
+                        <br />
+                        <h1 style="font-size: 18px; color: #403f3f;"><strong> Método de pago  :  </strong>  @ViewBag.Venta.Cat_MetodoPago.Nombre</h1>
+                        <br />
+                        <h1 style="font-size: 18px; color: #403f3f;"><strong> Referencia   :  </strong>  @ViewBag.Venta.Venta.Referencia</h1>
+                        <br />
+                        <h1 style="font-size: 18px; color: #403f3f;"><strong> Estatus   :  </strong>  @ViewBag.Venta.Cat_EstatusVenta.Nombre</h1>
+                        @*
+        <div class="opps">
+            <div class="opps-header">
+                <div class="opps-reminder">Ficha digital. No es necesario imprimir.</div>
+                <div class="opps-info">
+                    <div class="opps-brand">
+                        <img src="~/images/icons/oxxopay_brand.png" alt="OXXOPay" />
+                    </div>
+                    <div class="opps-ammount">
+                        <h3>Monto a pagar</h3>
+                        <br />
+                        <h2>$ @ViewBag.Total <sup>MXN</sup></h2>
+                        <p>OXXO cobrará una comisión adicional al momento de realizar el pago.</p>
+                    </div>
+                </div>
+                <div class="opps-reference">
+                    <h3>Referencia</h3>
+                    <h1>@ViewBag.Referencia</h1>
+                </div>
+            </div>
+            <div class="opps-instructions">
+                <h3>Instrucciones</h3>
+                <ol>
+                    <li>Acude a la tienda OXXO más cercana. <a href="https://www.google.com.mx/maps/search/oxxo/" target="_blank">Encuéntrala aquí</a>.</li>
+                    <li>Indica en caja que quieres realizar un pago de <strong>OXXOPay</strong>.</li>
+                    <li>Dicta al cajero el número de referencia en esta ficha para que tecleé directamete en la pantalla de venta.</li>
+                    <li>Realiza el pago correspondiente con dinero en efectivo.</li>
+                    <li>Al confirmar tu pago, el cajero te entregará un comprobante impreso. <strong>En el podrás verificar que se haya realizado correctamente.</strong> Conserva este comprobante de pago.</li>
+                </ol>
+                <div class="opps-footnote">Al completar estos pasos recibirás un correo de <strong>Asae Consultores</strong> confirmando tu pago.</div>
+            </div>
+        </div>*@
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br /><br />
+        <div class="row">
+            <div class=" bor15 col-sm-12" style="border-top: 1px solid #e6e6e6; border-radius: 5px; ">
+                <p class="stext-111  p-t-2">
+                    *La fecha de entrega puede cambiar por la disponibilidad del producto, tu ubicación o la forma de pago.
+                </p>
+                <br />
+                <table>
+                    @{
+
+                        foreach (var Arti in ViewBag.Articulos)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="how-itemcart1">
+                                        <img src="https://@Arti.Imagen" alt="IMG">
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong>@Arti.Nombre</strong>
+                                    </p>
+                                    @*<label style="margin-bottom: 0rem; font-size: 12px; ">Categoria: <strong style="text-transform: lowercase; ">@Arti.Clasificacion</strong></label>
+                                    Cantidad : <strong>@Arti.Item</strong>
+                                    <strong><label id="Total_@Arti.Id">Total: @Arti.TotalText</label></strong>*@
+                                    <br />
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </table>
+
+            </div>
+        </div>
+        <br /><br />
+
+    </div>
+</div>
+

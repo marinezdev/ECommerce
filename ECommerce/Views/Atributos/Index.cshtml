@@ -1,0 +1,817 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+<style>
+    select.form-control, select.form-control:focus, select.form-control:hover {
+        border-top: 1px;
+        border-right: 1px;
+        border-left: 1px;
+        border: 1px solid #cccccc;
+        border-radius: 2px;
+    }
+
+        select.form-control:not([size]):not([multiple]) {
+            height: 36px;
+        }
+
+    .table td, .table th {
+        padding: -1.75rem 0.75rem;
+    }
+</style>
+
+
+<!-- Modal Nuevo atributo -->
+<div class="modal fade" id="ModalNuevoAtributo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo atributo  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="NombreAtributoModal" placeholder="" autocomplete="off" onchange="ValidaInput('NombreAtributoModal')">
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Tipo de dato </label>
+                        <select class="form-control" id="Select_TipoDato" onchange="ValidaSelect('Select_TipoDato')">
+                            <option value="0">Seleccionar </option>
+                            @foreach (var item1 in ViewBag.cat_TipoDatos)
+                            {
+                                <option value="@item1.Id">@item1.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light btn-info" id="BtnAgregarAtributoModal"><i class="icofont icofont-save"></i> Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarNuevoAtributo" data-dismiss="modal"><i class="icofont icofont-exit"></i> Cerrar  </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal editar atributo -->
+<div class="modal fade" id="ModalEditarAtributo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo atributo  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="EditarNombreAtributoModal" placeholder="" autocomplete="off" onchange="ValidaInput('EditarNombreAtributoModal')">
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Tipo de dato </label>
+                        <select class="form-control" id="Select_EditarTipoDato" onchange="ValidaSelect('Select_EditarTipoDato')">
+                            <option value="0">Seleccionar </option>
+                            @foreach (var item1 in ViewBag.cat_TipoDatos)
+                            {
+                                <option value="@item1.Id">@item1.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="BtnAccionesEditar" >
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Atributos </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Atributos </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Administración de atributos   </h5>
+                                    <span>Completa los campos marcados *</span>
+                                    <span>Los atributos de los artículos se encuentran clasificados por <strong>categorías, subcategorías</strong> y  <strong>clasificación</strong>.</span>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Categoría </label>
+                                                <select class="form-control" id="Select_Categoria" onchange="callSubCategoria(this.value)">
+                                                    <option value="0">Seleccionar </option>
+                                                    @foreach (var item1 in ViewBag.cat_CategoriaProducto)
+                                                    {
+                                                        <option value="@item1.Id">@item1.Nombre</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Subcategoría  </label>
+                                                <select class="form-control" id="Select_SubCategoria" onchange="callClasificacion(this.value)">
+                                                    <option value="0">Seleccionar</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Clasificación  </label>
+                                                <select class="form-control" id="Select_Clasificacion" onchange="ValidaSelect('Select_Clasificacion')">
+                                                    <option value="0">Seleccionar</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnNuevoAtributo"><i class="icofont icofont-ui-add"></i> Nuevo atributo   </button>
+                                            <br /><br />
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <button class="btn waves-effect waves-light btn-info col-sm-12" id="BtnConsultarAtributos"><i class="icofont icofont-search-alt-1"></i> Consultar    </button>
+                                            <br /><br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12" style="display: none;" id="DivAtributos">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="col-md-4 col-lg-4">
+                                        <h5>Administración de atributos   </h5>
+                                        <span>Completa los campos marcados *</span>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12" id="TableAtributos">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $('#IdMenuProductos').addClass("active pcoded-trigger");
+    $('#IdSubMenuAtributos').addClass("active");
+
+    function callSubCategoria(Id) {
+        $("#Select_SubCategoria").empty();
+        $("#Select_Clasificacion").empty();
+
+        ValidaSelect('Select_Categoria');
+
+
+        var obj = {};
+        obj['Id'] = Id;
+        var jsonObject = {
+            "Cat_CategoriaProducto": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("SubCategoria_Listar", "Categoria")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (resultado) {
+                alert("MANDAR MENSAJE SE ERROR");
+
+                var option = $(document.createElement('option'));
+                option.text("Seleccionar");
+                option.val(0);
+
+                var option2 = $(document.createElement('option'));
+                option2.text("Seleccionar");
+                option2.val(0);
+
+                $("#Select_SubCategoria").append(option);
+                $("#Select_Clasificacion").append(option2);
+            },
+            success: function (resultado) {
+
+                var option = $(document.createElement('option'));
+
+                option.text("Seleccionar");
+                option.val(0);
+
+                var option2 = $(document.createElement('option'));
+                option2.text("Seleccionar");
+                option2.val(0);
+
+                $("#Select_SubCategoria").append(option);
+                $("#Select_Clasificacion").append(option2);
+
+                $(resultado).each(function () {
+                    var option = $(document.createElement('option'));
+                    option.text(this.Nombre);
+                    option.val(this.Id);
+
+                    $("#Select_SubCategoria").append(option);
+                });
+            }
+        });
+
+
+    }
+
+    function callClasificacion(Id) {
+
+        $("#Select_Clasificacion").empty();
+        ValidaSelect('Select_SubCategoria');
+
+        var obj = {};
+        obj['IdCatSubcategoria'] = Id;
+        var jsonObject = {
+            "Cat_Clasificacion": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("Clasificacion_Listar", "Categoria")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (resultado) {
+                alert("MANDAR MENSAJE SE ERROR");
+
+                var option = $(document.createElement('option'));
+                option.text("Seleccionar");
+                option.val(0);
+
+                $("#Select_Clasificacion").append(option);
+            },
+            success: function (resultado) {
+                var option = $(document.createElement('option'));
+                option.text("Seleccionar");
+                option.val(0);
+
+                $("#Select_Clasificacion").append(option);
+
+                $(resultado).each(function () {
+                    var option = $(document.createElement('option'));
+                    option.text(this.Nombre);
+                    option.val(this.Id);
+
+                    $("#Select_Clasificacion").append(option);
+                });
+            }
+        });
+    }
+
+    function ValidaInput(name) {
+        if ($('#' + name).val().length > 0) {
+            $('#' + name).css("border", "1px solid rgb(222 222 222)");
+        } else {
+            $('#' + name).css("border", "1px solid #ff0049");
+        }
+    }
+
+    function ValidaSelect(name) {
+        if ($('#' + name + ' option:selected').val() > 0) {
+            $('#' + name).css("border", "1px solid rgb(222 222 222)");
+        } else {
+            $('#' + name).css("border", "1px solid #ff0049");
+        }
+    }
+
+
+    $('#BtnConsultarAtributos').click(function () {
+        if (ValidarFiltro()) {
+
+            ConsultaAtributos()
+
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    $('#BtnAgregarAtributoModal').click(function () {
+        if (ValidarNuevoAtributo()) {
+
+            var obj = {};
+            obj['IdCategoria'] = $('#Select_Categoria option:selected').val();
+            obj['IdSubCategoria'] = $("#Select_SubCategoria option:selected").val();
+            obj['IdClasificacion'] = $("#Select_Clasificacion option:selected").val();
+            obj['Atributo'] = $('#NombreAtributoModal').val();
+            obj['IdTipoDato'] = $("#Select_TipoDato option:selected").val();
+
+            var jsonObject = {
+                "Cat_Atributos": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Atributo_Agregar", "Atributos")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: resultadoNuevoAtributo,
+                error: errores
+            });
+
+
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    function resultadoNuevoAtributo(data) {
+
+        switch (data.Id) {
+            case -1:
+                $.notify({
+                    message: "El nuevo atributo que intentas agregar ya se encuentra registrado ."
+                }, {
+                    type: 'danger',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+                $('#NombreAtributoModal').css("border", "1px solid #f44336");
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió !",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+
+        if (data.Id > 0) {
+            $.notify({
+                message: "¡Nuevo atributo agregado!."
+            }, {
+                type: 'success',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+
+            $('#NombreAtributoModal').val("");
+            $("#Select_TipoDato option[value=0]").attr("selected", true);
+            $("#BtnCerrarNuevoAtributo").trigger("click");
+
+            ConsultaAtributos();
+        }
+    }
+
+    function ConsultaAtributos() {
+        $("#DivAtributos").show();
+
+        var obj = {};
+        obj['IdCategoria'] = $('#Select_Categoria option:selected').val();
+        obj['IdSubCategoria'] = $("#Select_SubCategoria option:selected").val();
+        obj['IdClasificacion'] = $("#Select_Clasificacion option:selected").val();
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Atributo_Buscar", "Atributos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: resultadoListaAtributos,
+            error: errores
+        });
+    }
+
+    function resultadoListaAtributos(data) {
+
+        var Tabla =
+        "<div class='table-responsive'>" +
+             "<table class='table text-center' Id='TableListAtributos' style='width:100%'>" +
+                "<thead>" +
+                    "<tr class='table-inverse'>" +
+                        "<th class='text-center'>Nombre</th>" +
+                        "<th class='text-center'>Tipo de dato</th>" +
+                        "<th class='text-center'>Acciones</th>" +
+                    "</tr>" +
+                "</thead>" +
+                "<tbody>";
+
+                if (data.length > 0) {
+                    for (var b = 0; b < data.length; b++) {
+                    Tabla +=
+                        "<tr>" +
+                           "<td>" +
+                                data[b].Atributo +
+                            "</td>" +
+                            "<td>" +
+                                data[b].TipoDato +
+                            "</td>" +
+                            "<td>" +
+                                  "<div class=' icon-btn tooltip-icon'>" +
+                                      "<div>" +
+                                          "<button onclick='EditarAtributo(" + data[b].Id + ")' class='btn waves-effect waves-dark btn-success btn-outline-success btn-icon'><i class='icofont icofont-edit'></i></button>" +
+                                          "<button onclick='EliminarAtributo(" + data[b].Id + ")' class='btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon'><i class='icofont icofont-ui-delete'></i></button>" +
+                                      "</div>" +
+                                  "</div>" +
+                            "</td>" +
+                        "</tr>";
+                    }
+                } else {
+                    Tabla +=
+                    "<tr>" +
+                        "<td colspan='3'> Sin atributos </td>" +
+                    "</tr>";
+                }
+
+
+       Tabla +="</tbody>" +
+            "</table>" +
+            "</div>";
+
+        $('#TableAtributos').html(Tabla);
+
+        $('#TableListAtributos').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "scrollY": "500px",
+            "scrollCollapse": true,
+        });
+
+    }
+
+    function EditarAtributo(num)
+    {
+        var obj = {};
+        obj['Id'] = num;
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Atributo_Buscar_Id", "Atributos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: resultadoBusquedaAtributos,
+            error: errores
+        });
+    }
+
+    function resultadoBusquedaAtributos(data) {
+        if (data.Id > 0) {
+            $("#ModalEditarAtributo").modal("show");
+
+            $('#EditarNombreAtributoModal').val(data.Atributo);
+            $("#Select_EditarTipoDato option[value=" + data.IdTipoDato +"]").attr("selected", true);
+
+            var Btn = "<button class='btn waves-effect waves-light btn-info' id='BtnAgregarAtributoModal' onclick='BtnEditarAtributo(" + data.Id + ")'><i class='icofont icofont-save'></i> Guardar </button>" +
+            "<button class='btn waves-effect waves-light btn-inverse' id='BtnCerrarEditarAtributo' data-dismiss='modal'><i class='icofont icofont-exit'></i> Cerrar  </button>";
+
+            $('#BtnAccionesEditar').html(Btn);
+
+        } else {
+            $.notify({
+                message: "Atributo no encontrado."
+            }, {
+                type: 'danger',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    }
+
+    function BtnEditarAtributo(num) {
+
+        if (ValidarEditarAtributo()) {
+            var obj = {};
+            obj['Id'] = num;
+            obj['Atributo'] = $('#EditarNombreAtributoModal').val();
+            obj['IdTipoDato'] = $("#Select_EditarTipoDato option:selected").val();
+
+            var jsonObject = {
+                "Cat_Atributos": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Atributo_Editar", "Atributos")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: resultadoEditarAtributos,
+                error: errores
+            });
+        } else {
+            $.notify({
+                message: "Formulario incompleto !"
+            }, {
+                type: 'danger',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    }
+
+    function resultadoEditarAtributos(data) {
+        switch (data.Id) {
+            case 1:
+                $.notify({
+                    message: "¡Atributo modificado!."
+                }, {
+                    type: 'success',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+
+                ConsultaAtributos();
+                $("#BtnCerrarEditarAtributo").trigger("click");
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió atributo no actualizado!",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+    }
+
+    function EliminarAtributo(num) {
+        var obj = {};
+        obj['Id'] = num;
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Atributo_Eliminar", "Atributos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: resultadoEliminarAtributos,
+            error: errores
+        });
+    }
+
+    function resultadoEliminarAtributos(data) {
+
+        switch (data.Id) {
+            case 1:
+                $.notify({
+                    message: "¡Atributo eliminado!."
+                }, {
+                    type: 'success',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+
+                ConsultaAtributos();
+
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió atributo no eliminado!",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+    }
+
+    $('#BtnNuevoAtributo').click(function () {
+        if (ValidarFiltro()) {
+            $("#ModalNuevoAtributo").modal("show");
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    function ValidarFiltro() {
+        var result = false;
+
+        $('#Select_Categoria').css("border", "1px solid #ff0049");
+        $('#Select_SubCategoria').css("border", "1px solid #ff0049");
+        $('#Select_Clasificacion').css("border", "1px solid #ff0049");
+
+        if ($("#Select_Categoria option:selected").val() > 0) {
+            $('#Select_Categoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_SubCategoria option:selected").val() > 0) {
+            $('#Select_SubCategoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Clasificacion option:selected").val() > 0) {
+            $('#Select_Clasificacion').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Categoria option:selected").val() > 0) {
+            if ($("#Select_SubCategoria option:selected").val() > 0) {
+                if ($("#Select_Clasificacion option:selected").val() > 0) {
+                    result = true;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    function ValidarNuevoAtributo() {
+
+        var result = false;
+
+        $('#NombreAtributoModal').css("border", "1px solid #f44336");
+        $('#Select_TipoDato').css("border", "1px solid #ff0049");
+
+        if ($('#NombreAtributoModal').val().length > 0) {
+            $('#NombreAtributoModal').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_TipoDato option:selected").val() > 0) {
+            $('#Select_TipoDato').css("border", "1px solid #cccccc");
+        }
+
+
+        if ($('#NombreAtributoModal').val().length > 0) {
+            if ($("#Select_TipoDato option:selected").val() > 0) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    function ValidarEditarAtributo() {
+
+        var result = false;
+
+        $('#EditarNombreAtributoModal').css("border", "1px solid #f44336");
+        $('#Select_EditarTipoDato').css("border", "1px solid #ff0049");
+
+        if ($('#EditarNombreAtributoModal').val().length > 0) {
+            $('#EditarNombreAtributoModal').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_EditarTipoDato option:selected").val() > 0) {
+            $('#Select_EditarTipoDato').css("border", "1px solid #cccccc");
+        }
+
+
+        if ($('#EditarNombreAtributoModal').val().length > 0) {
+            if ($("#Select_EditarTipoDato option:selected").val() > 0) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    function errores() {
+        $.notify({
+            message: "Inténtelo mas tarde."
+        }, {
+            type: 'danger',
+            allow_dismiss: false,
+            animate: {
+                enter: 'animated rollIn',
+                exit: 'animated rollOut'
+            }
+        });
+    }
+</script>

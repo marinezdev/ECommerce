@@ -1,0 +1,372 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Atención orden de compra  </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="#"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Orden de compra </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-xl-9 col-md-9">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Información de orden de compra   </h5>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <!-- Nav tabs -->
+                                            <ul class="nav nav-tabs md-tabs " role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#home7" role="tab"><i class="icofont icofont-list"></i> Compra</a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#profile7" role="tab"><i class="icofont icofont-ui-user "></i> Cliente </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#messages7" role="tab"><i class="icofont icofont-credit-card"></i> Pago </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#settings7" role="tab"><i class="icofont icofont-listing-number"></i> Artículos </a>
+                                                    <div class="slide"></div>
+                                                </li>
+                                            </ul>
+                                            <!-- Tab panes -->
+                                            <div class="tab-content card-block">
+                                                <div class="tab-pane active" id="home7" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <p class="m-0">Folio: <strong> @ViewBag.venta_Consultar.Folio</strong></p>
+                                                        </div>
+                                                        <div class="col-sm-6 text-right">
+                                                            <p class="m-0">Fecha registro : <strong> @ViewBag.venta_Consultar.FechaRegistro</strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Cliente </strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Nombre : <strong> @ViewBag.venta_Consultar.NombreUsuario </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Email : <strong> @ViewBag.venta_Consultar.Correo </strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Dirección de envío  </strong> -  @ViewBag.venta_Consultar.NombreDireccion</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0">
+                                                                @ViewBag.venta_Consultar.Estado, @ViewBag.venta_Consultar.Poblacion, @ViewBag.venta_Consultar.Colonia,
+                                                                @ViewBag.venta_Consultar.CP, No. exterior  :@ViewBag.venta_Consultar.NumExterior, No. interior :@ViewBag.venta_Consultar.NumInteriror,
+                                                                Calle: @ViewBag.venta_Consultar.Calle
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    @if (ViewBag.venta_Consultar.RecibirPedido == 1)
+                                                    {
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    <strong> Datos persona quien recibirá paquete  </strong>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    Nombre : <strong> @ViewBag.venta_Consultar.Recibe_Nombre @ViewBag.venta_Consultar.Recibe_Apellidos</strong>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    Teléfono  : <strong> @ViewBag.venta_Consultar.Recibe_Telefono </strong>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    Tipo teléfono : <strong> @ViewBag.venta_Consultar.Recibe_TipoTelefono </strong>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                    }
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Método de pago </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Servicio: <strong> @ViewBag.venta_Consultar.MetodoPago </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Referencia : <strong> @ViewBag.venta_Consultar.Referencia  </strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Monto total de venta </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Total: <strong> @ViewBag.venta_Consultar.PrecioText </strong></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="profile7" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Cliente </strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Nombre : <strong> @ViewBag.venta_Consultar.NombreUsuario </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Email : <strong> @ViewBag.venta_Consultar.Correo </strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Dirección de envío  </strong> -  @ViewBag.venta_Consultar.NombreDireccion</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0">
+                                                                @ViewBag.venta_Consultar.Estado, @ViewBag.venta_Consultar.Poblacion, @ViewBag.venta_Consultar.Colonia,
+                                                                @ViewBag.venta_Consultar.CP, No. exterior  :@ViewBag.venta_Consultar.NumExterior, No. interior :@ViewBag.venta_Consultar.NumInteriror,
+                                                                Calle: @ViewBag.venta_Consultar.Calle
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    @if (ViewBag.venta_Consultar.RecibirPedido == 1)
+                                                    {
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    <strong> Datos persona quien recibirá paquete  </strong>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    Nombre : <strong> @ViewBag.venta_Consultar.Recibe_Nombre @ViewBag.venta_Consultar.Recibe_Apellidos</strong>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    Teléfono  : <strong> @ViewBag.venta_Consultar.Recibe_Telefono </strong>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                                <p class="m-0">
+                                                                    Tipo teléfono : <strong> @ViewBag.venta_Consultar.Recibe_TipoTelefono </strong>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                    }
+                                                </div>
+                                                <div class="tab-pane" id="messages7" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Método de pago </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Servicio: <strong> @ViewBag.venta_Consultar.MetodoPago </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Referencia : <strong> @ViewBag.venta_Consultar.Referencia  </strong></p>
+                                                        </div>
+                                                    </div>
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> <strong> Monto total de venta </strong></p>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <p class="m-0"> Total: <strong> @ViewBag.venta_Consultar.PrecioText </strong></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="settings7" role="tabpanel">
+                                                    <div class="table-border-style">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-hover" width="100%" id='TableListArticulos'>
+                                                                <thead>
+                                                                    <tr class="bg-primary">
+                                                                        <th>Imagen</th>
+                                                                        <th>Nombre</th>
+                                                                        <th>SKU</th>
+                                                                        <th>Largo - Ancho- Altura</th>
+                                                                        <th>Peso</th>
+                                                                        <th>Precio </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @{
+                                                                        foreach (var Dat in ViewBag.articulos)
+                                                                        {
+                                                                            <tr>
+                                                                                <td><img src='https://@Dat.Imagen' width='100%' /></td>
+                                                                                <td>@Dat.Nombre</td>
+                                                                                <td>@Dat.SKU</td>
+                                                                                <td>@Dat.Largo cm x @Dat.Ancho cm x @Dat.Altura cm</td>
+                                                                                <td>@Dat.Peso </td>
+                                                                                <td>@Dat.PrecioText</td>
+                                                                            </tr>
+                                                                        }
+                                                                    }
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Acciones </h5>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <button class="btn waves-effect waves-light btn-success col-sm-12" onclick="Procesar(@ViewBag.venta_Consultar.Id)"><i class="icofont icofont-check-circled"></i> Pago recibido </button>
+
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <button class="btn waves-effect waves-light btn-danger col-sm-12"><i class="icofont icofont-ui-delete"></i> Rechazar compra  </button>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <button class="btn waves-effect waves-light btn-warning col-sm-12"><i class="icofont icofont-badge"></i> Atender después </button>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <button class="btn waves-effect waves-light btn-info col-sm-12"><i class="icofont icofont-attachment"></i>Bitácora</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+    $('#TableListArticulos').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+
+    $('#IdMenuOrdenes').addClass("active");
+
+    function Procesar(num) {
+        var obj = {};
+        obj['Id'] = num;
+
+        var jsonObject = {
+            "Venta": obj
+        };
+
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Procear_Venta", "ProcesarOrden")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                window.location.href = "@Url.Action("Ordenes", "Operador")";
+            },
+            error: errores
+        });
+    }
+
+    function errores() {
+        $.notify({
+            message: "Inténtelo mas tarde."
+        }, {
+            type: 'danger',
+            allow_dismiss: false,
+            animate: {
+                enter: 'animated rollIn',
+                exit: 'animated rollOut'
+            }
+        });
+    }
+</script>

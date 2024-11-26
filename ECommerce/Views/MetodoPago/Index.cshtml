@@ -1,0 +1,706 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asae Consultores S.A de C.V</title>
+    <!--===============================================================================================-->
+    <link rel="shortcut icon" href="~/images/icons/ico.ico">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+
+    <!--===============================================================================================-->
+    <style>
+        .wrap-menu-desktop {
+            position: fixed;
+            z-index: 101;
+            /* background-color: #e9ecefc2; */
+            background-color: #ffffffe0;
+            width: 100%;
+            height: 84px;
+            top: 0px;
+            left: 0px;
+            -webkit-transition: height 0.3s, background-color 0.3s;
+            -o-transition: height 0.3s, background-color 0.3s;
+            -moz-transition: height 0.3s, background-color 0.3s;
+            transition: height 0.3s, background-color 0.3s;
+        }
+
+        .how-itemcart1 {
+            width: 130px;
+            position: relative;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .bor14 {
+            border-radius: 10px;
+        }
+
+        .how-itemcart1::after {
+            content: '';
+            font-family: Linearicons-Free;
+            font-size: 16px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgb(0 0 0 / 0%);
+            color: #fff;
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            opacity: 0;
+        }
+
+        /*.form-control {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.25;
+            color: #495057;
+            background-color: #fff;
+            background-image: none;
+            background-clip: padding-box;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 0.25rem;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            height:42px;
+        }*/
+        .bg1 {
+            background-color: #b0ce68;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop container">
+
+                    <!-- Logo desktop -->
+                    <a href="#" class="logo">
+                        <img src="~/images/icons/logoCSB.png" />
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+                        </ul>
+                    </div>
+
+                    <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m">
+                        <a href="@Url.Action("Carro", "Store")" class="flex-c-m cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                            <i class="fa fa-reply" aria-hidden="true"></i>  &nbsp;&nbsp;  volver al carrito
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="top-content">
+        <br /><br /><br /><br /><br /><br />
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+                    <div class="m-l-25 m-r--38 m-lr-0-xl">
+                        <div class=" bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm" style="border-top: 1px solid #e6e6e6; border-radius: 5px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5><strong style=" color: #222222;">1.- FORMA DE PAGO </strong> </h5>
+                                    <hr />
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1"><strong>* Método de pago: </strong></label>
+                                        <select class="form-control" id="MetodoPago" onchange="callMetodoPago(this.value)">
+                                            <option value="0">Elige el método de pago </option>
+                                            <option value="1">PayPal </option>
+                                            <option value="2">OXXO Pay</option>
+                                            <option value="3">SPEI</option>
+                                            <option value="4">Tarjeta de crédito y débito </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-3" style="font-size: 14px; display: none;" id="div_Pypal">
+                                    <br />
+                                    <img src="~/images/icons/paypal-logo-4.png" width="100%" />
+                                </div>
+
+                                <div class="col-md-3" style="font-size: 14px; display: none;" id="div_OXXOPay">
+                                    <br />
+                                    <img src="~/images/icons/oxxopay_brand.png" width="100%" />
+                                </div>
+
+                                <div class="col-md-3" style="font-size: 14px; display: none;" id="div_SPEI">
+                                    <br />
+                                    <img src="~/images/icons/spei_brand.png" width="100%" />
+                                </div>
+                                <div class="col-md-3" style="font-size: 14px; display: none;" id="div_Tarjeta">
+                                    <br />
+                                    <img src="~/images/icons/imgTarjete.JPG" width="400%" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="@Url.Action("Index", "Compra_Direccion")" class="flex-c-m stext-101 cl0 size-116 bg1 bor14 hov-btn1 p-lr-15 trans-04 pointer" id="Btn_NuevoDomicilio">
+                                        <i class="fa fa-arrow-left" aria-hidden="true"></i> &nbsp; Regresar a datos de entrega
+                                    </a>
+                                </div>
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="@Url.Action("Paypal", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_Pagar" style="display: none;">
+                                        Pagar con PayPal &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="@Url.Action("OxxoPay", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_PagarOXXO" style="display: none;">
+                                        Pagar con OXXO Pay &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="@Url.Action("SPEI", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_PagarSPEI" style="display: none;">
+                                        Pagar con SPEI &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="@Url.Action("Checkout", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_PagarTarjeta" style="display: none; width:100%;">
+                                        Pagar con Tarjeta   &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+                    <div class="bor10 p-lr-20 p-t-30 p-b-20 m-l-63 m-r-20 m-lr-0-xl p-lr-15-sm" style="background-color: #f7f8f9">
+                        <h4 class="mtext-109 cl2 p-b-30 text-center">
+                            Resumen de compra
+                        </h4>
+
+                        <div class="flex-w  bor12 p-b-13" style="background-color: #ffffff; padding: 20px;">
+                            <div class="size-208">
+                                <span class="stext-110 cl2">
+                                    Subtotal:
+                                </span>
+                            </div>
+
+                            <div class="size-209">
+                                <span class="mtext-110 cl2 text-right" id="SubTotal_">
+                                    $@ViewBag.Total
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex-w  bor12 p-b-13" style="background-color: #ffffff; padding: 20px;">
+                            <div class="size-208">
+                                <span class="stext-110 cl2">
+                                    Envio:
+                                </span>
+                            </div>
+
+                            <div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+                                <p class="mtext-110 cl2" id="TotalEnvio_">
+                                    $0.00
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex-w p-t-27 p-b-33" style="background-color: #ffffff; padding: 20px;">
+                            <div class="size-208">
+                                <span class="mtext-101 cl2">
+                                    Total:
+                                </span>
+                            </div>
+
+                            <div class="size-209 p-t-1">
+                                <span class="mtext-110 cl2" id="Total_">
+                                    $@ViewBag.Total
+                                </span>
+                            </div>
+                        </div>
+
+                        <br />
+                        <h5 class="mtext-109 cl2 p-b-5 text-center">Entrega a domicilio (1)</h5>
+                        <div class="flex-w bor12 p-t-15 p-b-30">
+                            <div class=" p-r-18 p-r-0-sm w-full-ssm">
+                                <strong><label style="font-size: 16px; color: #222222;">Información del cliente</label></strong>
+                                <p class="stext-111  p-t-2"><strong>Nombre: </strong> @ViewBag.Usuarios_Direcciones.Nombre @ViewBag.Usuarios_Direcciones.ApellidoPaterno @ViewBag.Usuarios_Direcciones.ApellidoPaterno</p>
+                                <p class="stext-111  p-t-2"><strong>Correo electrónico: </strong> @ViewBag.Usuarios_Direcciones.Correo </p>
+                                <p class="stext-111  p-t-2"><strong>Telefono: </strong> @ViewBag.Usuarios_Direcciones.Telefono - @ViewBag.Usuarios_Direcciones.TipoTelefono</p>
+                                <hr />
+                                <strong><label style="font-size: 16px; color: #222222;">Dirección </label></strong>
+                                <p class="stext-111  p-t-2">
+                                    @ViewBag.Usuarios_Direcciones.Estado, @ViewBag.Usuarios_Direcciones.Poblacion, @ViewBag.Usuarios_Direcciones.Colonia,
+                                    @ViewBag.Usuarios_Direcciones.CP, @ViewBag.Usuarios_Direcciones.Calle, @ViewBag.Usuarios_Direcciones.NumExterior,
+                                    @if (ViewBag.Usuarios_Direcciones.NumInteriror.Length > 0)
+                                    {
+                                        @ViewBag.Usuarios_Direcciones.NumInteriror <span>, </span>
+                                    }
+                                    @if (ViewBag.Usuarios_Direcciones.EntreCalles.Length > 0)
+                                    {
+                                        @ViewBag.Usuarios_Direcciones.EntreCalles <span>, </span>
+                                    }
+                                    @if (ViewBag.Usuarios_Direcciones.Referencias.Length > 0)
+                                    {
+                                        @ViewBag.Usuarios_Direcciones.Referencias <span>, </span>
+                                    }
+                                </p>
+                                @if (ViewBag.Usuarios_Direcciones.RecibirPedido > 0)
+                                {
+                                    <p class="stext-111  p-t-2"><strong>Persona quien recibirá el pedido: </strong> </p>
+                                    <p class="stext-111  p-t-2"><strong>Nombre: </strong> @ViewBag.Usuarios_Direcciones.Recibe_Nombre @ViewBag.Usuarios_Direcciones.Recibe_Apellidos </p>
+                                    <p class="stext-111  p-t-2"><strong>Telefono: </strong> @ViewBag.Usuarios_Direcciones.Recibe_Telefono - @ViewBag.Usuarios_Direcciones.Recibe_TipoTelefono</p>
+                                }
+                                <hr />
+                                <p class="stext-111  p-t-2">
+                                    *La fecha de entrega puede cambiar por la disponibilidad del producto, tu ubicación o la forma de pago.
+                                </p>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="flex-w bor12 p-t-15 p-b-30">
+                            <div class=" p-r-18 p-r-0-sm w-full-ssm">
+                                <table>
+                                    @{
+
+                                        foreach (var Arti in ViewBag.ListaArticulos)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="how-itemcart1">
+                                                        <img src="https://@Arti.Imagen" alt="IMG">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p>
+                                                        <strong>@Arti.Nombre</strong>
+                                                    </p>
+                                                    <label style="margin-bottom: 0rem; font-size: 12px; text-transform: lowercase; ">Categoria: <strong style="">@Arti.Clasificacion</strong></label>
+                                                    Cantidad : <strong>@Arti.Item</strong>
+                                                    <strong><label id="Total_@Arti.Id">Total: @Arti.TotalText</label></strong>
+                                                    <br />
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="flex-w text-right" style="font-size:25px">
+                            <div>
+                                <strong>
+                                    <span class="">
+                                        Total:
+                                    </span>
+                                    <span class="" id="Total_">
+                                        $ @ViewBag.Total
+                                    </span>
+                                </strong>
+                            </div>
+                        </div>
+                        <br />
+                        <a href="@Url.Action("Paypal", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_Pagar2" style="display: none;">
+                            Pagar con PayPal &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="@Url.Action("OxxoPay", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_PagarOXXO2" style="display: none;">
+                            Pagar con OXXO Pay &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+
+                        <a href="@Url.Action("SPEI", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_PagarSPEI2" style="display: none;">
+                            Pagar con SPEI &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="@Url.Action("SPEI", "MetodoPago")" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="Btn_PagarTarjeta2" style="display: none;">
+                            Pagar con Tarjeta &nbsp; <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-10">
+                        ¿ Quiénes somos ?
+                    </h4>
+                    <p style="color:#ffffff; font-size: 13px;">
+                        @*Empresa 100% mexicana, con más de 30 años de experiencia ayudando a empresas nacionales e internacionales.*@
+                    </p>
+                    <hr />
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-map-marker"></i>
+                                A.V Universidad 1627, Col. Hacienda de Guadalupe Chimalistac
+                                Del. Álvaro Obregón, C.P. 01050, CDMX México.
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-phone"></i> @*55 2909 7024 / 55 3566 4390*@</a></li>
+                        <li><a href="#"><i class="fa fa-envelope-o"></i>@*sig_contacto@serviciosinmobiliariosg.com*@</a></li>
+                    </ul>
+
+                    <div class="p-t-27">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-10">
+                        Categories
+                    </h4>
+
+                    <ul class="footer-links">
+                        @*<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Accesorios De Alimentación</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Accesorios De Computadoras</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Bocinas </a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Cámara</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Computadora </a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Dispositivos Para Redes </a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Oficina Y Papelería </a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Radios</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Seguridad</a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Software </a></li>
+                            <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tabletas</a></li>*@
+                    </ul>
+                </div>
+
+                <div class="col-sm-5 col-lg-2 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-10">
+                        Información
+                    </h4>
+
+                    <ul class="footer-links">
+                        <li><a href="@Url.Action("PoliticasPrivacidad", "Inicio")"><i class="fa fa-caret-right" aria-hidden="true"></i>Políticas de privacidad</a></li>
+                        <li><a href="@Url.Action("terminosycondiciones", "Inicio")"><i class="fa fa-caret-right" aria-hidden="true"></i>Términos y condiciones </a></li>
+                    </ul>
+                </div>
+
+                @*<div class="col-sm-6 col-lg-1 p-b-50">
+                        <h4 class="stext-301 cl0 p-b-10">
+                            SERVICIOS
+                        </h4>
+                        <ul class="footer-links">
+                                <li><a href="@Url.Action("Login", "Adm")"><i class="fa fa-caret-right" aria-hidden="true"></i>Mi cuenta </a></li>
+                                <li><a href="@Url.Action("Categorias", "Home")"><i class="fa fa-caret-right" aria-hidden="true"></i>Tu interés </a></li>
+                                <li><a href="@Url.Action("Registrar", "Adm")"><i class="fa fa-caret-right" aria-hidden="true"></i>Crear una cuenta </a></li>
+                                <li><a href="@Url.Action("Ayuda", "home")"><i class="fa fa-caret-right" aria-hidden="true"></i>Ayuda </a></li>
+                            </ul>
+                    </div>*@
+
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Noticias
+                    </h4>
+                    <p style="color:#ffffff">Suscríbete y recibe nuestras <strong>ultimas publicaciones</strong></p>
+                    <form>
+                        <div class="wrap-input1 w-full p-b-4">
+                            <br />
+                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email2" id="email2" placeholder="email@ejemplo.com" onKeyUp="Correo('email2')">
+                            <div class="focus-input1 trans-04"></div>
+                        </div>
+                        <br />
+                        <div id='alertBoxes2' class="text-center"></div><span class='timer2' id='timer2'></span>
+                        <div class="p-t-18">
+                            <button id="EnviarMensaeje2" class="flex-c-m cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                                Suscribir
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="p-t-40">
+
+                <p class="stext-107 cl6 txt-center">
+                    Copyright &copy; @DateTime.Now.Year - Todos los derechos reservados |<a target="_blank" style="color: #2196F3;"> Asae Consultores S.A de C.V
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/vendor/chart.js/chart.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/slick/slick.min.js"></script>
+    <script src="~/Scripts/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/parallax100/parallax100.js"></script>
+    <script>
+        $('.parallax100').parallax100();
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script>
+        $('.gallery-lb').each(function () { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/isotope/isotope.pkgd.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <script>
+        $('.js-addwish-b2').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('.js-addwish-b2').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-b2');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addwish-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-detail');
+                $(this).off('click');
+            });
+        });
+
+        /*---------------------------------------------*/
+
+        $('.js-addcart-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to cart !", "success");
+            });
+        });
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/main.js"></script>
+    <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script>
+        function callMetodoPago(value) {
+            var num = $("#MetodoPago option:selected").val();
+
+            $("#Btn_Pagar").css("display", "none");
+            $("#Btn_Pagar2").css("display", "none");
+            $("#div_Pypal").css("display", "none");
+
+            $("#div_OXXOPay").css("display", "none");
+            $("#Btn_PagarOXXO").css("display", "none");
+            $("#Btn_PagarOXXO2").css("display", "none");
+
+            $("#div_SPEI").css("display", "none");
+            $("#Btn_PagarSPEI").css("display", "none");
+            $("#Btn_PagarSPEI2").css("display", "none");
+
+            $("#div_Tarjeta").css("display", "none");
+            $("#Btn_PagarTarjeta").css("display", "none");
+            $("#Btn_PagarTarjeta2").css("display", "none");
+
+            if (num == 1) {
+
+                $("#Btn_Pagar").show();
+                $("#Btn_Pagar2").show();
+                $("#div_Pypal").show();
+
+                $("#div_OXXOPay").css("display", "none");
+                $("#Btn_PagarOXXO").css("display", "none");
+                $("#Btn_PagarOXXO2").css("display", "none");
+
+                $("#div_SPEI").css("display", "none");
+                $("#Btn_PagarSPEI").css("display", "none");
+                $("#Btn_PagarSPEI2").css("display", "none");
+
+                $("#div_Tarjeta").css("display", "none");
+                $("#Btn_PagarTarjeta").css("display", "none");
+                $("#Btn_PagarTarjeta2").css("display", "none");
+
+            } else if (num == 2) {
+
+                $("#Btn_Pagar").css("display", "none");
+                $("#Btn_Pagar2").css("display", "none");
+                $("#div_Pypal").css("display", "none");
+
+                $("#div_SPEI").css("display", "none");
+                $("#Btn_PagarSPEI").css("display", "none");
+                $("#Btn_PagarSPEI2").css("display", "none");
+
+
+                $("#div_OXXOPay").show();
+                $("#Btn_PagarOXXO").show();
+                $("#Btn_PagarOXXO2").show();
+
+                $("#div_Tarjeta").css("display", "none");
+                $("#Btn_PagarTarjeta").css("display", "none");
+                $("#Btn_PagarTarjeta2").css("display", "none");
+
+            } else if (num == 3) {
+
+                $("#Btn_Pagar").css("display", "none");
+                $("#Btn_Pagar2").css("display", "none");
+                $("#div_Pypal").css("display", "none");
+
+                $("#div_OXXOPay").css("display", "none");
+                $("#Btn_PagarOXXO").css("display", "none");
+                $("#Btn_PagarOXXO2").css("display", "none");
+
+
+                $("#div_SPEI").show();
+                $("#Btn_PagarSPEI").show();
+                $("#Btn_PagarSPEI2").show();
+
+                $("#div_Tarjeta").css("display", "none");
+                $("#Btn_PagarTarjeta").css("display", "none");
+                $("#Btn_PagarTarjeta2").css("display", "none");
+
+            } else if (num == 4) {
+
+                $("#Btn_Pagar").css("display", "none");
+                $("#Btn_Pagar2").css("display", "none");
+                $("#div_Pypal").css("display", "none");
+
+                $("#div_OXXOPay").css("display", "none");
+                $("#Btn_PagarOXXO").css("display", "none");
+                $("#Btn_PagarOXXO2").css("display", "none");
+
+
+                $("#div_SPEI").css("display", "none");
+                $("#Btn_PagarSPEI").css("display", "none");
+                $("#Btn_PagarSPEI2").css("display", "none");
+
+                $("#div_Tarjeta").show();
+                $("#Btn_PagarTarjeta").show();
+                $("#Btn_PagarTarjeta2").show();
+            }
+        }
+    </script>
+</body>
+</html>

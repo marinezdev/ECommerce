@@ -1,0 +1,467 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>E-Commerce </title>
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Favicon icon -->
+
+    <link rel="icon" href="~/assets/images/ico.ico" type="image/x-icon">
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="~/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/themify-icons/themify-icons.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- Style.css -->
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        body[themebg-pattern="theme1"] {
+            background-color: #cddbf3;
+        }
+
+        /*   Typography    */
+        .alert, button.close {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            font-family: 'Lato', sans-serif;
+        }
+
+        /*     Alert    */
+        .alert {
+            border: 0px;
+            position: relative;
+            padding: .95rem 1.25rem;
+            border-radius: 1px;
+            color: inherit;
+            background-color: #ffffff;
+            -webkit-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            -moz-box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+            box-shadow: 1px 1px 14px 0px rgba(18, 38, 63, 0.26);
+        }
+
+            .alert [data-notify="icon"] {
+                display: block;
+            }
+
+                .alert [data-notify="icon"]::before {
+                    line-height: 35px;
+                    font-size: 22px;
+                    display: block;
+                    left: 15px;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 30px;
+                    text-align: center;
+                    color: #fff;
+                }
+
+            .alert [data-notify="title"] {
+                display: block;
+                color: #2b2b2b;
+                font-weight: 700;
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+
+            .alert [data-notify="message"] {
+                font-size: 13px;
+                color: #908e8e;
+            }
+
+            .alert .close {
+                background: rgba(255, 255, 255, 0.8);
+                width: 25px;
+                height: 25px;
+                line-height: 25px;
+                top: 12px !important;
+                border-radius: 50%;
+            }
+
+        /*    Alert States    */
+        .alert-default {
+            border-left: 4px solid #1a2035;
+        }
+
+            .alert-default [data-notify="icon"]:before {
+                background: #1a2035;
+            }
+
+        .alert-primary {
+            border-left: 4px solid #1572E8;
+        }
+
+            .alert-primary [data-notify="icon"]:before {
+                background: #1572E8;
+            }
+
+        .alert-secondary {
+            border-left: 4px solid #6861CE;
+        }
+
+            .alert-secondary [data-notify="icon"]:before {
+                background: #6861CE;
+            }
+
+        .alert-info {
+            border-left: 4px solid #48ABF7;
+        }
+
+            .alert-info [data-notify="icon"]:before {
+                background: #48ABF7;
+            }
+
+        .alert-success {
+            border-left: 4px solid #31CE36;
+        }
+
+            .alert-success [data-notify="icon"]:before {
+                background: #31CE36;
+            }
+
+        .alert-warning {
+            border-left: 4px solid #FFAD46;
+        }
+
+            .alert-warning [data-notify="icon"]:before {
+                background: #FFAD46;
+            }
+
+        .alert-danger {
+            border-left: 4px solid #F25961;
+        }
+
+            .alert-danger [data-notify="icon"]:before {
+                background: #F25961;
+                z-index: 9999;
+            }
+
+        [data-notify] {
+            z-index: 999999999991 !important;
+        }
+
+        .pcoded .pcoded-header[header-theme="theme1"] {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .pcoded .pcoded-navbar[active-item-theme="theme1"] .pcoded-item > li.active > a {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+            color: #fff !important;
+        }
+
+        .pcoded[fream-type="theme1"] .page-header:before, .pcoded[fream-type="theme1"] .main-menu .main-menu-header:before {
+            background: linear-gradient(to right, #185a9deb, #9c27b0c2);
+        }
+
+        .bg-c-purple {
+            background: linear-gradient(to right, #185a9d, #9C27B0);
+        }
+
+        .card .card-header h5:after {
+            content: "";
+            background-color: #9a28b0;
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 20px;
+        }
+
+        .text-c-purple {
+            color: #9c28b0;
+        }
+
+        .pcoded .pcoded-navbar .pcoded-navigation-label[menu-title-theme="theme1"] {
+            color: #5d40a7;
+        }
+
+        
+
+        .md-tabs .nav-item.open .nav-link, .md-tabs .nav-item.open .nav-link:focus, .md-tabs .nav-item.open .nav-link:hover, .md-tabs .nav-link.active, .md-tabs .nav-link.active:focus, .md-tabs .nav-link.active:hover {
+            color: #5d40a7;
+            border: none;
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        .nav-tabs .slide {
+            background: #9a27af;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            -webkit-transition: left 0.3s ease-out;
+            transition: left 0.3s ease-out;
+            bottom: 0;
+        }
+
+        .btn-primary, .sweet-alert button.confirm, .wizard > .actions a {
+            background-color: #448aff;
+            background: linear-gradient(310deg,#3d5eab,#44b2e7);
+            border-color: #d7e2f5;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+            border-radius: 8px;
+        }
+
+        .btn-primary.btn-mat, .sweet-alert button.btn-mat.confirm, .wizard > .actions a.btn-mat {
+            background: linear-gradient(310deg,#2152ff,#21d4fd);
+            border-radius: 5px;
+        }
+
+        .btn-success {
+            background: linear-gradient(310deg,#17ad37,#98ec2d);
+            background-color: #11c15b;
+            border-color: #a8ffcd;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-info {
+            background: linear-gradient(310deg,#007989,#00bcd4);
+            /* background-color: #00bcd4; */
+            border-color: #00bcd4;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-danger {
+            background: linear-gradient(310deg,#ea0606,#ff667c);
+            border-color: #ff5252;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-warning {
+            background: linear-gradient(310deg,#f53939,#fbcf33);
+            border-color: #ffe100;
+            color: #fff;
+            cursor: pointer;
+            -webkit-transition: all ease-in 0.3s;
+            transition: all ease-in 0.3s;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(310deg,#404040,#868e96);
+            color: #fff;
+            background-color: #868e96;
+            border-color: #868e96;
+            border-radius: 5px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body themebg-pattern="theme1">
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="loader-track">
+            <div class="preloader-wrapper">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <section class="login-block">
+        <!-- Container-fluid starts -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <!-- Authentication card start -->
+
+                    <form class="">
+                        <div class="text-center">
+                            <img src="~/images/icons/asaelogo.png" alt="logo.png" width="20%">
+                        </div>
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center">Escribe tu número de seguimiento</h3>
+                                    </div>
+                                </div>
+
+                               
+
+                                <div class="row m-t-30">
+                                    <div class="col-md-12 col-lg-12">
+                                        <div class="form-group">
+                                            <label for="largeInput">* Folio </label>
+                                            <input type="text" class="form-control form-control" id="Folio" placeholder="" autocomplete="off" onchange="ValidaInput('NombreCategoriaActualizar')">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" onclick="Buscar()" >Buscar pedido </button>
+                                    </div>
+                                </div>
+
+                                <div class="row m-t-30">
+                                    <div class="col-md-9">
+                                        @*<p class="text-inverse text-left m-b-0">Thank you.</p>*@
+                                        <p class="text-inverse text-left"><a href="@Url.Action("Index", "Store")"><b>Volver a Tienda </b></a></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img src="~/images/icons/asaelogo.png" alt="small-logo.png" width="100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end of form -->
+                </div>
+                <!-- end of col-sm-12 -->
+            </div>
+            <!-- end of row -->
+        </div>
+        <!-- end of container-fluid -->
+    </section>
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!-- Required Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="~/assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="~/assets/pages/widget/excanvas.js "></script>
+    <!-- waves js -->
+    <script src="~/assets/pages/waves/js/waves.min.js"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="~/assets/js/jquery-slimscroll/jquery.slimscroll.js "></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="~/assets/js/modernizr/modernizr.js "></script>
+    <!-- slimscroll js -->
+    <script type="text/javascript" src="~/assets/js/SmoothScroll.js"></script>
+    <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <!-- Chart js -->
+    <script type="text/javascript" src="~/assets/js/chart.js/Chart.js"></script>
+    <!-- amchart js -->
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="~/assets/pages/widget/amchart/gauge.js"></script>
+    <script src="~/assets/pages/widget/amchart/serial.js"></script>
+    <script src="~/assets/pages/widget/amchart/light.js"></script>
+    <script src="~/assets/pages/widget/amchart/pie.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <!-- menu js -->
+    <script src="~/assets/js/pcoded.min.js"></script>
+    <script src="~/assets/js/vertical-layout.min.js "></script>
+    <script src="~/assets/js/sweetalert/sweetalert.min.js"></script>
+    <!-- custom js -->
+    <script type="text/javascript" src="~/assets/pages/dashboard/custom-dashboard.js"></script>
+    <script type="text/javascript" src="~/assets/js/script.js "></script>
+
+    <script>
+        function Buscar()
+        {
+            if (Validar()) {
+                var Folio = $('#Folio').val();
+                window.location.href = '@Url.Action("Rastreo", "RastreaPedidos")?F=' + Folio;
+            } else {
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "Debes completar el formulario de información.",
+                }, {
+                    type: 'warning',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            }
+        }
+
+        function Validar() {
+            var result = false;
+
+            $('#Folio').css("border", "1px solid #ff0049");
+
+            if ($('#Folio').val().length > 0) {
+                $('#Folio').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#Folio').val().length > 0) {
+                result = true;
+            }
+
+            return result;
+        }
+    </script>
+</body>
+
+</html>

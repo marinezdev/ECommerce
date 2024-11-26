@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="assets/css/templatemo.css">
+
+<style>
+    .zoom-effect {
+        transition: transform 0.3s ease;
+    }
+
+        .zoom-effect:hover {
+            transform: scale(1.2);
+        }
+</style>
+
+<br />
+<br />
+<br />
+
+<!-- Start Banner Hero -->
+<div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        @for (var i = 0; i < ViewBag.Promos.Count; i++)
+        {
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+        }
+    </ol>
+
+    <div class="carousel-inner">
+        @foreach (var item in ViewBag.Promos)
+        {
+            <div class="carousel-item @(item == ViewBag.Promos[0] ? "active" : "")">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="@item.URLImg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success"><b>@item.Titulo</b> eCommerce</h1>
+                                <h3 class="h2">@item.Subtitulo</h3>
+                                <p>
+                                    @item.Descripcion
+                                    <a rel="sponsored" class="text-success" href="@item.Link" target="_blank">Comprar</a> ahora.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <i class="fa fa-angle-left f-60"></i>
+    </a>
+
+    <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <i class="fa fa-angle-right"></i>
+    </a>
+</div>
+<!-- End Banner Hero -->
+<!-- Start Categories of The Month -->
+<section class="container py-5">
+    <div class="row text-center pt-3">
+        <div class="col-lg-6 m-auto">
+            <h1 class="h1">Productos por Categoria</h1>
+            <p>
+                Selecciona una categoria para ver los productos disponibles en la tienda.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in ViewBag.Categorias)
+        {
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/subcategoriaProducto?Id=@item.Id"><img src=@item.UrlImg class="rounded-circle img-fluid border zoom-effect"></a>
+                <h5 class="text-center mt-3 mb-3">@item.Nombre</h5>
+                <p class="text-center" style="color: white;"><a href="/subcategoriaProducto?Id=@item.Id" class="btn btn-success">Visualizar</a></p>
+            </div>
+        }
+    </div>
+</section>
+<!-- End Categories of The Month -->
+<!-- Start Featured Product -->
+<section class="bg-light">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">
+                    Productos destacados
+                </h1>
+                <p>
+                    ¡Descubre nuestra selección exclusiva de productos destacados! Te presentamos los artículos más populares y solicitados por nuestros clientes.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="#">
+                        <img src="./assets/img/Tequila3.png" class="card-img-top img-fluid" style="height:400px">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$2240.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Tequila Mi Sorpresa</a>
+                        <p class="card-text">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
+                        </p>
+                        <p class="text-muted">Reviews (24)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="#">
+                        <img src="./assets/img/fav2.png" class="card-img-top img-fluid" style="height:400px">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$4800.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Don Julio REAL</a>
+                        <p class="card-text">
+                            Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
+                        </p>
+                        <p class="text-muted">Reviews (48)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100">
+                    <a href="#">
+                        <img src="./assets/img/fav1.png" class="card-img-top img-fluid" style="height:400px">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                            </li>
+                            <li class="text-muted text-right">$3600.00</li>
+                        </ul>
+                        <a href="shop-single.html" class="h2 text-decoration-none text-dark">Gran Patrón</a>
+                        <p class="card-text">
+                            Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
+                        </p>
+                        <p class="text-muted">Reviews (74)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Featured Product -->
+<!-- Start Script -->
+<script src="assets/js/jquery-1.11.0.min.js"></script>
+<script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/templatemo.js"></script>
+<!-- End Script -->
+
+<script>
+    function Redireccionar(documento) {
+        var obj = {};
+
+        obj['UrlVaible'] = documento;
+
+        var jsonObject = {
+            "URL": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("URL_Cifrar", "URLS")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+            window.location.href = '@Url.Action("VistaEditar", "Administracion")?Id=' + result.Url;
+            },
+            error: function () {
+            AlertDanger("Problemas al consultar ", "Intentolo mas tarde.");
+            }
+        });
+
+    }
+</script>
+    

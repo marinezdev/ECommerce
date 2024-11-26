@@ -1,0 +1,289 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+
+
+<!-- Modal Nuevo usuario -->
+<div class="modal fade" id="ModalArticulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agrega artículos a la promoción  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* SKU </label>
+                        <input type="text" class="form-control form-control" id="NombreEtapaModal" placeholder="" autocomplete="off" onchange="ValidaInput('NombreEtapaModal')">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light btn-success" id="BtnActualizarCategoriaModal"><i class="icofont icofont-save"></i> Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarNuevaEtapa" data-dismiss="modal"><i class="icofont icofont-exit"></i> Cerrar  </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Nuevo promoción  </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Promociones </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nueva promocion por artiuclo  </h5>
+                                    <span>Completa los campos marcados *</span>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Fecha Inicio  </label>
+                                                <input type="date" class="form-control form-control" id="Fecha_Inicio">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Fecha Fin  </label>
+                                                <input type="date" class="form-control form-control" id="Fecha_Fin">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Precio promoción  </label>
+                                                <input type="text" class="form-control form-control input-number" id="PPromocion" onchange="ValidaInput('PPromocion')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* SKU </label>
+                                                <input type="text" class="form-control form-control input-number" id="PPromocion" onchange="ValidaInput('PPromocion')">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <br />
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnCrearFlujo"><i class="icofont icofont-save"></i> Guardar promoción </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nueva promocion por paquete </h5>
+                                    <span>Completa los campos marcados *</span>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Fecha Inicio  </label>
+                                                <input type="date" class="form-control form-control" id="Fecha_Inicio">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Fecha Fin  </label>
+                                                <input type="date" class="form-control form-control" id="Fecha_Fin">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Precio promoción  </label>
+                                                <input type="text" class="form-control form-control input-number" id="PPromocion" onchange="ValidaInput('PPromocion')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-8">
+                                            <div class='card-block table-border-style' id="TableArticulos">
+                                                <div class='table-responsive'>
+                                                    <table class='table'>
+                                                        <thead>
+                                                            <tr class='table-inverse'>
+                                                                <th>Nombre </th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan='2'> Sin artiuclos </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnAgregarArticulo"><i class="icofont icofont-ui-add"></i> Agregar Artiuclo  </button>
+                                            <br /><br />
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnCrearFlujo"><i class="icofont icofont-save"></i> Guardar promoción </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nueva promocion por paquete y artículo de regalo   </h5>
+                                    <span>Completa los campos marcados *</span>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Fecha Inicio  </label>
+                                                <input type="date" class="form-control form-control" id="Fecha_Inicio">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Fecha Fin  </label>
+                                                <input type="date" class="form-control form-control" id="Fecha_Fin">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="largeInput">* Precio promoción  </label>
+                                                <input type="text" class="form-control form-control input-number" id="PPromocion" onchange="ValidaInput('PPromocion')">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-8">
+                                            <div class='card-block table-border-style' id="TableArticulos">
+                                                <div class='table-responsive'>
+                                                    <table class='table'>
+                                                        <thead>
+                                                            <tr class='table-inverse'>
+                                                                <th>Nombre </th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan='2'> Sin artiuclos </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnAgregarArticulo"><i class="icofont icofont-ui-add"></i> Agregar Artiuclo  </button>
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-8">
+                                            <div class='card-block table-border-style' id="TableArticulos">
+                                                <div class='table-responsive'>
+                                                    <table class='table'>
+                                                        <thead>
+                                                            <tr class='table-inverse'>
+                                                                <th>Nombre </th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td colspan='2'> Sin artiuclos </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnAgregarArticulo"><i class="icofont icofont-ui-add"></i> Agregar Artiuclo  </button>
+                                            <br /><br />
+                                            <button class="btn waves-effect waves-light btn-primary col-sm-12" id="BtnCrearFlujo"><i class="icofont icofont-save"></i> Guardar promoción </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+<script>
+    $('#IdMenuPromocion').addClass("active pcoded-trigger");
+    $('#IdMenuPromocionNuevo').addClass("active");
+
+
+    $('#BtnAgregarArticulo').click(function () {
+
+        $("#ModalArticulo").modal("show");
+
+    });
+
+
+</script>

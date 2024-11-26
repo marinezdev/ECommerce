@@ -1,0 +1,504 @@
+﻿
+@{
+    ViewBag.Title = "Ordenes";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+
+<div id="ModalArticulos" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lista de artículos </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="TablaArticulos">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Ordenes de compra  </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Ordenes </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-xl-7 col-md-7">
+                            <div class="row">
+                                @{
+                                    foreach (var Dat in ViewBag.Venta_Listar_Pendietes_Etapa_Total)
+                                    {
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-block">
+                                                    <div class="row align-items-center text-center">
+                                                        <div class="col-8">
+                                                            <h4 class="text-c-purple">@Dat.Etapa</h4>
+                                                            <h6 class="text-muted m-b-0" style="font-size: 40px;">@Dat.Total</h6>
+                                                        </div>
+                                                        <div class="col-4 text-right">
+                                                            <i class="fa fa-file-text-o f-28"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer bg-c-purple">
+                                                    <div class="row align-items-center">
+                                                        <div class="col-9">
+                                                            <p class="text-white m-b-0"></p>
+                                                        </div>
+                                                        <div class="col-3 text-right">
+                                                            <i class="fa fa-line-chart text-white f-16"></i>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-md-5">
+                            <!-- contenido de grafica  -->
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Grafica:</h5>
+                                    <span> Información de etapas  @*<code>.form-control</code> with <code>&lt;input&gt;</code> tag*@</span>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <canvas id="densityChart" width="600" height="180"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Listado de ordenes de compra  </h5>
+                                    <span>Orden de compra <strong>pendientes</strong>  </span>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="table-border-style">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover text-center" width="100%" id='TableListVentasPendientes'>
+                                                        <thead>
+                                                            <tr class="bg-primary">
+                                                                <th class="text-center">Folio</th>
+                                                                <th class="text-center">Fecha registro</th>
+                                                                <th class="text-center">Estado del pedido</th>
+                                                                <th class="text-center">Monto</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                foreach (var Dat in ViewBag.Venta_Listar_Pendientes)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@Dat.Folio</td>
+                                                                        <td>@Dat.FechaRegistro</td>
+                                                                        <td>
+                                                                            @Dat.Estatus
+                                                                        </td>
+                                                                        <td>@Dat.PrecioText</td>
+                                                                        <td>
+                                                                            <button class="btn waves-effect waves-light btn-success" onclick="AtenderOrden(@Dat.Id)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Atender Orden" ><i class="icofont icofont-edit-alt"></i></button>
+                                                                            <button class="btn waves-effect waves-light btn-info" onclick="MostrarArticulos(@Dat.Id)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mostar artículos"><i class="icofont icofont-listing-number"></i></button>
+                                                                            <button class="btn waves-effect waves-light btn-primary" onclick="MostrarOrden(@Dat.Id)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mostrar orden de compra"><i class="icofont icofont-eye-alt"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Listado de ordenes de compra  </h5>
+                                    <span>Total de ordenes de compra</span>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="table-border-style">
+                                                <div class="table-responsive">
+                                                    <table class="table table-hover text-center" width="100%"  id='TableListVentas'>
+                                                        <thead>
+                                                            <tr class="bg-primary">
+                                                                <th class="text-center">Folio</th>
+                                                                <th class="text-center">Fecha registro</th>
+                                                                <th class="text-center">Estatus</th>
+                                                                <th class="text-center">Monto</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                                                foreach (var Dat in ViewBag.Venta_Listar_Operador)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@Dat.Folio</td>
+                                                                        <td>@Dat.FechaRegistro</td>
+                                                                        <td>
+                                                                            @Dat.Estatus
+                                                                        </td>
+                                                                        <td>@Dat.PrecioText</td>
+                                                                        <td>
+                                                                            <button class="btn waves-effect waves-light btn-primary" onclick="MostrarOrden(@Dat.Id)" data-toggle="tooltip" data-placement="top" title="" data-original-title="Mostrar orden de compra"><i class="icofont icofont-eye-alt"></i></button>
+                                                                        </td>
+                                                                    </tr>
+                                                                }
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script>
+
+    function AtenderOrden(num)
+    {
+        window.location.href = '@Url.Action("Index", "ProcesarOrden")?IdVenta=' + num;
+    }
+
+
+    function MostrarOrden(num)
+    {
+        window.location.href = '@Url.Action("MostrarOrden", "Operador")?IdVenta=' + num;
+    }
+
+    function MostrarArticulos(num) {
+
+        var obj = {};
+        obj['Id'] = num;
+
+        var jsonObject = {
+            "Venta": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ConsultarArticulos", "Operador")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+
+            var Table =
+                "<div class='table-border-style'>" +
+                    "<div class='table-responsive'>" +
+                        "<table class='table text-center' width='100%' id='TableListArticulos'>" +
+                            "<thead>" +
+                                "<tr class='bg-primary'>" +
+                                    "<th class='text-center'>Imagen</th>" +
+                                    "<th class='text-center'>Nombre</th>" +
+                                    "<th class='text-center'>SKU </th>" +
+                                    "<th class='text-center'>Largo - Ancho- Altura </th>" +
+                                    "<th class='text-center'>Peso </th>" +
+                                    "<th class='text-center'>Precio </th>" +
+                                "</tr>" +
+                            "</thead>" +
+                            "<tbody>";
+
+                    if (data.length > 0) {
+                        for (var b = 0; b < data.length; b++) {
+                        Table += "<tr>" +
+                                    "<td><img src='https://" + data[b].Imagen + "' class='img-50 align-top m-r-15' />" +
+                                    "</td>" +
+                                    "<td>" + data[b].Nombre +
+                                    "</td>" +
+                                    "<td>" + data[b].SKU +
+                                    "</td>" +
+                                    "<td>" + + data[b].Largo + " cm x " + data[b].Ancho + " cm x " + data[b].Altura + " cm" +
+                                    "</td>" +
+                                    "<td>" + data[b].Peso +
+                                    "</td>" +
+                                    "<td>" + data[b].PrecioText +
+                                    "</td>" +
+                                "</tr>";
+                        }
+                    }
+
+                Table +=    "</tbody>"
+                        "</table>"
+                    "</div>"
+                "</div>";
+                $('#TablaArticulos').html(Table);
+
+                $('#TableListArticulos').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                    }
+                });
+
+            },
+            error: errores
+        });
+
+        $("#ModalArticulos").modal("show");
+    }
+
+    $('#IdMenuOrdenes').addClass("active");
+
+    $('#TableListVentasPendientes').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+
+    $('#TableListVentas').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+
+    function errores() {
+        $.notify({
+            message: "Inténtelo mas tarde."
+        }, {
+            type: 'danger',
+            allow_dismiss: false,
+            animate: {
+                enter: 'animated rollIn',
+                exit: 'animated rollOut'
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+
+        var densityCanvas = document.getElementById("densityChart");
+
+        Chart.defaults.global.defaultFontFamily = "Arial, sans-serifapple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
+        Chart.defaults.global.defaultFontSize = 14;
+
+        var densityData = {
+            label: 'Estatus',
+
+            options: {
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        //fontColor: 'black',
+                        defaultFontFamily: 'Arial, sans-serifapple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+                        fontColor: 'rgb(154, 154, 154)',
+                        usePointStyle: true,
+                    }
+                }
+            },
+
+
+            data: [
+                @foreach (var Com in ViewBag.Venta_Listar_Pendietes_Etapa_Total)
+                {
+                    @Html.Raw(@Com.Total)
+                    @Html.Raw(",")
+                }
+            ],
+            backgroundColor: [
+                'rgba(88, 2, 47, 0.9)',
+                'rgba(63, 194, 162, 0.9)',
+                'rgba(63, 195, 162, 0.9)',
+                'rgba(54, 169, 161, 0.9)',
+                'rgba(50, 160, 160, 0.9)',
+                'rgba(49, 158, 160, 0.9)',
+                'rgba(44, 145, 159, 0.9)',
+                'rgba(37, 126, 159, 0.9)',
+                'rgba(34, 116, 158, 0.9)',
+                'rgba(28, 101, 158, 0.9)',
+                'rgba(26, 95, 157, 0.9)',
+                'rgba(25, 91, 157, 0.9)',
+
+                'rgba(26, 95, 157, 0.9)',
+                'rgba(28, 101, 158, 0.9)',
+                'rgba(34, 116, 158, 0.9)',
+                'rgba(37, 126, 159, 0.9)',
+                'rgba(44, 145, 159, 0.9)',
+                'rgba(49, 158, 160, 0.9)',
+                'rgba(50, 160, 160, 0.9)',
+                'rgba(54, 169, 161, 0.9)',
+                'rgba(63, 195, 162, 0.9)',
+                'rgba(63, 194, 162, 0.9)',
+                'rgba(67, 206, 162, 0.9)',
+
+            ],
+            borderColor: [
+                'rgba(139, 4, 75, 0.9)',
+                'rgba(63, 195, 162, 0.9)',
+                'rgba(54, 169, 161, 0.9)',
+                'rgba(50, 160, 160, 0.9)',
+                'rgba(49, 158, 160, 0.9)',
+                'rgba(44, 145, 159, 0.9)',
+                'rgba(37, 126, 159, 0.9)',
+                'rgba(34, 116, 158, 0.9)',
+                'rgba(28, 101, 158, 0.9)',
+                'rgba(26, 95, 157, 0.9)',
+                'rgba(25, 91, 157, 0.9)',
+
+
+                'rgba(26, 95, 157, 0.9)',
+                'rgba(28, 101, 158, 0.9)',
+                'rgba(34, 116, 158, 0.9)',
+                'rgba(37, 126, 159, 0.9)',
+                'rgba(44, 145, 159, 0.9)',
+                'rgba(49, 158, 160, 0.9)',
+                'rgba(50, 160, 160, 0.9)',
+                'rgba(54, 169, 161, 0.9)',
+                'rgba(63, 195, 162, 0.9)',
+                'rgba(63, 194, 162, 0.9)',
+
+            ],
+            borderWidth: 1,
+            hoverBorderWidth: 0,
+            hoverBackgroundColor: [
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+               'rgba(0, 69, 69, 1)',
+            ],
+        };
+
+        var chartOptions = {
+            scales: {
+                yAxes: [{
+                    barPercentage: 0.5
+                }]
+            },
+            elements: {
+                rectangle: {
+                    borderSkipped: 'left',
+                }
+            }
+        };
+
+        var barChart = new Chart(densityCanvas, {
+            type: 'bar',
+            data: {
+                labels: [
+                @foreach (var Com in ViewBag.Venta_Listar_Pendietes_Etapa_Total)
+                {
+                    @Html.Raw("'")
+                    @Html.Raw(@Com.Etapa)
+                    @Html.Raw("'")
+                    @Html.Raw(",")
+                }
+                ],
+                datasets: [densityData],
+            },
+            options: chartOptions
+        });
+    });
+
+</script>

@@ -1,0 +1,2375 @@
+﻿
+@{
+    ViewBag.Title = "NuevoArticulo";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+<style>
+
+
+    .process-step .btn:focus {
+        outline: none
+    }
+
+    .process {
+        display: table;
+        width: 100%;
+        position: relative
+    }
+
+    .process-row {
+        display: table-row
+    }
+
+    .process-step button[disabled] {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important
+    }
+
+    .process-row:before {
+        top: 40px;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        z-order: 0;
+    }
+
+    .process-step {
+        display: table-cell;
+        text-align: center;
+        position: relative
+    }
+
+        .process-step p {
+            margin-top: 4px
+        }
+
+    .btn-circle {
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        font-size: 12px;
+        border-radius: 50%
+    }
+
+
+
+
+
+    .TextoColor {
+        color: #555 !important;
+    }
+
+    @@media (min-width: 768px) {
+        .modal-dialog {
+            width: 600px;
+            margin: 150px auto;
+        }
+    }
+
+    .close:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+
+    .close {
+        float: right;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: #000;
+        text-shadow: 0 1px 0 #fff;
+        opacity: .5;
+    }
+
+    progress {
+        -webkit-appearance: none;
+        border-radius: 15px;
+    }
+
+    ::-webkit-progress-bar {
+        background-color: #ccc;
+        border-radius: 15px;
+    }
+
+
+    progress[value]::-webkit-progress-value {
+        background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #01477f, #008c99);
+        border-radius: 15px;
+        background-size: 35px 20px, 100% 100%, 100% 100%;
+    }
+
+
+
+    .cogVcH:hover {
+        cursor: pointer;
+        border-style: solid;
+    }
+
+    .cogVcH {
+        max-width: 180px;
+        width: 100%;
+        border: 1px dashed #448aff;
+        color: #448aff;
+        height: 216px;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-flow: column wrap;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin-right: 10px;
+        margin-bottom: 15px;
+        -webkit-box-flex: 1;
+        flex-grow: 1;
+        transition: border 0.25s ease-in-out 0s;
+    }
+
+    .gXEoDm {
+        width: 180px;
+        height: 216px;
+        border: 0.5px solid rgb(124, 152, 167);
+        border-radius: 8px;
+        background-color: rgb(255, 255, 255);
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    .sc-fATqzn:hover .fpCmKW {
+        visibility: visible;
+        top: -16px;
+    }
+
+    .fpCmKW {
+        position: absolute;
+        width: 100%;
+        text-align: right;
+        z-index: 3;
+        top: 0px;
+        visibility: hidden;
+        transition: visibility 0s ease-out 0s;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .ecdNeI {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        display: inline-block;
+        background-image: url(/panel/static/media/R-PANELv2.06.1-RC1/icon_rotate_48x48.2dfac1f1.svg);
+        background-size: cover;
+        margin-right: 4px;
+    }
+
+    .ecdNeI2 {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        display: inline-block;
+        background-image: url(/panel/static/media/R-PANELv2.06.1-RC1/icon_rotate_48x48.2dfac1f1.svg);
+        background-size: cover;
+        margin-right: 4px;
+    }
+
+
+    .fpCmKW span:last-child {
+        margin: 0px;
+    }
+
+    .jskYLk {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        display: inline-block;
+        background-size: cover;
+        margin-right: 4px;
+        background-image: url('../../Images/icons/icon_trash_48x48.e4cbe3f0.svg');
+    }
+
+    .gsEJWt {
+        width: 100%;
+        height: 30px;
+        color: white;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px 10px;
+        background-image: linear-gradient( 310deg, #ff0049 0%, #990051 100%);
+        border-radius: 8px 8px 0px 0px;
+        text-align: center;
+        position: absolute;
+        z-index: 2;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .iOCuAz {
+        border-radius: 8px 0px 8px 0px 0px;
+        overflow: hidden;
+        width: 180px;
+        height: 215px;
+        transition: height 1s ease 0s;
+    }
+
+    .gnckKk {
+        width: 178px;
+        height: 215px;
+        object-fit: cover;
+        transition: height 1s ease 0s;
+        border-radius: 8px;
+    }
+
+    .hZRbtg input, .hZRbtg select, .hZRbtg textarea {
+        font-family: Hind;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .ldkJDz {
+        display: block;
+        width: 100%;
+        padding: 0px 67px 0px;
+        margin-top: 40px;
+        white-space: normal;
+        min-height: 692px;
+        font-family: Hind;
+        overflow-x: hidden;
+    }
+
+    .ihwDZV {
+        padding: 40px 40px 45px;
+        white-space: normal;
+    }
+
+    .hZRbtg {
+        box-shadow: rgb(0 0 0 / 8%) -1px 2px 20px 0px;
+        border-radius: 12px;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .hZRbtg {
+        box-shadow: rgb(0 0 0 / 8%) -1px 2px 20px 0px;
+        border-radius: 12px;
+        width: 100%;
+        white-space: normal;
+    }
+
+    .dUQJCE {
+        height: 35px;
+        width: 172px;
+        text-overflow: ellipsis;
+        border-radius: 0px 0px 8px 8px;
+        margin: 0px 5px;
+        color: rgb(104, 128, 140);
+        font-size: 12px !important;
+    }
+
+    .sc-fATqzn:hover .fpCmKW {
+        visibility: visible;
+        top: -16px;
+    }
+
+
+    .fpCmKW {
+        position: absolute;
+        width: 100%;
+        text-align: right;
+        z-index: 3;
+        top: 0px;
+        visibility: hidden;
+        transition: visibility 0s ease-out 0s;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .ecdNeI:hover {
+        background-image: url('../../Images/icons/icon_rotate_48x48_hover.1e032e91.svg');
+    }
+
+    .ecdNeI {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        display: inline-block;
+        background-image: url('../../Images/icons/icon_rotate_48x48.2dfac1f1.svg');
+        background-size: cover;
+        margin-right: 4px;
+    }
+
+    .ecdNeI2:hover {
+        background-image: url('../../Images/icons/icon_subir.png');
+    }
+
+    .ecdNeI2 {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        display: inline-block;
+        background-image: url('../../Images/icons/icon_subir_hover.png');
+        background-size: cover;
+        margin-right: 4px;
+    }
+
+    .gsEJWt div {
+        height: 14px;
+        width: 14px;
+        margin-bottom: 4px;
+        background-image: url('../../Images/icons/star.9fe16126.svg');
+        background-size: cover;
+        margin-right: 8px;
+    }
+
+    .faMYgb {
+        max-height: 250px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        box-sizing: content-box;
+        display: flex;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        transition: max-height 1s ease 0s;
+        overflow: hidden;
+    }
+
+    .gJWAcE {
+        width: 100%;
+        padding: 30px 0px 0px px;
+        display: flex;
+        -webkit-box-pack: start;
+        justify-content: flex-start;
+        flex-flow: row wrap;
+        transition: max-height 1s ease 0s;
+    }
+
+    .fpCmKW span:last-child {
+        margin: 0px;
+    }
+
+
+    .jskYLk:hover {
+        background-image: url('../../Images/icons/icon_trash_48x48_hover.d8eb4bff.svg');
+    }
+
+    .btn-info.active, .btn-info:active, .show > .btn-info.dropdown-toggle {
+        background-color: #448aff;
+        background-image: none;
+        border-color: #3f629d;
+    }
+
+    select.form-control, select.form-control:focus, select.form-control:hover {
+        border-top: 1px;
+        border-right: 1px;
+        border-left: 1px;
+        border: 1px solid #cccccc;
+        border-radius: 2px;
+    }
+
+        select.form-control:not([size]):not([multiple]) {
+            height: 36px;
+        }
+
+    /*.table td, .table th {
+        padding: -1.75rem 0.75rem;
+    }*/
+
+    .table td, .table th {
+        padding: 0.25rem 0.75rem;
+    }
+</style>
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />*@
+
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+
+<!-- Modal editar atributo -->
+<div class="modal fade" id="ModalEditarAtributo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar nuevo atributo  </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="NombreAtributoModal" placeholder="" autocomplete="off" onchange="ValidaInput('NombreAtributoModal')">
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Tipo de dato </label>
+                        <select class="form-control" id="Select_TipoDato" onchange="ValidaSelect('Select_TipoDato')">
+                            <option value="0">Seleccionar </option>
+                            @foreach (var item1 in ViewBag.cat_TipoDatos)
+                            {
+                                <option value="@item1.Id">@item1.Nombre</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" id="BtnAccionesEditar">
+                <button class="btn waves-effect waves-light btn-info" id="BtnAgregarAtributoModal"><i class="icofont icofont-save"></i> Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarNuevoAtributo" data-dismiss="modal"><i class="icofont icofont-exit"></i> Cerrar  </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Nuevo artículo </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Artículos </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Nuevo artículo  </h5>
+                                    <span>Completa los campos marcados *</span>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="process">
+                                                <div class="process-row nav nav-tabs">
+                                                    <div class="process-step text-center">
+                                                        <button type="button" class="btn btn-info btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-info fa-3x text-center"></i></button>
+                                                        <p>Información</p>
+                                                    </div>
+                                                    <div class="process-step">
+                                                        <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-file-text-o fa-3x"></i></button>
+                                                        <p>Características</p>
+                                                    </div>
+                                                    <div class="process-step">
+                                                        <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu3"><i class="fa fa-money fa-3x"></i></button>
+                                                        <p>Precios </p>
+                                                    </div>
+                                                    <div class="process-step">
+                                                        <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu4"><i class="fa fa-picture-o fa-3x"></i></button>
+                                                        <p>Imágenes</p>
+                                                    </div>
+                                                    <div class="process-step">
+                                                        <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu5" onclick="CargaResumen()"><i class="fa fa-check fa-3x"></i></button>
+                                                        <p>Publicar</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-content">
+                                                <div id="menu1" class="tab-pane fade active in">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <h3>Información de artículo </h3>
+                                                            <p>Clasificación de la información, como encontraran el artículo. Completa los campos marcados * </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Categoría </label>
+                                                                <select class="form-control" id="Select_Categoria" onchange="callSubCategoria(this.value)">
+                                                                    <option value="0">Seleccionar </option>
+                                                                    @foreach (var item1 in ViewBag.cat_CategoriaProducto)
+                                                                    {
+                                                                        <option value="@item1.Id">@item1.Nombre</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Subcategoría  </label>
+                                                                <select class="form-control" id="Select_SubCategoria" onchange="callClasificacion(this.value)">
+                                                                    <option value="0">Seleccionar</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Clasificación  </label>
+                                                                <select class="form-control" id="Select_Clasificacion" onchange="ValidaSelect('Select_Clasificacion')">
+                                                                    <option value="0">Seleccionar</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Flujo de operación </label>
+                                                                <select class="form-control" id="Select_FlujoOperacion" onchange="ValidaSelect('Select_FlujoOperacion')">
+                                                                    <option value="0">Seleccionar</option>
+                                                                    @foreach (var item1 in ViewBag.flujo)
+                                                                    {
+                                                                        <option value="@item1.Id">@item1.Nombre</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Nombre Articulo (titulo) </label>
+                                                                <input type="text" class="form-control form-control input-number" id="NombreArticulo" onchange="ValidaInput('NombreArticulo')" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* SKU </label>
+                                                                <input type="text" class="form-control form-control input-number" id="SKU" onchange="ValidaInput('SKU')" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Stock </label>
+                                                                <input type="text" class="form-control form-control input-number" id="Stock" onchange="ValidaInput('Stock')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <div class="form-group">
+                                                                <label for="largeInput"> Descripción  </label>
+                                                                <textarea class="form-control" id="Descripcion" required="" rows="4"></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <button class="btn waves-effect waves-light btn-primary col-md-2" onclick="informacion()">  Siguiente   <i class="fa fa-chevron-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="menu2" class="tab-pane fade">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <h3>Características principales</h3>
+                                                            <p> Agrega atributos adiciones, mejora las especificaciones del artículo. Completa los campos marcados * </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Largo </label>
+                                                                <input type="text" class="form-control form-control input-number" id="Largo" onchange="ValidaInput('Largo')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Ancho </label>
+                                                                <input type="text" class="form-control form-control input-number" id="Ancho" onchange="ValidaInput('Ancho')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Altura </label>
+                                                                <input type="text" class="form-control form-control input-number" id="Altura" onchange="ValidaInput('Altura')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Peso (Kg)</label>
+                                                                <input type="text" class="form-control form-control input-number" id="Peso" onchange="ValidaInput('Peso')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-material col-md-4 col-lg-4">
+                                                            <div class="card-category">Aplica características de envió  </div>
+                                                            <div class="form-check">
+                                                                <label class="form-check-label">
+                                                                    <input name="checkboxCaracteristasEnvio" class="form-check-input" id="checkboxCaracteristasEnvio" type="checkbox" value="">
+                                                                    <span class="form-check-sign">No</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <h3>Atributos adicionales</h3>
+                                                            <p> Completa los campos marcados * </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-8 col-lg-8">
+                                                        </div>
+                                                        <button class="btn waves-effect waves-light btn-primary col-md-4" onclick="MostrarAgregarAtributo()">  Agregar atributos    <i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                    <br />
+                                                    <div class="row" id="MostrarAgregarAtributo" style="display: none;">
+                                                        <div class="col-md-7 col-lg-7">
+                                                            <div class="card-category"><strong>Atributos del artículo </strong> </div>
+                                                            <br />
+                                                            <div id="TableAtributosArticulo">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5 col-lg-5">
+                                                            <div class="card-category text-center"><strong>Atributos existentes  </strong> </div>
+                                                            <br />
+                                                            <div id="TableAtributos">
+
+                                                            </div>
+
+                                                            <button class="btn waves-effect waves-light btn-primary col-md-12" data-toggle="modal" data-target="#ModalEditarAtributo">  Nuevo atributo    <i class="fa fa-plus"></i></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse col-md-2" onclick="Previus()"> <i class="fa fa-chevron-left"></i> Atrás   </button>
+                                                            <button class="btn waves-effect waves-light btn-primary col-md-2" onclick="caracteristicas()">  Siguiente   <i class="fa fa-chevron-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="menu3" class="tab-pane fade">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <h3>Precios del artículo</h3>
+                                                            <p> Puedes agregar una promoción al articulo. Completa los campos marcados * </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Público  </label>
+                                                                <input type="text" class="form-control form-control input-number" id="PrecioPublico" onchange="ValidaInput('PrecioPublico')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">Distribuidor  </label>
+                                                                <input type="text" class="form-control form-control input-number" id="PrecioDistribuidor" onchange="ValidaInput('PrecioDistribuidor')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Moneda </label>
+                                                                <select class="form-control" id="Select_Moneda" onchange="ValidaSelect('Select_Moneda')">
+                                                                    <option value="0">Seleccionar </option>
+                                                                    @foreach (var item1 in ViewBag.cat_Moneda)
+                                                                    {
+                                                                        <option value="@item1.Id">@item1.Nombre</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-material col-md-4 col-lg-4">
+                                                            <div class="card-category">Agregar una promoción del articulo  </div>
+                                                            <div class="form-check">
+                                                                <label class="form-check-label">
+                                                                    <input name="Activo" class="form-check-input" id="checkboxPromocion" type="checkbox" value="">
+                                                                    <span class="form-check-sign">Si</span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" id="PrecioPromocion" style="display: none;">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <div class="card-category"><strong>Nueva promoción </strong> </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Fecha Inicio  </label>
+                                                                <input type="date" class="form-control form-control" id="Fecha_Inicio" onchange="ValidaInput('Fecha_Inicio')">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Fecha Fin  </label>
+                                                                <input type="date" class="form-control form-control" id="Fecha_Fin" onchange="ValidaInput('Fecha_Fin')">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Precio promoción  </label>
+                                                                <input type="text" class="form-control form-control input-number" id="NewPrecioPromocion" onchange="ValidaInput('NewPrecioPromocion')" onkeypress="return soloNum(event)" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-lg-4">
+                                                            <div class="form-group">
+                                                                <label for="largeInput">* Moneda </label>
+                                                                <select class="form-control" id="Select_Moneda_Promocion" onchange="ValidaSelect('Select_Moneda_Promocion')">
+                                                                    <option value="0">Seleccionar </option>
+                                                                    @foreach (var item1 in ViewBag.cat_Moneda)
+                                                                    {
+                                                                        <option value="@item1.Id">@item1.Nombre</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse col-md-2" onclick="Previus()"> <i class="fa fa-chevron-left"></i> Atrás   </button>
+                                                            <button class="btn waves-effect waves-light btn-primary col-md-2" onclick="precios()">  Siguiente   <i class="fa fa-chevron-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="menu4" class="tab-pane fade">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <h3>Imagenes del artículo</h3>
+                                                            <p> Puedes agregar un máximo de 5 imágenes. Pueden pesar hasta 10 MB y medir entre 500 x 500 píxeles y 6000 x 6000 pixeles. Solo se adminiten los formatos jpg, jpeg y png </p>
+                                                            <p>
+                                                                <img src="~/images/icons/icon_subir_hover.png" width="25px;" /> Colocar como imagen principal,
+                                                                <img src="~/images/icons/icon_rotate_48x48.2dfac1f1.svg" width="25px;" /> Girar,
+                                                                <img src="~/images/icons/icon_trash_48x48.e4cbe3f0.svg" width="25px;" /> Eliminar
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <div data-repa="step2-images-collapseContainer" class="sc-cLxPOX">
+                                                                <div id="Galeria" data-repa="step2-images-filesContainer" class="sc-dTsoBL gJWAcE">
+                                                                    <button type="button" onclick="BtnCargarImagen()" class="flex-c-m cl0 size-125 cogVcH bor2 hov-btn3 p-lr-15 trans-04"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Subir imágenes </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <input id="fileInput2" type="file" multiple style="visibility:hidden">
+                                                        <div class="col-md-12">
+                                                            <progress id="fileProgress" style="display: none; width:100%"></progress>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse col-md-2" onclick="Previus()"> <i class="fa fa-chevron-left"></i> Atrás   </button>
+                                                            <button class="btn waves-effect waves-light btn-primary col-md-2" onclick="Multimedia()">  Siguiente   <i class="fa fa-chevron-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="menu5" class="tab-pane fade text">
+                                                    <div class="row">
+                                                        <div class="col-md-12 text-center">
+                                                            <h3>Resumen del articulo </h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <h5>Información del artículo</h5>
+                                                            <div class="resumen">
+                                                                <br />
+                                                                <p><strong>Categoría</strong> <br /> <span id="SP_CategoriaArticulo"></span></p>
+                                                                <p><strong>Subcategoría</strong> <br /> <span id="SP_SubcategoriaArticulo"></span></p>
+                                                                <p><strong>Clasificación</strong> <br /> <span id="SP_ClasificacionArticulo"></span></p>
+                                                                <p><strong>Flujo de operación</strong> <br /> <span id="SP_FlujoOperacionArticulo"></span></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <h4><strong class="TextoColor">Imagenes </strong></h4>
+                                                            <div class="resumen">
+                                                                <table class="default TextoColor">
+                                                                    <tr>
+                                                                        <td width="50px;" style="margin: 0 auto;"><img src="~/images/icons/335954.png" width="28px;" /></td>
+                                                                        <td><p><strong>Galería de imágenes </strong> <br /> <span id="SP_Galeria"></span>  </p></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                            <h4><strong class="TextoColor">Artículo  </strong></h4>
+                                                            <div class="resumen">
+                                                                <p><strong>Nombre artículo</strong> <br /> <span id="SP_NombreArticulo"></span></p>
+
+                                                                <p><strong>Descripción</strong></p>
+                                                                <textarea rows="8" cols="80" class="form-control" disabled="" placeholder="" id="SP_Descripcion"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <h4><strong class="TextoColor">Precio </strong> </h4>
+                                                            <p><span id="SP_PrecioArticulo"></span></p>
+                                                            <br />
+                                                            <h4><strong class="TextoColor">Promoción  </strong></h4>
+                                                            <p><span id="SP_PromocionArticulo"></span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-lg-12">
+                                                            <button class="btn waves-effect waves-light btn-inverse btn-outline-inverse col-md-2" onclick="Previus()"> <i class="fa fa-chevron-left"></i> Atrás   </button>
+                                                            <button class="btn waves-effect waves-light btn-success col-md-2" onclick="Publicar()" id="BtnPublicar"> <i class="fa fa-check"></i> Publicar    </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+    function Publicar() {
+        if (ValidaInformacion()) {
+            if (ValidaCaracteristicas()) {
+                if (ValidaPrecios()) {
+                    if (ValidaImagenes()) {
+
+                        $("#BtnPublicar").prop('disabled', true);
+
+                        var obj = {};
+
+                        obj['IdCategoria'] = $("#Select_Categoria option:selected").val();
+                        obj['IdSubCategoria'] = $("#Select_SubCategoria option:selected").val();
+                        obj['IdClasificacion'] = $("#Select_Clasificacion option:selected").val();
+                        obj['IdFlujo'] = $("#Select_FlujoOperacion option:selected").val();
+                        obj['Nombre'] = $('#NombreArticulo').val();
+                        obj['SKU'] = $('#SKU').val();
+                        obj['Stock'] = $('#Stock').val();
+
+
+                        if ($('#Descripcion').val().length > 0) {
+                            obj['Descripcion'] = $('#Descripcion').val();
+                        } else {
+                            obj['Descripcion'] = null;
+                        }
+
+                        obj['Largo'] = $('#Largo').val();
+                        obj['Ancho'] = $('#Ancho').val();
+                        obj['Altura'] = $('#Altura').val();
+                        obj['Peso'] = $('#Peso').val();
+                        if ($('#checkboxCaracteristasEnvio').prop('checked')) {
+                            obj['Envio'] = 0;
+                            obj['Largo'] = null;
+                            obj['Ancho'] = null;
+                            obj['Altura'] = null;
+                            obj['Peso'] = null;
+                        } else {
+                            obj['Envio'] = 1;
+                        }
+
+                        obj['PrecioPublico'] = $('#PrecioPublico').val();
+                        obj['IdMoneda'] = $("#Select_Moneda option:selected").val();
+                        if ($('#PrecioDistribuidor').val().length > 0) {
+                            obj['PrecioDistribuidor'] = $('#PrecioDistribuidor').val();
+                        }
+                        if ($('#checkboxPromocion').prop('checked')) {
+                            obj['Promocion'] = 1;
+
+                            obj['FechaInicio'] = $('#Fecha_Inicio').val();
+                            obj['FechaFin'] = $('#Fecha_Fin').val();
+                            obj['Precio'] = $('#NewPrecioPromocion').val();
+                            obj['IdMonedaPromocion'] = $("#Select_Moneda_Promocion option:selected").val();
+                        } else {
+                            obj['Promocion'] = 0;
+                            obj['FechaInicio'] = null;
+                            obj['FechaFin'] = null;
+                            obj['Precio'] = 0;
+                            obj['IdMonedaPromocion'] = 0;
+                        }
+
+                        var jsonObject = {
+                            "Articulo": obj
+                        };
+
+                        $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("Articulo_registrar", "Articulos")",
+                            async: false,
+                            data: JSON.stringify(jsonObject),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                switch (data.Id) {
+                                    case -1:
+                                        $.notify({
+                                            message: "El nuevo articulo que intentas agregar ya se encuentra registrado ."
+                                        }, {
+                                            type: 'danger',
+                                            allow_dismiss: false,
+                                            animate: {
+                                                enter: 'animated rollIn',
+                                                exit: 'animated rollOut'
+                                            }
+                                        });
+
+                                        break;
+                                    case 0:
+                                        swal({
+                                            title: "Algo ocurrió articulo no registrado !",
+                                            text: '',
+                                            icon: "warning",
+                                            button: "Aceptar",
+                                        });
+                                        break;
+
+                                    default:
+                                        // code block
+                                }
+                                if (data.Id > 0) {
+                                    swal({
+                                        title: "Nuevo articulo registrado. !",
+                                        text: " ",
+                                        icon: "success",
+                                        button: "Aceptar",
+                                    }).then((value) => {
+                                        location.reload();
+                                    });
+                                }
+                            },
+                            error: errores
+                        });
+
+                        $("#BtnPublicar").prop('disabled', false);
+
+
+                    } else {
+                        $.notify({
+                            icon: 'fa fa-paw',
+                            message: "Debes registrar por lo menos 1 imagen del artículo .",
+                        }, {
+                            type: 'warning',
+                            allow_dismiss: false,
+                            animate: {
+                                enter: 'animated rollIn',
+                                exit: 'animated rollOut'
+                            }
+                        });
+
+                        $("#myBtn").trigger("click");
+                        $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+                        $('[href="#menu4"]').addClass('btn-info').removeClass('btn-default');
+                        $('[href="#menu4"]').tab('show');
+                    }
+                }
+                else {
+                    $.notify({
+                        icon: 'fa fa-paw',
+                        message: "Debes completar el formulario de <br> precios del artículo.",
+                    }, {
+                        type: 'warning',
+                        allow_dismiss: false,
+                        animate: {
+                            enter: 'animated rollIn',
+                            exit: 'animated rollOut'
+                        }
+                    });
+
+                    $("#myBtn").trigger("click");
+                    $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+                    $('[href="#menu3"]').addClass('btn-info').removeClass('btn-default');
+                    $('[href="#menu3"]').tab('show');
+                }
+            } else {
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "Debes completar el formulario de las <br> características del artículo.",
+                }, {
+                    type: 'warning',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+
+                $("#myBtn").trigger("click");
+                $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+                $('[href="#menu2"]').addClass('btn-info').removeClass('btn-default');
+                $('[href="#menu2"]').tab('show');
+            }
+        }
+        else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Debes completar el formulario de información.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+            $("#myBtn").trigger("click");
+            $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+            $('[href="#menu1"]').addClass('btn-info').removeClass('btn-default');
+            $('[href="#menu1"]').tab('show');
+        }
+    }
+    function Multimedia() {
+        if (ValidaImagenes()) {
+            CargaResumen();
+            Next();
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Debes registrar por lo menos 1 imagen del articulo.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    }
+
+    function precios() {
+        if (ValidaPrecios()) {
+            Next();
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    }
+
+    function caracteristicas() {
+        if (ValidaCaracteristicas()) {
+            Next();
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    }
+
+    function informacion() {
+        if (ValidaInformacion()) {
+            Next();
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    }
+
+    function ValidaInformacion() {
+        var result = false;
+
+        $('#Select_Categoria').css("border", "1px solid #ff0049");
+        $('#Select_SubCategoria').css("border", "1px solid #ff0049");
+        $('#Select_Clasificacion').css("border", "1px solid #ff0049");
+        $('#Select_FlujoOperacion').css("border", "1px solid #ff0049");
+        $('#NombreArticulo').css("border", "1px solid #ff0049");
+        $('#SKU').css("border", "1px solid #ff0049");
+        $('#Stock').css("border", "1px solid #ff0049");
+
+        if ($("#Select_Categoria option:selected").val() > 0) {
+            $('#Select_Categoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_SubCategoria option:selected").val() > 0) {
+            $('#Select_SubCategoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Clasificacion option:selected").val() > 0) {
+            $('#Select_Clasificacion').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_FlujoOperacion option:selected").val() > 0) {
+            $('#Select_FlujoOperacion').css("border", "1px solid #cccccc");
+        }
+
+        if ($('#NombreArticulo').val().length > 0) {
+            $('#NombreArticulo').css("border", "1px solid #cccccc");
+        }
+
+        if ($('#SKU').val().length > 0) {
+            $('#SKU').css("border", "1px solid #cccccc");
+        }
+
+        if ($('#Stock').val().length > 0) {
+            $('#Stock').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Categoria option:selected").val() > 0) {
+            if ($("#Select_SubCategoria option:selected").val() > 0) {
+                if ($("#Select_Clasificacion option:selected").val() > 0) {
+                    if ($("#Select_FlujoOperacion option:selected").val() > 0) {
+                        if ($('#NombreArticulo').val().length > 0) {
+                            if ($('#SKU').val().length > 0) {
+                                if ($('#Stock').val().length > 0) {
+                                    result = true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    function ValidaCaracteristicas() {
+        var result = false;
+
+        if ($('#checkboxCaracteristasEnvio').prop('checked')) {
+            result = true;
+        } else {
+            $('#Largo').css("border", "1px solid #ff0049");
+            $('#Ancho').css("border", "1px solid #ff0049");
+            $('#Altura').css("border", "1px solid #ff0049");
+            $('#Peso').css("border", "1px solid #ff0049");
+
+            if ($('#Largo').val().length > 0) {
+                $('#Largo').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#Ancho').val().length > 0) {
+                $('#Ancho').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#Altura').val().length > 0) {
+                $('#Altura').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#Peso').val().length > 0) {
+                $('#Peso').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#Largo').val().length > 0) {
+                if ($('#Ancho').val().length > 0) {
+                    if ($('#Altura').val().length > 0) {
+                        if ($('#Peso').val().length > 0) {
+                            result = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    function ValidaPrecios() {
+        var result = false;
+
+        var precios = false;
+        var promocion = false;
+
+        $('#PrecioPublico').css("border", "1px solid #ff0049");
+        $('#Select_Moneda').css("border", "1px solid #ff0049");
+        /*$('#PrecioDistribuidor').css("border", "1px solid #ff0049");*/
+
+        if ($('#PrecioPublico').val().length > 0) {
+            $('#PrecioPublico').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Moneda option:selected").val() > 0) {
+            $('#Select_Moneda').css("border", "1px solid #cccccc");
+        }
+
+        //if ($('#PrecioDistribuidor').val().length > 0) {
+        //    $('#PrecioDistribuidor').css("border", "1px solid #cccccc");
+        //}
+        if ($('#PrecioPublico').val().length > 0) {
+            if ($("#Select_Moneda option:selected").val() > 0) {
+                /*if ($('#PrecioDistribuidor').val().length > 0) {*/
+                precios = true;
+                /*}*/
+            }
+        }
+
+
+        if ($('#checkboxPromocion').prop('checked')) {
+
+            $('#Fecha_Inicio').css("border", "1px solid #ff0049");
+            $('#Fecha_Fin').css("border", "1px solid #ff0049");
+            $('#NewPrecioPromocion').css("border", "1px solid #ff0049");
+            $('#Select_Moneda_Promocion').css("border", "1px solid #ff0049");
+
+            if ($('#Fecha_Inicio').val().length > 0) {
+                $('#Fecha_Inicio').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#Fecha_Fin').val().length > 0) {
+                $('#Fecha_Fin').css("border", "1px solid #cccccc");
+            }
+
+            if ($('#NewPrecioPromocion').val().length > 0) {
+                $('#NewPrecioPromocion').css("border", "1px solid #cccccc");
+            }
+
+            if ($("#Select_Moneda_Promocion option:selected").val() > 0) {
+                $('#Select_Moneda_Promocion').css("border", "1px solid #cccccc");
+            }
+
+
+
+            if ($('#Fecha_Inicio').val().length > 0) {
+                if ($('#Fecha_Fin').val().length > 0) {
+                    if ($('#NewPrecioPromocion').val().length > 0) {
+                        if ($("#Select_Moneda_Promocion option:selected").val() > 0) {
+                            promocion = true;
+                        }
+                    }
+                }
+            }
+        } else {
+            promocion = true;
+        }
+
+        if (precios) {
+            if ($('#checkboxPromocion').prop('checked')) {
+                if (promocion) {
+                    result = true;
+                }
+            }
+            else {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    function ValidaImagenes() {
+        var result = false;
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ConsultaImagenes", "Articulos")",
+            async: false,
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (respuesta) {
+                if (respuesta.length > 0) {
+                    result = true;
+                }
+            },
+            error: function () {
+                Error();
+            }
+        });
+
+        return result;
+    }
+
+    $('#checkboxCaracteristasEnvio').on('change', function () {
+
+        $('#Largo').css("border", "1px solid #cccccc");
+        $('#Ancho').css("border", "1px solid #cccccc");
+        $('#Altura').css("border", "1px solid #cccccc");
+        $('#Peso').css("border", "1px solid #cccccc");
+
+        // From the other examples
+        if (this.checked) {
+            $("#Largo").prop('disabled', true);
+            $("#Ancho").prop('disabled', true);
+            $("#Altura").prop('disabled', true);
+            $("#Peso").prop('disabled', true);
+        } else {
+            $("#Largo").prop('disabled', false);
+            $("#Ancho").prop('disabled', false);
+            $("#Altura").prop('disabled', false);
+            $("#Peso").prop('disabled', false);
+
+
+        }
+    });
+
+    $('#checkboxPromocion').click(function () {
+        if ($(this).is(':checked')) {
+
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            $("#Fecha_Inicio").val(today);
+            $("#Fecha_Fin").val(today);
+
+            $("#PrecioPromocion").show();
+
+        } else {
+            $("#PrecioPromocion").css("display", "none");
+        }
+    });
+
+    function CargaResumen(){
+        var Galeria = 0;
+        $.ajax({
+            type: "POST",
+             url: "@Url.Action("ConsultaImagenes", "Articulos")",
+             async: false,
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (respuesta) {
+                Galeria = respuesta.length;
+            },
+            error: function () {
+                Error();
+            }
+        });
+
+        $('#SP_CategoriaArticulo').text($("#Select_Categoria option:selected").html());
+        $('#SP_SubcategoriaArticulo').text($("#Select_SubCategoria option:selected").html());
+        $('#SP_ClasificacionArticulo').text($("#Select_Clasificacion option:selected").html());
+        $('#SP_FlujoOperacionArticulo').text($("#Select_FlujoOperacion option:selected").html());
+
+        $('#SP_Galeria').text(Galeria);
+
+        $('#SP_NombreArticulo').text($("#NombreArticulo").val());
+        $('#SP_Descripcion').text($('#Descripcion').val());
+
+        $('#SP_PrecioArticulo').text(" $" + $("#PrecioPublico").val());
+
+        if ($('#checkboxPromocion').prop('checked')) {
+            $('#SP_PromocionArticulo').text(" $" +$("#NewPrecioPromocion").val());
+        }
+        else {
+            $('#SP_PromocionArticulo').text("Sin promoción");
+        }
+
+
+    }
+
+    //////////////////////////
+
+    function callSubCategoria(Id) {
+        $("#Select_SubCategoria").empty();
+        $("#Select_Clasificacion").empty();
+
+        ValidaSelect('Select_Categoria');
+
+
+        var obj = {};
+        obj['Id'] = Id;
+        var jsonObject = {
+            "Cat_CategoriaProducto": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("SubCategoria_Listar", "Categoria")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (resultado) {
+                alert("MANDAR MENSAJE SE ERROR");
+
+                var option = $(document.createElement('option'));
+                option.text("Seleccionar");
+                option.val(0);
+
+                var option2 = $(document.createElement('option'));
+                option2.text("Seleccionar");
+                option2.val(0);
+
+                $("#Select_SubCategoria").append(option);
+                $("#Select_Clasificacion").append(option2);
+            },
+            success: function (resultado) {
+
+                var option = $(document.createElement('option'));
+
+                option.text("Seleccionar");
+                option.val(0);
+
+                var option2 = $(document.createElement('option'));
+                option2.text("Seleccionar");
+                option2.val(0);
+
+                $("#Select_SubCategoria").append(option);
+                $("#Select_Clasificacion").append(option2);
+
+                $(resultado).each(function () {
+                    var option = $(document.createElement('option'));
+                    option.text(this.Nombre);
+                    option.val(this.Id);
+
+                    $("#Select_SubCategoria").append(option);
+                });
+            }
+        });
+
+
+    }
+
+    function callClasificacion(Id) {
+
+        $("#Select_Clasificacion").empty();
+        ValidaSelect('Select_SubCategoria');
+
+        var obj = {};
+        obj['IdCatSubcategoria'] = Id;
+        var jsonObject = {
+            "Cat_Clasificacion": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("Clasificacion_Listar", "Categoria")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (resultado) {
+                alert("MANDAR MENSAJE SE ERROR");
+
+                var option = $(document.createElement('option'));
+                option.text("Seleccionar");
+                option.val(0);
+
+                $("#Select_Clasificacion").append(option);
+            },
+            success: function (resultado) {
+                var option = $(document.createElement('option'));
+                option.text("Seleccionar");
+                option.val(0);
+
+                $("#Select_Clasificacion").append(option);
+
+                $(resultado).each(function () {
+                    var option = $(document.createElement('option'));
+                    option.text(this.Nombre);
+                    option.val(this.Id);
+
+                    $("#Select_Clasificacion").append(option);
+                });
+            }
+        });
+    }
+
+    //////////////////////////
+
+    function ConsultaAtributos() {
+
+        var obj = {};
+        obj['IdCategoria'] = $('#Select_Categoria option:selected').val();
+        obj['IdSubCategoria'] = $("#Select_SubCategoria option:selected").val();
+        obj['IdClasificacion'] = $("#Select_Clasificacion option:selected").val();
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Atributo_Buscar", "Atributos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                resultadoListaAtributos(data);
+            },
+            error: errores
+        });
+    }
+
+    function MostrarAgregarAtributo() {
+
+        if (ValidarFiltro()) {
+            /*$("#MostrarAgregarAtributo").show();*/
+
+            var obj = {};
+            obj['IdCategoria'] = $('#Select_Categoria option:selected').val();
+            obj['IdSubCategoria'] = $("#Select_SubCategoria option:selected").val();
+            obj['IdClasificacion'] = $("#Select_Clasificacion option:selected").val();
+
+            var jsonObject = {
+                "Cat_Atributos": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Atributo_Buscar", "Atributos")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#MostrarAgregarAtributo").show();
+                    resultadoListaAtributos(data);
+                },
+                error: errores
+            });
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Debes completar el formulario de información.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+            $("#myBtn").trigger("click");
+            $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+            $('[href="#menu1"]').addClass('btn-info').removeClass('btn-default');
+            $('[href="#menu1"]').tab('show');
+        }
+    }
+
+    function resultadoListaAtributos(data) {
+
+        var Tabla =
+        "<div class='table-responsive'>" +
+             "<table class='table text-center' Id='TableListAtributos' style='width:100%'>" +
+                "<thead>" +
+                    "<tr class='table-inverse'>" +
+                        "<th class='text-center'>Nombre</th>" +
+                        "<th class='text-center'>Tipo de dato</th>" +
+                        "<th class='text-center'>Acciones</th>" +
+                    "</tr>" +
+                "</thead>" +
+                "<tbody>";
+
+                if (data.length > 0) {
+                    for (var b = 0; b < data.length; b++) {
+                    Tabla +=
+                        "<tr>" +
+                           "<td>" +
+                                data[b].Atributo +
+                            "</td>" +
+                            "<td>" +
+                                data[b].TipoDato +
+                            "</td>" +
+                            "<td>" +
+                                  "<div class=' icon-btn tooltip-icon'>" +
+                                      "<div>" +
+                                          "<button onclick='AgregarAtributoArticulo(" + data[b].Id + ")' class='btn waves-effect waves-dark btn-success btn-outline-success btn-icon'><i class='icofont icofont-ui-add'></i></button>" +
+                                      "</div>" +
+                                  "</div>" +
+                            "</td>" +
+                        "</tr>";
+                    }
+                } else {
+                    Tabla +=
+                    "<tr>" +
+                        "<td colspan='3'> Sin atributos </td>" +
+                    "</tr>";
+                }
+
+
+       Tabla +="</tbody>" +
+            "</table>" +
+            "</div>";
+
+        $('#TableAtributos').html(Tabla);
+
+        $('#TableListAtributos').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "scrollY": "500px",
+            "scrollCollapse": true,
+        });
+
+    }
+
+
+    $('#BtnAgregarAtributoModal').click(function () {
+        if (ValidarNuevoAtributo()) {
+
+            var obj = {};
+            obj['IdCategoria'] = $('#Select_Categoria option:selected').val();
+            obj['IdSubCategoria'] = $("#Select_SubCategoria option:selected").val();
+            obj['IdClasificacion'] = $("#Select_Clasificacion option:selected").val();
+            obj['Atributo'] = $('#NombreAtributoModal').val();
+            obj['IdTipoDato'] = $("#Select_TipoDato option:selected").val();
+
+            var jsonObject = {
+                "Cat_Atributos": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Atributo_Agregar", "Atributos")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: resultadoNuevoAtributo,
+                error: errores
+            });
+
+
+        } else {
+            $.notify({
+                icon: 'fa fa-paw',
+                message: "Completa el formulario.",
+            }, {
+                type: 'warning',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    function resultadoNuevoAtributo(data) {
+
+        switch (data.Id) {
+            case -1:
+                $.notify({
+                    message: "El nuevo atributo que intentas agregar ya se encuentra registrado ."
+                }, {
+                    type: 'danger',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+                $('#NombreAtributoModal').css("border", "1px solid #f44336");
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió !",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+
+        if (data.Id > 0) {
+            $.notify({
+                message: "¡Nuevo atributo agregado!."
+            }, {
+                type: 'success',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+
+            $('#NombreAtributoModal').val("");
+            $("#Select_TipoDato option[value=0]").attr("selected", true);
+            $("#BtnCerrarNuevoAtributo").trigger("click");
+
+            ConsultaAtributos();
+        }
+    }
+
+    function ValidarNuevoAtributo() {
+
+        var result = false;
+
+        $('#NombreAtributoModal').css("border", "1px solid #f44336");
+        $('#Select_TipoDato').css("border", "1px solid #ff0049");
+
+        if ($('#NombreAtributoModal').val().length > 0) {
+            $('#NombreAtributoModal').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_TipoDato option:selected").val() > 0) {
+            $('#Select_TipoDato').css("border", "1px solid #cccccc");
+        }
+
+
+        if ($('#NombreAtributoModal').val().length > 0) {
+            if ($("#Select_TipoDato option:selected").val() > 0) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    function ValidarFiltro() {
+        var result = false;
+
+        $('#Select_Categoria').css("border", "1px solid #ff0049");
+        $('#Select_SubCategoria').css("border", "1px solid #ff0049");
+        $('#Select_Clasificacion').css("border", "1px solid #ff0049");
+
+        if ($("#Select_Categoria option:selected").val() > 0) {
+            $('#Select_Categoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_SubCategoria option:selected").val() > 0) {
+            $('#Select_SubCategoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Clasificacion option:selected").val() > 0) {
+            $('#Select_Clasificacion').css("border", "1px solid #cccccc");
+        }
+
+        if ($("#Select_Categoria option:selected").val() > 0) {
+            if ($("#Select_SubCategoria option:selected").val() > 0) {
+                if ($("#Select_Clasificacion option:selected").val() > 0) {
+                    result = true;
+                }
+            }
+        }
+
+        return result;
+    }
+
+
+    function AgregarAtributoArticulo(num) {
+        var obj = {};
+        obj['Id'] = num;
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AtributoArticulo_ConsultaId", "Articulos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                if (!data) {
+
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("AtributoArticulo_Agregar", "Articulos")",
+                        async: false,
+                        data: JSON.stringify(jsonObject),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: ListaAtributosArticulo,
+                        error: errores
+                    });
+                } else {
+                    $.notify({
+                        message: "El atributo ya se encuentra agregado al articulo."
+                    }, {
+                        type: 'danger',
+                        allow_dismiss: false,
+                        animate: {
+                            enter: 'animated rollIn',
+                            exit: 'animated rollOut'
+                        }
+                    });
+                }
+            },
+            error: errores
+        });
+    }
+
+    function ListaAtributosArticulo(data) {
+
+        $('#TableAtributosArticulo').html("");
+
+         var Tabla =
+        "<div class='table-responsive'>" +
+             "<table class='table text-center' Id='TableAtributosArticuloList' style='width:100%'>" +
+                "<thead>" +
+                    "<tr class='table-inverse'>" +
+                         "<th class='text-center'>Nombre </th>" +
+                         "<th class='text-center'>Valor</th>" +
+                         "<th class='text-center'>Acciones</th>" +
+                    "</tr>" +
+                "</thead>" +
+                "<tbody>";
+
+                if (data.length > 0) {
+                    for (var b = 0; b < data.length; b++) {
+                    Tabla +=
+                        "<tr>" +
+                            "<td>" + data[b].Atributo + "</td>" +
+                            "<td><div class='form-group'>" +
+                                    "<input type='text' class='form-control form-control input-number' id='InputValor_" + data[b].Id + "' onchange='RegistrarInput(" + data[b].Id + ")'  value='" + data[b].Valor + "' onpaste='return false'>" +
+                                "</div></td>" +
+                            "<td>" +
+                                "<button class='btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon' onclick='EliminarAtributoArticulo(" + data[b].Id + ")'><i class='icofont icofont-ui-delete'></i></button>" +
+                            "</td>" +
+                        "</tr>";
+                    }
+                } else {
+                    Tabla +=
+                    "<tr>" +
+                        "<td colspan='2'> Sin usuarios </td>" +
+                    "</tr>";
+                }
+
+
+       Tabla +="</tbody>" +
+            "</table>" +
+            "</div>";
+
+        $('#TableAtributosArticulo').html(Tabla);
+
+        $('#TableAtributosArticuloList').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "scrollY": "500px",
+            "scrollCollapse": true,
+        });
+
+
+    }
+
+
+    function RegistrarInput(num) {
+        var valor = $('#InputValor_' + num).val();
+
+        var obj = {};
+        obj['Id'] = num;
+        obj['Valor'] = valor;
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AtributoArticulo_Actualizar", "Articulos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: ListaAtributosArticulo,
+            error: errores
+        });
+    }
+
+    function EliminarAtributoArticulo(num) {
+        var obj = {};
+        obj['Id'] = num;
+
+        var jsonObject = {
+            "Cat_Atributos": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("AtributoArticulo_Eliminar", "Articulos")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: ListaAtributosArticulo,
+            error: errores
+        });
+    }
+
+    //////////////////////////
+
+    function BtnCargarImagen() {
+        $("#fileInput2").click();
+    }
+
+    $('#fileInput2').change(function () {
+        var fileInput = document.getElementById('fileInput2');
+
+
+        if (fileInput.files.length > 0) {
+            for (i = 0; i < fileInput.files.length; i++) {
+                var ext = fileInput.files[i].name.split('.').pop();
+                Extencion = fileInput.files[i].name.split('.').pop();
+
+                // Convertimos en minúscula porque
+                // la extensión del archivo puede estar en mayúscula
+                ext = ext.toLowerCase();
+
+                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
+
+                    Carga = true;
+                } else {
+                    Carga = false;
+                    Formato = ext;
+                    break;
+                }
+            }
+
+            for (i = 0; i < fileInput.files.length; i++) {
+                var filesize = ((fileInput.files[i].size / 1024) / 1024).toFixed(4);
+
+                if (filesize < 10) {
+                    CargaTam = true;
+                } else {
+                    CargaTam = false;
+                    Tam = filesize;
+                    break;
+                }
+            }
+
+            if (Carga) {
+                if (CargaTam) {
+
+                    $("#BtnCargarImagen").prop('disabled', true);
+                    var formData = new FormData();
+
+                    for (i = 0; i < fileInput.files.length; i++) {
+                        formData.append(fileInput.files[i].name, fileInput.files[i]);
+                    }
+
+                    $.ajax({
+                        url: '/api/FileAPI/UploadFilesArticulo',
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (ListIMG) {
+                            $("#fileProgress").hide();
+                            $("#BtnCargarImagen").prop('disabled', false);
+
+                            CargaImagenes(ListIMG);
+
+                        },
+                        xhr: function () {
+
+                            var fileXhr = $.ajaxSettings.xhr();
+                            if (fileXhr.upload) {
+                                $("progress").show();
+                                fileXhr.upload.addEventListener("progress", function (e) {
+                                    if (e.lengthComputable) {
+                                        $("#fileProgress").attr({
+                                            value: e.loaded,
+                                            max: e.total
+                                        });
+                                    }
+                                }, false);
+                            }
+                            return fileXhr;
+                        }
+                    });
+
+
+                } else {
+                    swal({
+                        title: "Intentas cargar una imagen muy pesada: " + Tam + " MG",
+                        text: "Límite permitido 10 MG",
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                }
+            } else {
+                swal({
+                    title: "Intentas cargar un formato no permitido: " + Formato,
+                    text: "Formato de imágenes permitidos: .jpg, .jpeg ó.png ",
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+            }
+
+        } else {
+            $("#BtnCargarImagen").prop('disabled', false);
+            $.notify({
+                message: "Selecciona un archivo."
+            }, {
+                type: 'danger',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    function CargaImagenes(ListIMG) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("CargaImagenes", "Articulos")",
+            async: false,
+            data: JSON.stringify(ListIMG),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Contenido) {
+                PintaGaleria(Contenido);
+	        },
+            error: function (Contenido) {
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "Completa el formulario.",
+                }, {
+                    type: 'warning',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            }
+        });
+    }
+
+    function PintaGaleria(Contenido) {
+        $('#Galeria').html('');
+        var Galeria = '';
+        if (Contenido.length > 0) {
+
+            var falg = 0;
+
+            for (var b = 0; b < Contenido.length; b++) {
+                //var extencion = Contenido[b].Descripcion.split(".")[1];
+                //var posicion = Contenido[b].Descripcion.indexOf('.');
+                //var link = Contenido[b].Descripcion.substring(-1, posicion);
+                //var imagen = link + "_2." + extencion;
+                var imagen = Contenido[b].ImagenURL;
+
+                if (falg == 1) {
+                    Galeria += '<div data-repa="step2-images-itemlist-item-7-ImageBoxContainer" class="sc-fATqzn gXEoDm" style="opacity: 1;" draggable="true">' +
+                        '<div data-repa="step2-images-itemlist-item-7-controls" class="sc-ZUflv fpCmKW">' +
+                        '<span data-repa="step2-images-itemlist-item-7-button-rotator" class="sc-hPeUyl ecdNeI2" onclick="ImgPrincipal(' + Contenido[b].IdArchivo + ')"></span>' +
+                        '<span data-repa="step2-images-itemlist-item-7-button-rotator" class="sc-hPeUyl ecdNeI" onclick="OrdenarElmento(' + Contenido[b].IdArchivo + ')"></span>' +
+                        '<span data-repa="step2-images-itemlist-item-7-button-deletor" class="sc-hPeUyl sc-esoVGF jskYLk" onclick="EliminarElmento(' + Contenido[b].IdArchivo + ')"></span>' +
+                        '</div>' +
+                        '<div data-repa="step2-images-itemlist-item-7-imageBorderWrapper" class="sc-hqGPoI iOCuAz">' +
+                        '<img src="https://' + imagen + '" data-repa="step2-images-itemlist-item-7-editable-img" class="sc-imAxmJ gnckKk">' +
+                        '</div>' +
+                        '</div>';
+                } else {
+                    Galeria +=
+                        '<div data-repa="step2-images-itemlist-item-6-ImageBoxContainer" class="sc-fATqzn gXEoDm" draggable="true" style="opacity: 1;">' +
+                        '<div data-repa="step2-images-itemlist-item-6-controls" class="sc-ZUflv fpCmKW">' +
+                        '<span data-repa="step2-images-itemlist-item-6-button-rotator" class="sc-hPeUyl ecdNeI" onclick="OrdenarElmento(' + Contenido[b].IdArchivo + ')"></span>' +
+                        '<span data-repa="step2-images-itemlist-item-6-button-deletor" class="sc-hPeUyl sc-esoVGF jskYLk" onclick="EliminarElmento(' + Contenido[b].IdArchivo + ')"></span>' +
+                        '</div>' +
+                        '<div data-repa="step2-images-itemlist-item-6-mainMarker" class="sc-jbWsrJ gsEJWt">' +
+                        '<div>' +
+                        '</div>Foto principal' +
+                        '</div>' +
+                        '<div data-repa="step2-images-itemlist-item-6-imageBorderWrapper" class="sc-hqGPoI iOCuAz">' +
+                        '<img src="https://' + imagen + '" data-repa="step2-images-itemlist-item-6-editable-img" class="sc-imAxmJ gnckKk">' +
+                        '</div>' +
+                        '</div>';
+                    falg = 1;
+                }
+            }
+
+        }
+        Galeria +=
+            '<button type="button" onclick="BtnCargarImagen()" class="flex-c-m cl0 size-125 cogVcH bor2 hov-btn3 p-lr-15 trans-04"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Subir imágenes </button>';
+
+        $('#Galeria').html(Galeria);
+    }
+
+    function EliminarElmento(contenido) {
+
+        var obj = {};
+        obj['IdArchivo'] = contenido;
+        var jsonObject = {
+            "ArticuloImg": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("EliminarImagen", "Articulos")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "La imagen no puede ser eliminada, intento lo más tarde."
+                }, {
+                    type: 'success',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            },
+            success: function (response) {
+                PintaGaleria(response);
+
+                $.notify({
+	                icon: 'fa fa-paw',
+	                message: "Imagen eliminada."
+                },{
+                    type: 'info',
+                    allow_dismiss: false,
+                    animate: {
+		                enter: 'animated rollIn',
+		                exit: 'animated rollOut'
+	                }
+                });
+            }
+        });
+    }
+
+    function OrdenarElmento(contenido) {
+        var obj = {};
+        obj['IdArchivo'] = contenido;
+        var jsonObject = {
+            "ArticuloImg": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("RotarImagen", "Articulos")",
+            async: false,
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "La imagen no es posible de rotar, <br> intenta eliminarla y cargarla de nuevo."
+                }, {
+                    type: 'info',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+             },
+            success: function (response) {
+
+                $.ajax({
+                    url: "@Url.Action("ReacomodarImagen", "Articulos")",
+                    type: "POST",
+                    data: JSON.stringify(jsonObject),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    error: function (response) {
+                        $.notify({
+                            icon: 'fa fa-paw',
+                            message: "Las imágenes pueden presentar otro orden al ser publicadas."
+                        }, {
+                            type: 'info',
+                            allow_dismiss: false,
+                            animate: {
+                                enter: 'animated rollIn',
+                                exit: 'animated rollOut'
+                            }
+                        });
+                    },
+                    success: function (response) {
+                        PintaGaleria(response);
+                    }
+                });
+            }
+        });
+    }
+
+    function ImgPrincipal(contenido) {
+        var obj = {};
+        obj['IdArchivo'] = contenido;
+        var jsonObject = {
+            "ArticuloImg": obj
+        };
+
+        $.ajax({
+            url: "@Url.Action("OrdenarImagenes", "Articulos")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "La imagen no puede ser presentada como imagen principal."
+                }, {
+                    type: 'success',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            },
+            success: function (response) {
+                PintaGaleria(response);
+
+                $.notify({
+                    icon: 'fa fa-paw',
+                    message: "Has colocado esta imagen como <br> imagen principal del inmueble."
+                }, {
+                    type: 'success',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            }
+        });
+    }
+
+    ///////////////////////////
+
+    function ValidaInput(name) {
+        if ($('#' + name).val().length > 0) {
+            $('#' + name).css("border", "1px solid rgb(222 222 222)");
+        } else {
+            $('#' + name).css("border", "1px solid #ff0049");
+        }
+    }
+
+    function ValidaSelect(name) {
+        if ($('#' + name + ' option:selected').val() > 0) {
+            $('#' + name).css("border", "1px solid rgb(222 222 222)");
+        } else {
+            $('#' + name).css("border", "1px solid #ff0049");
+        }
+    }
+
+    function Next() {
+        var $activeTab = $('.tab-pane.active');
+        $("#myBtn").trigger("click");
+        $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+
+        var nextTab = $activeTab.next('.tab-pane').attr('id');
+        $('[href="#' + nextTab + '"]').addClass('btn-info').removeClass('btn-default');
+        $('[href="#' + nextTab + '"]').tab('show');
+    }
+
+    function Previus() {
+        var $activeTab = $('.tab-pane.active');
+        $("#myBtn").trigger("click");
+        $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+
+        var prevTab = $activeTab.prev('.tab-pane').attr('id');
+        $('[href="#' + prevTab + '"]').addClass('btn-info').removeClass('btn-default');
+        $('[href="#' + prevTab + '"]').tab('show');
+
+    }
+
+    $(document).ready(function () {
+        $('.btn-circle').on('click', function () {
+            $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+            $(this).addClass('btn-info').removeClass('btn-default').blur();
+        });
+
+        $('[href="#menu1"]').tab('show');
+
+    });
+
+    function errores() {
+        $.notify({
+            message: "Inténtelo mas tarde."
+        }, {
+            type: 'danger',
+            allow_dismiss: false,
+            animate: {
+                enter: 'animated rollIn',
+                exit: 'animated rollOut'
+            }
+        });
+    }
+
+    function soloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyz ";
+        especiales = [8, 37, 39, 46];
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+        if (letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+    }
+
+    function soloNum(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = "1234567890";
+        especiales = [8, 37, 39, 46];
+
+        tecla_especial = false
+        for (var i in especiales) {
+            if (key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+        if (letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+    }
+
+</script>
+<script>
+    $('#IdMenuProductos').addClass("active pcoded-trigger");
+    $('#IdSubMenuNuevo').addClass("active");
+
+</script>

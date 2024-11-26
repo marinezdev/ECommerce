@@ -1,0 +1,896 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce</title>
+    <!--===============================================================================================-->
+    <link rel="shortcut icon" href="~/assets/images/ico.ico">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/bootstrap/css/bootstrap.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/animsition/css/animsition.min.css"  />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Glegoo" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/main.css">
+
+    <!--===============================================================================================-->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <style>
+        .product-category {
+            text-transform: uppercase;
+            font-size: 10px;
+            color: #8D99AE;
+        }
+
+        .product-widget .product-body .product-name {
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+            .product-widget .product-body .product-name > a {
+                font-weight: 700;
+            }
+
+        .right-top-bar a:hover {
+            color: #aaa;
+        }
+
+        .top-bar {
+            height: 40px;
+            background: #9E9E9E;
+            background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff);
+            background: linear-gradient(to right, #78a4b8, #b1cc69);
+        }
+
+        .icon-header-noti::after {
+            content: attr(data-notify);
+            font-family: "Proxima Nova",-apple-system,"Helvetica Neue",Helvetica,Roboto,Arial,sans-serif;
+            font-size: 12px;
+            color: #fff;
+            line-height: 15px;
+            text-align: center;
+            display: block;
+            position: absolute;
+            top: -7px;
+            right: 0;
+            min-width: 15px;
+            height: 15px;
+            padding: 0 3px;
+            background-color: #afce68;
+        }
+
+        .bg6 {
+            background-color: background: #43cea2;
+            background: -webkit-linear-gradient(to right, #185a9d, #9C27B0);
+            background: linear-gradient(to right, #77a4b5, #b0cd68);
+        }
+
+    </style>
+
+</head>
+<body class="animsition">
+
+    <!-- Header -->
+    <header>
+        <!-- Header desktop -->
+        <div class="container-menu-desktop">
+            <!-- Topbar -->
+            <div class="top-bar">
+                <div class="content-topbar flex-sb-m h-full container">
+                    <div class="left-top-bar">
+                        <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;-----
+
+                    </div>
+
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="#!" class="flex-c-m trans-04 p-lr-25">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; Ayuda
+                        </a>
+
+                        <a href="@Url.Action("Index", "Adm")" class="flex-c-m trans-04 p-lr-25">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>  &nbsp; Mi cuenta
+                        </a>
+
+                        <a href="@Url.Action("Index", "RastreaPedidos")" class="flex-c-m trans-04 p-lr-25">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp;Sigue tus pedidos
+                        </a>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            MEX
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrap-menu-desktop">
+                <nav class="limiter-menu-desktop container">
+
+                    <!-- Logo desktop -->
+                    <a href="/Tienda" class="logo">
+                        <img src="~/images/icons/logoCSB_menu.png" />
+                    </a>
+
+                    <!-- Menu desktop -->
+                    <div class="menu-desktop">
+                        <ul class="main-menu">
+                            @*<li id="Menu_Inicio">
+                                <a href="@Url.Action("Index", "Inicio")">Inicio</a>
+                            </li>*@
+                            <li id="Menu_Busqueda">
+                                <a href="@Url.Action("Index", "Store")">Tienda</a>
+                            </li>
+                            @*<li class="Menu_Busqueda">
+                                <a href="#">Categorías  &nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=2">Accesorios De Alimentación</a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=4">Accesorios De Computadoras</a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=8">Bocinas </a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=9">Cámara</a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=6">Computadora </a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=1">Dispositivos Para Redes </a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=3">Oficina Y Papelería </a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=11">Radios</a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=10">Seguridad</a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=7">Software </a></li>
+                                    <li><a href="@Url.Action("store", "Inicio")?ct=5">Tabletas</a></li>
+                                </ul>
+                            </li>*@
+                            @*<li id="Menu_Ayuda">
+                                <a href="@Url.Action("Ayuda", "Inicio")">Ayuda </a>
+                            </li>
+                            <li id="Menu_Contacto">
+                                <a href="@Url.Action("Contacto", "Inicio")">Contacto </a>
+                            </li>*@
+
+                            <li id="Menu_IniciarSesion" style="display: none;">
+                                <a href="#">Iniciar sesión  &nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("Login", "Adm")">Iniciar sesión</a></li>
+                                    <li><a href="@Url.Action("UserRegistrationForms", "Adm")">Crear cuenta</a></li>
+                                </ul>
+                            </li>
+
+                            <li id="Menu_Sesion" style="display: none;">
+                                <a href="#">Hola <strong><span id="NombreUser"></span></strong> &nbsp;<i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("Index", "MiCuenta")">Tu cuenta</a></li>
+                                    <li><a href="#" onclick="CerrarSesion();">Cerrar sesión </a></li>
+                                </ul>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                    <!-- Icon header -->
+                    <div class="wrap-icon-header flex-w flex-r-m">
+                        @*<a href="@Url.Action("store", "Inicio")" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                            <i class="zmdi zmdi-search"></i>
+                        </a>*@
+                        @*<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                                <i class="zmdi zmdi-search"></i>
+                            </div>*@
+
+                        @*<a href="@Url.Action("Index", "Comparar")" id="BtIconsnComparar" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="0">
+                                <i class="zmdi zmdi-swap"></i>
+                            </a>*@
+                        <a class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" id="BtCartShowp" onclick="MuestraCarrito()" data-notify="0">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </a>
+
+                        <a href="#" id="BtIconsnInteres" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
+                            <i class="zmdi zmdi-favorite-outline"></i>
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Header Mobile -->
+        <div class="wrap-header-mobile">
+            <!-- Logo moblie -->
+            <div class="logo-mobile">
+                <a href="/Tienda">
+                    <img src="~/images/icons/asaelogo.png" />
+                </a>
+            </div>
+
+            <!-- Icon header -->
+            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+                <a href="@Url.Action("Busqueda", "home")" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                    <i class="zmdi zmdi-search"></i>
+                </a>
+                @*<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </div>*@
+
+                <a href="@Url.Action("Index", "Comparar")" id="BtCartShowp" class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="0">
+                    <i class="zmdi zmdi-swap"></i>
+                </a>
+
+                <a href="@Url.Action("Index", "Interes")" id="BtIconsnInteres2" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti" data-notify="0">
+                    <i class="zmdi zmdi-favorite-outline"></i>
+                </a>
+            </div>
+
+            <!-- Button show menu -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </div>
+        </div>
+
+
+        <!-- Menu Mobile -->
+        <div class="menu-mobile">
+            <ul class="topbar-mobile">
+                <li>
+                    <div class="left-top-bar">
+                        <i class="fa fa-phone" aria-hidden="true"></i> &nbsp;55 2909 7024 / 55 3566 4390
+
+                    </div>
+                </li>
+
+                <li>
+                    <div class="right-top-bar flex-w h-full">
+                        <a href="@Url.Action("Ayuda", "home")" class="flex-c-m p-lr-10 trans-04">
+                            <i class="fa fa-question-circle" aria-hidden="true"></i> &nbsp; Ayuda
+                        </a>
+
+                        <a href="@Url.Action("Login", "Adm")" class="flex-c-m p-lr-10 trans-04">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>  &nbsp; Mi cuenta
+                        </a>
+
+                        <a href="@Url.Action("Contacto", "home")" class="flex-c-m p-lr-10 trans-04">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> &nbsp;Contacto / Soporte
+                        </a>
+
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                            MEX
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <ul class="main-menu-m">
+                <li>
+                    <a href="@Url.Action("Index", "Home")">Inicio</a>
+                </li>
+
+                @*<li>
+                        <a href="@Url.Action("Categorias", "Home")">Categorías</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Busqueda", "home")">Busqueda</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Publicar", "Home")">Publicar  </a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Ayuda", "home")">Ayuda</a>
+                    </li>
+
+                    <li>
+                        <a href="@Url.Action("Contacto", "home")">Contacto</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Registrar", "Adm")">Crear una cuenta  </a>
+                    </li>*@
+            </ul>
+        </div>
+
+        <!-- Modal Search -->
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+
+                    <img src="~/images/icons/icon-close2.png" alt="CERRAR" />
+                </button>
+
+                <form class="wrap-search-header flex-w p-l-15">
+                    <button class="flex-c-m trans-04">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                    <input class="plh3" type="text" name="search" placeholder="Buscar ...">
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart -->
+    <div class="wrap-header-cart js-panel-cart">
+
+        <div class="s-full js-hide-cart"></div>
+
+        <div class="header-cart flex-col-l p-l-65 p-r-25">
+
+            <div class="header-cart-title flex-w flex-sb-m p-b-8">
+                <span class="mtext-103 cl2">
+                </span>
+                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                    <i class="zmdi zmdi-close"></i>
+                </div>
+                <span class="mtext-103 cl2">
+
+                    ARTÍCULOS EN LA CESTA DE LA COMPRA
+                </span>
+            </div>
+
+            <div class="header-cart-content flex-w js-pscroll">
+                <ul class='header-cart-wrapitem w-full' id="ContenidoCarrito">
+                </ul>
+            </div>
+
+            <div class="w-full">
+                <div class="header-cart-total w-full p-tb-40">
+                    <label>VALOR TOTAL DE SU CARRO: </label><strong><label id="TotalText"> </label></strong>
+                </div>
+
+                <div class="header-cart-buttons flex-w w-full">
+                    <a href="@Url.Action("Carro", "Store")" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                        Mostrar carrito
+                    </a>
+
+                    <a href="@Url.Action("Index", "Compra_Direccion")" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                        Comprar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="bg3 p-t-75 p-b-32">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-10">
+                        ¿ Quiénes somos ?
+                    </h4>
+                    <p style="color:#ffffff; font-size: 13px;">
+                        @*Empresa 100% mexicana, con más de 30 años de experiencia ayudando a empresas nacionales e internacionales.*@
+                    </p>
+                    <hr />
+                    <ul class="footer-links">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-map-marker"></i>
+                                A.V Universidad 1627, Col. Hacienda de Guadalupe Chimalistac
+                                Del. Álvaro Obregón, C.P. 01050, CDMX México.
+                            </a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-phone"></i> @*55 2909 7024 / 55 3566 4390*@</a></li>
+                        <li><a href="#"><i class="fa fa-envelope-o"></i>@*sig_contacto@serviciosinmobiliariosg.com*@</a></li>
+                    </ul>
+
+                    <div class="p-t-27">
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+
+                        <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-9 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-10">
+                        Categories
+                    </h4>
+
+                    <ul class="footer-links">
+                        @*<li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Accesorios De Alimentación</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Accesorios De Computadoras</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Bocinas </a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Cámara</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Computadora </a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Dispositivos Para Redes </a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Oficina Y Papelería </a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Radios</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Seguridad</a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Software </a></li>
+                        <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Tabletas</a></li>*@
+                    </ul>
+                </div>
+
+                <div class="col-sm-5 col-lg-2 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-10">
+                        Información
+                    </h4>
+
+                    <ul class="footer-links">
+                        <li><a href="#!"><i class="fa fa-caret-right" aria-hidden="true"></i>Políticas de privacidad</a></li>
+                        <li><a href="#!"><i class="fa fa-caret-right" aria-hidden="true"></i>Términos y condiciones </a></li>
+                    </ul>
+                </div>
+
+                @*<div class="col-sm-6 col-lg-1 p-b-50">
+                        <h4 class="stext-301 cl0 p-b-10">
+                            SERVICIOS
+                        </h4>
+                        <ul class="footer-links">
+                                <li><a href="@Url.Action("Login", "Adm")"><i class="fa fa-caret-right" aria-hidden="true"></i>Mi cuenta </a></li>
+                                <li><a href="@Url.Action("Categorias", "Home")"><i class="fa fa-caret-right" aria-hidden="true"></i>Tu interés </a></li>
+                                <li><a href="@Url.Action("Registrar", "Adm")"><i class="fa fa-caret-right" aria-hidden="true"></i>Crear una cuenta </a></li>
+                                <li><a href="@Url.Action("Ayuda", "home")"><i class="fa fa-caret-right" aria-hidden="true"></i>Ayuda </a></li>
+                            </ul>
+                    </div>*@
+
+
+                <div class="col-sm-6 col-lg-3 p-b-50">
+                    <h4 class="stext-301 cl0 p-b-30">
+                        Noticias
+                    </h4>
+                    <p style="color:#ffffff">Suscríbete y recibe nuestras <strong>ultimas publicaciones</strong></p>
+                    <form>
+                        <div class="wrap-input1 w-full p-b-4">
+                            <br />
+                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email2" id="email2" placeholder="email@ejemplo.com" onKeyUp="Correo('email2')">
+                            <div class="focus-input1 trans-04"></div>
+                        </div>
+                        <br />
+                        <div id='alertBoxes2' class="text-center"></div><span class='timer2' id='timer2'></span>
+                        <div class="p-t-18">
+                            <button id="EnviarMensaeje2" class="flex-c-m cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                                Suscribir
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="p-t-40">
+
+                <p class="stext-107 cl6 txt-center">
+                    Copyright &copy; @DateTime.Now.Year - Todos los derechos reservados |<a target="_blank" style="color: #2196F3;"> Asae Consultores S.A de C.V
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="btn-back-to-top" id="myBtn">
+        <span class="symbol-btn-back-to-top">
+            <i class="zmdi zmdi-chevron-up"></i>
+        </span>
+    </div>
+
+
+    <!--===============================================================================================-->
+    @*<script src="~/vendor/jquery/jquery-3.2.1.min.js"></script>*@
+
+    <!--===============================================================================================-->
+    <script src="~/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/select2/select2.min.js"></script>
+    <script>
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/slick/slick.min.js"></script>
+    <script src="~/Scripts/slick-custom.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/parallax100/parallax100.js"></script>
+    <script>
+        $('.parallax100').parallax100();
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script>
+        $('.gallery-lb').each(function () { // the containers for all your galleries
+            $(this).magnificPopup({
+                delegate: 'a', // the selector for gallery item
+                type: 'image',
+                gallery: {
+                    enabled: true
+                },
+                mainClass: 'mfp-fade'
+            });
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/isotope/isotope.pkgd.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="~/assets/js/bootstrap-notify.js"></script>
+    <script>
+        $('.js-addwish-b2').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('.js-addwish-b2').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-b2');
+                $(this).off('click');
+            });
+        });
+
+        $('.js-addwish-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to wishlist !", "success");
+
+                $(this).addClass('js-addedwish-detail');
+                $(this).off('click');
+            });
+        });
+
+        /*---------------------------------------------*/
+
+        $('.js-addcart-detail').each(function () {
+            var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "is added to cart !", "success");
+            });
+        });
+
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+        $('.js-pscroll').each(function () {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
+
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/Scripts/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#timer2').hide(0);
+            $('#timer2').css('display', 'none');
+
+            $('#EnviarMensaeje2').click(function () {
+
+                var timeSlide = 1000;
+                $('#timer2').hide(0);
+                $('#timer2').css('display', 'none');
+
+                $( "#EnviarMensaeje2" ).attr("disabled", true);
+                $('.box-success2,.box-error2').slideUp(timeSlide);
+
+                setTimeout(function () {
+                    if (valida2() == "ok") {
+                        $('#timer2').fadeOut(300);
+                        $('#alertBoxes2').html('<div class="box-error2"></div>');
+                        $('.box-error2').hide(0).html("Enviado <img src='http://www.serviciosinmobiliariosg.com.mx/images/icons/ajax-loader.gif' width='20px' height='20px'/>");
+                        $('.box-error2').slideDown(timeSlide);
+
+                        var arreglo = [];
+                        var obj = {};
+
+                        obj['email'] = $('#email2').val();
+
+                        arreglo.push(obj);
+
+                        var jsonObject = {
+                            "Email": arreglo
+                        };
+
+                        console.log(jsonObject);
+
+                        $.ajax({
+                            url: "@Url.Action("LlamarJsonEmail", "Email")",
+                            type: "POST",
+                            data: JSON.stringify(jsonObject),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            error: function (response) {
+                                $('#timer2').fadeOut(300);
+                                $('#alertBoxes2').html('<div class="box-error2"></div>');
+                                $('.box-error2').hide(0).html('Ha ocurrido un error durante la ejecución');
+                                $('.box-error2').slideDown(timeSlide);
+                                grecaptcha.reload();
+                                grecaptcha.reset();
+                            },
+                            success: function (response) {
+                                if (response == "ok") {
+
+                                    $('#alertBoxes2').html('<div class="box-success2"></div>');
+                                    $('.box-success2').hide(0).html('Envío éxitoso.');
+                                    $('.box-success2').slideDown(timeSlide);
+                                    $( "#EnviarMensaeje2" ).prop( "disabled", false );
+                                    window.setTimeout('location.reload()', 3000); //Reloads after three seconds
+
+                                    //window.location.reload(true);
+
+                                    //location.reload();
+
+                                } else {
+                                    $( "#EnviarMensaeje2" ).prop( "disabled", false );
+                                    $('#timer2').fadeOut(300);
+                                    $('#alertBoxes2').html('<div class="box-error2"></div>');
+                                    $('.box-error2').hide(0).html(response);
+                                    $('.box-error2').slideDown(timeSlide);
+                                    grecaptcha.reload();
+                                    grecaptcha.reset();
+
+                                }
+                            }
+                        });
+
+                    }
+                    else {
+                        $('#timer2').fadeOut(300);
+                        $('#alertBoxes2').html('<div class="box-error2"></div>');
+                        $('.box-error2').hide(0).html(valida2());
+                        $('.box-error2').slideDown(timeSlide);
+                        $("#EnviarMensaeje2").prop("disabled", false);
+
+                        $.notify({
+	                        icon: 'fa fa-paw',
+	                        message: "Formulario incompleto ."
+                        },{
+                                type: 'danger',
+                            allow_dismiss: false,
+                            animate: {
+		                        enter: 'animated rollIn',
+		                        exit: 'animated rollOut'
+	                        }
+                        });
+
+                    }
+                }, timeSlide);
+                return false;
+            });
+
+        });
+
+        function valida2() {
+            var respuesta = "";
+            $('#email2').css("border", "1px solid #64C0FF");
+
+            if ($('#email2').val().length > 0) {
+                if (Correo2() == "ok") {
+                    respuesta = "ok";
+                }else{
+                    $('#email2').css("border", "1px solid red");
+                    respuesta = "Coloca tu email correctamente";
+                }
+            } else {
+                $('#email2').css("border", "1px solid red");
+                respuesta = "Coloca tu email";
+            }
+
+            return respuesta;
+        };
+
+        $( document ).ready(function() {
+
+            $.ajax({
+                url: "@Url.Action("Carrito_Consultar", "Store")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    $('#BtCartShowp').attr('data-notify', 0);
+                },
+                success: function (response) {
+                    $('#BtCartShowp').attr('data-notify', response.Total);
+                }
+            });
+
+        });
+
+        function EliminarCarrito(Num) {
+
+             var obj = {};
+            obj['Id'] = Num;
+            var jsonObject = {
+                "Carro_Electronico": obj
+            };
+
+            $.ajax({
+                url: "@Url.Action("Eliminar_Articulo", "Store")",
+                type: "POST",
+               data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (Contenido) {
+                    alert("Mandar Mensaje de error");
+                },
+                success: function (Contenido) {
+                    MuestraCarrito();
+                }
+            });
+
+             $.ajax({
+                url: "@Url.Action("Carrito_Consultar", "Store")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (response) {
+                    $('#BtCartShowp').attr('data-notify', 0);
+                },
+                success: function (response) {
+                    $('#BtCartShowp').attr('data-notify', response.Total);
+                }
+             });
+
+        }
+
+        function MuestraCarrito() {
+            $.ajax({
+                url: "@Url.Action("Carrito_Listar", "Store")",
+                type: "POST",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (Contenido) {
+                    alert("Mandar Mensaje de error");
+                },
+                success: function (Contenido) {
+                    $('#ContenidoCarrito').html('');
+                    var ContenidoCarrito = '';
+                    var precio = 0;
+                        for (var a = 0; a < Contenido.length; a++)
+                        {
+                    ContenidoCarrito += "<li class='header-cart-item flex-w flex-t m-b-12'>" +
+                                            "<div  class='header-cart-item-img' onclick='EliminarCarrito(" + Contenido[a].Id + ")'>" +
+                                                "<br><img src='https://" + Contenido[a].Imagen + "' alt=''>" +
+                                            "</div>" +
+                                            "<div class='header-cart-item-txt p-t-8'>" +
+                                                "<p class='product-category'>" + Contenido[a].Clasificacion + "</p>" +
+                                                "<a href='#' class='header-cart-item-name m-b-18 hov-cl1 trans-04'>" +
+                                                    Contenido[a].Nombre +
+                                                "</a>" +
+                                                "<span class='header-cart-item-info'>" +
+                                                    Contenido[a].Item + " x " + Contenido[a].PrecioText +
+                                                "</span>" +
+                                            "</div>" +
+                                "</li>";
+
+                            precio += Contenido[a].Item * Contenido[a].Precio;
+                        }
+
+
+                    $('#ContenidoCarrito').html(ContenidoCarrito);
+                    $('#TotalText').text('$' + commaSeparateNumber(Number.parseFloat(precio).toFixed(2)));
+                    console.log(response);
+                }
+            });
+        }
+
+
+        function commaSeparateNumber(val) { while (/(\d+)(\d{3})/.test(val.toString())) { val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2'); } return val; }
+
+        $(document).ready(function () {
+            $("#Menu_IniciarSesion").css("display", "none");
+            $("#Menu_Sesion").css("display", "none");
+
+            $.ajax({
+                url: "@Url.Action("ConsultarUsuario", "Adm")",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                error: function (data) {
+                    console.log(data);
+                    $("#Menu_IniciarSesion").show();
+                },
+                success: function (data) {
+                    console.log(data);
+                    if (data == null) {
+                        $("#Menu_IniciarSesion").show();
+                    }else if (data.Session) {
+                        $("#Menu_Sesion").show();
+                        $('#NombreUser').text(data.Nombre);
+                    } else {
+                        $("#Menu_IniciarSesion").show();
+                    }
+                }
+            });
+        });
+
+        function CerrarSesion() {
+            swal({
+              title: "Confirmación de cierre de sesión",
+              text: "Deseas cerrar tu sesión dentro de Asae Ecommerce!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "@Url.Action("CerrarSesion", "Adm")",
+                        type: "POST",
+                        data: '',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        error: function (response) {
+                            swal({
+                                title: "Algo ocurrió !",
+                                text: "Ha ocurrido un problema, inténtalo mas tarde ",
+                                icon: "warning",
+                                button: "Aceptar",
+                            });
+                        },
+                        success: function (response) {
+                            if (response.IdRol != 0) {
+                                swal({
+                                    title: "Sesión terminada !",
+                                    text: response.Nombre + " " + response.Apellidos + " regresa pronto !",
+                                    icon: "success",
+                                    button: "Aceptar",
+                                })
+                                .then((value) => {
+                                    window.location.href = "@Url.Action("Login", "Adm")";
+                                });
+                            }
+                        }
+                    });
+
+                } else {
+                //swal("Tu sesión, se encuentra activa!");
+            }
+        });
+        }
+
+    </script>
+
+</body>
+</html>

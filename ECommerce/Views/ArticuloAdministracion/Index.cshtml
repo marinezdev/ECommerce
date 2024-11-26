@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+<style>
+    .table td, .table th {
+        padding: 0.25rem 0.75rem;
+    }
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Artículos </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Artículos </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Administración de artículos   </h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12">
+                                            <div class='card-block table-border-style'>
+                                                <div class='table-responsive'>
+                                                    <table class='table text-center' id='TableListArticulos'>
+                                                        <thead>
+                                                            <tr class='table-inverse'>
+                                                                <th class='text-center'>Nombre (titulo)</th>
+                                                                <th class='text-center'>SKU</th>
+                                                                <th class='text-center'>Información </th>
+                                                                <th class='text-center'> </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var dtArtiuclos in ViewBag.Artiuclos)
+                                                            {
+                                                            <tr>
+                                                                <td>@dtArtiuclos.Nombre</td>
+                                                                <td>@dtArtiuclos.SKU</td>
+                                                                <td>@dtArtiuclos.Informacion</td>
+                                                                <td>
+                                                                    <button onclick='Consultar(@dtArtiuclos.Id)' class='btn waves-effect waves-dark btn-info btn-outline-info btn-icon'><i class='icofont icofont-eye-alt'></i></button>
+                                                                </td>
+                                                            </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+
+    $('#TableListArticulos').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        },
+        "scrollY": "500px",
+        "scrollCollapse": true,
+    });
+
+
+    $('#IdMenuProductos').addClass("active pcoded-trigger");
+    $('#IdMenuArticuloAdministracion').addClass("active");
+
+</script>

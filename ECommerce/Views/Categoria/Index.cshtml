@@ -1,0 +1,1256 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Administracion.cshtml";
+}
+
+<!-- ico font -->
+<link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+<style>
+    progress {
+        -webkit-appearance: none;
+        border-radius: 15px;
+    }
+
+    ::-webkit-progress-bar {
+        background-color: #ccc;
+        border-radius: 15px;
+    }
+
+
+    progress[value]::-webkit-progress-value {
+        background-image: -webkit-linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%), -webkit-linear-gradient(top, rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)), -webkit-linear-gradient(left, #01477f, #008c99);
+        border-radius: 15px;
+        background-size: 35px 20px, 100% 100%, 100% 100%;
+    }
+</style>
+
+
+<div class="pcoded-content">
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Categorías </h5>
+                        <p class="m-b-0">Ecommerce San Juan </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="#!">Categorías </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-body start -->
+                <div class="page-body">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Categorías </h5>
+                                    <span>Administración de categorías  @*<code>.form-control</code> with <code>&lt;input&gt;</code> tag*@</span>
+                                </div>
+                                <div class="card-block">
+                                    <div class="form-group row">
+                                        @*<label class="col-sm-2 col-form-label">Seleccionar categoría </label>*@
+                                        <div class="col-sm-4">
+                                            <select name="select" class="form-control" id="SelectCategoria" onchange="ConsultaSubCategoria(this.value)">
+                                                <option value="0">Seleccionar categoría </option>
+                                                @foreach (var tp in ViewBag.Categorias)
+                                                {
+                                                    <option value="@tp.Id">@tp.Nombre</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <button class="btn waves-effect waves-light btn-inverse col-sm-3" id="BtnActualizarCategoria"><i class="icofont icofont-exchange"></i>Actualizar </button>
+                                        <button class="btn waves-effect waves-light btn-danger col-sm-2" id="BtnActualizarCategoria"><i class="icofont icofont-exchange"></i>Eliminar </button>
+                                        <button class="btn waves-effect waves-light btn-success col-sm-3" data-toggle="modal" data-target="#exampleModal"><i class="icofont icofont-ui-add"></i>Crear categoría </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+
+                        </div>
+                    </div>
+
+
+                    <div class="row" id="DivSubcategoria" style="display: none;">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Subcategoría : <label id="CategoriaSelecionada"></label></h5>
+                                    <span>Listado de subcategorías @*<code>.form-control</code> with <code>&lt;input&gt;</code> tag*@</span>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button class="btn waves-effect waves-light btn-success col-sm-12" data-toggle="modal" data-target="#NuevaSubCategoria"><i class="icofont icofont-ui-add"></i>Agregar Subcategoría</button>
+                                        </div>
+                                        <div class="col-sm-12" id="TablaSubCategorias">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+
+                    <div class="row" id="DivClasificacion" style="display: none;">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Clasificación  : <label id="ClasificacionSelecionada"></label> <label id="IdClasificacion" style="display:none;"></label></h5>
+                                    <span>Listado de Clasificaciones  @*<code>.form-control</code> with <code>&lt;input&gt;</code> tag*@</span>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                                            <li><i class="fa fa-window-maximize full-card"></i></li>
+                                            <li><i class="fa fa-minus minimize-card"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block">
+                                    <div class="row">
+                                        <div class="col-sm-9">
+
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button class="btn waves-effect waves-light btn-success col-sm-12" data-toggle="modal" data-target="#NuevaClasificacion"><i class="icofont icofont-ui-add"></i>Agregar Clasificación </button>
+                                        </div>
+                                        <div class="col-sm-12" id="TablaClasificacion">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Actualizar Categoria -->
+<div class="modal fade" id="ActualizarCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar categoría </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="NombreCategoriaActualizar" placeholder="" autocomplete="off" onchange="ValidaInput('NombreCategoriaActualizar')">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light btn-success" id="BtnActualizarCategoriaModal"><i class="icofont icofont-save"></i>Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarActualizarCategoriaModal" data-dismiss="modal"><i class="icofont icofont-exit"></i>Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nueva Categoria -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva categoría </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="NombreCategoriaModal" placeholder="" autocomplete="off" onchange="ValidaInput('NombreCategoriaModal')">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light btn-success" id="BtnGuardarCategoria"><i class="icofont icofont-save"></i>Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarCategoria" data-dismiss="modal"><i class="icofont icofont-exit"></i>Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nueva SubCategoría -->
+<div class="modal fade" id="NuevaSubCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva subcategoría</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="NombreSubCategoria" placeholder="" autocomplete="off" onchange="ValidaInput('NombreSubCategoria')">
+                    </div>
+                    <div class="form-group">
+                        <label for="largeInput">* Imagen representativa de la subcategoría </label>
+                        <div class="col-sm-12">
+                            <button class="btn waves-effect waves-light btn-primary" onclick="BtnCargarImagen()" id="BtnCargarImagen"><i class="icofont icofont-cloud-upload"></i>&nbsp; Subir imagen </button>
+                        </div>
+                    </div>
+                    <div id="GaleriaSubCategoria">
+
+                    </div>
+                    <div class="row">
+                        <input id="fileInput2" type="file" multiple style="visibility:hidden">
+                        <div class="col-md-12">
+                            <progress id="fileProgress" style="display: none; width:100%"></progress>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light btn-primary" id="BtnGuardarSubCategoria"><i class="icofont icofont-save"></i>Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarSubCategoria" data-dismiss="modal"><i class="icofont icofont-exit"></i>Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nueva Clasificacion  -->
+<div class="modal fade" id="NuevaClasificacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nueva clasificación de producto </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Completa los campos marcados *</p>
+                <div class="col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="largeInput">* Nombre </label>
+                        <input type="text" class="form-control form-control" id="NombreClasificacion" placeholder="" autocomplete="off" onchange="ValidaInput('NombreClasificacion')">
+                    </div>
+                    <div class="form-group">
+                        <label for="largeInput">* Imagen representativa de la clasificación  </label>
+                        <div class="col-sm-12">
+                            <button class="btn waves-effect waves-light btn-primary" onclick="BtnCargarImagenClasificacion()" id="BtnCargarImagenClasificacion"><i class="icofont icofont-cloud-upload"></i>&nbsp; Subir imagen </button>
+                        </div>
+                    </div>
+                    <div id="GaleriaClasificacion">
+
+                    </div>
+                    <div class="row">
+                        <input id="fileInput3" type="file" multiple style="visibility:hidden">
+                        <div class="col-md-12">
+                            <progress id="fileProgress3" style="display: none; width:100%"></progress>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-light btn-primary" id="BtnGuardarClasificacion"><i class="icofont icofont-save"></i>Guardar </button>
+                <button class="btn waves-effect waves-light btn-inverse" id="BtnCerrarClasificacion" data-dismiss="modal"><i class="icofont icofont-exit"></i>Cancelar </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="~/assets/js/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
+<script>
+
+    $('#IdMenuCategorias').addClass("active");
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    $('#BtnActualizarCategoria').click(function () {
+        var Id = $("#SelectCategoria option:selected").val();
+
+        if (Id > 0) {
+
+            $('#NombreCategoriaActualizar').val($("#SelectCategoria option:selected").text());
+            $("#ActualizarCategoria").modal("show");
+
+        } else {
+            $.notify({
+                message: "Debes seleccionar una categoría!."
+            }, {
+                type: 'danger'
+            });
+        }
+
+    });
+
+    $('#NombreCategoriaActualizar').click(function () {
+        $('#NombreCategoriaActualizar').css("border", "1px solid #cccccc");
+        $('#NombreCategoriaActualizar').val("");
+    });
+
+    $('#BtnActualizarCategoriaModal').click(function () {
+
+        var NombreCategoria = $('#NombreCategoriaActualizar').val();
+        $('#NombreCategoriaActualizar').css("border", "1px solid #f44336");
+
+        if ($('#NombreCategoriaActualizar').val().length > 0) {
+            $('#NombreCategoriaActualizar').css("border", "1px solid #cccccc");
+        }
+
+        if (NombreCategoria.length > 0) {
+            var obj = {};
+            obj['Nombre'] = $('#NombreSubCategoria').val();
+            obj['Id'] = $("#SelectCategoria option:selected").val();
+
+            var jsonObject = {
+                "Cat_CategoriaProducto": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Categoria_Actualizar", "Categoria")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: resultadoActualizarCategoria,
+                error: errores
+            });
+
+        } else {            
+            $.notify({
+                message: "Formulario incompleto!."
+            }, {
+                type: 'danger'
+            });
+        }
+    });
+
+    function resultadoActualizarCategoria(data) {
+        alert(1);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    $('#BtnGuardarClasificacion').click(function () {
+        if (ValidarModalClasifiacion()) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ConsulltaImagenesClasificacion", "Categoria")",
+                async: false,
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.length > 0) {
+
+                        var obj = {};
+                        obj['Nombre'] = $('#NombreClasificacion').val();
+                        obj['IdCatSubcategoria'] = $("#IdClasificacion").text();
+
+                        var jsonObject = {
+                            "Cat_Clasificacion": obj
+                        };
+
+                         $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("Clasificacion_Agregar", "Categoria")",
+                            async: false,
+                            data: JSON.stringify(jsonObject),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: resultadoNewClasificacion,
+                            error: errores
+                        });
+
+                    } else {
+                        $.notify({
+                            message: "Sube una imagen representativa de la clasificación !."
+                        }, {
+                            type: 'danger'
+                        });
+                    }
+                },
+                error: errores
+            });
+
+        } else {
+            $.notify({
+                message: "Formulario incompleto!."
+            }, {
+                type: 'danger'
+            });
+        }
+    });
+
+    function resultadoNewClasificacion(data) {
+
+        switch (data.Id) {
+            case -1:
+                $.notify({
+                    message: "La nueva clasificación que intentas agregar ya se encuentra registrada ."
+                }, {
+                    type: 'danger',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+                $('#NombreClasificacion').css("border", "1px solid #f44336");
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió !",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+
+        if (data.Id > 0) {
+            $.notify({
+                message: "¡Nueva clasificación agregada!."
+            }, {
+                type: 'success',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+
+            // Cargar Clasificacion
+            ConsultaClasifiacion(data.Id);
+
+            $("#BtnCerrarClasificacion").trigger("click");
+            $('#NombreClasificacion').val('');
+            $('#GaleriaClasificacion').html('');
+        }
+
+    }
+
+    function ValidarModalClasifiacion() {
+        var respuesta = false;
+        $('#NombreClasificacion').css("border", "1px solid #f44336");
+
+        if ($('#NombreClasificacion').val().length > 0) {
+            $('#NombreClasificacion').css("border", "1px solid #cccccc");
+        }
+
+        if ($('#NombreClasificacion').val().length > 0) {
+            respuesta = true;
+        }
+        return respuesta;
+    }
+
+
+    function ConsultaClasifiacion(num) {
+
+        $('#IdClasificacion').text(num);
+
+        var obj = {};
+        obj['IdCatSubcategoria'] = num;
+
+        var jsonObject = {
+            "Cat_Clasificacion": obj
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("Clasificacion_Listar", "Categoria")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: resultadoTablaClasificacion,
+            error: errores
+        });
+
+    }
+
+    function resultadoTablaClasificacion(data) {
+        $("#DivClasificacion").show();
+
+        console.log(data);
+
+        var Table =
+        "<div class='card-block table-border-style'>" +
+            "<div class='table-responsive'>" +
+                "<table class='table text-center' id='TableListClasificacion'>" +
+                    "<thead>" +
+                        "<tr>" +
+                            "<th class='text-center'>Nombre</th>" +
+                            "<th class='text-center'>Imagen</th>" +
+                            "<th class='text-center'>Acciones </th>" +
+                        "</tr>" +
+                    "</thead>" +
+                    "<tbody>";
+
+            if (data.length > 0) {
+                for (var b = 0; b < data.length; b++) {
+              Table += "<tr>" +
+                            "<td>" +
+                                data[b].Nombre +
+                            "</td>" +
+                            "<td>" + "<img src='https://" + data[b].Imagen + "' width='20%' />" +
+                            "</td>" +
+                            "<td>" +
+                                  "<div class='card-block icon-btn tooltip-icon'>" +
+                                      "<div>" +
+                                          "<button class='btn waves-effect waves-dark btn-success btn-outline-success btn-icon'><i class='icofont icofont-edit'></i></button>" +
+                                          "<button class='btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon'><i class='icofont icofont-ui-delete'></i></button>" +
+                                      "</div>" +
+                                  "</div>" +
+                            "</td>" +
+                       "</tr>";
+                }
+            }
+
+        Table +=    "</tbody>"
+                "</table>"
+            "</div>"
+        "</div>";
+        $('#TablaClasificacion').html(Table);
+
+        $('#TableListClasificacion').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "scrollY": "500px",
+            "scrollCollapse": true,
+        });
+    }
+
+
+    function ConsultaSubCategoria(Id)
+    {
+        $('#CategoriaSelecionada').text($("#SelectCategoria option:selected").text());
+
+        /*$("#DivSubcategoria").css("display", "none");*/
+        CargaSubCategorias();
+        $("#DivClasificacion").css("display", "none");
+        $("#DivSubcategoria").show();
+    }
+
+    function CargaSubCategorias() {
+        var obj = {};
+        obj['Id'] = $("#SelectCategoria option:selected").val();
+
+        var jsonObject = {
+            "Cat_CategoriaProducto": obj
+        };
+
+        console.log(jsonObject);
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("SubCategoria_Listar", "Categoria")",
+            async: false,
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: resultadoTablaSubCategoria,
+            error: errores
+        });
+
+    }
+
+    function resultadoTablaSubCategoria(data) {
+        console.log(data);
+
+        var Table =
+        "<div class='card-block table-border-style'>" +
+            "<div class='table-responsive'>" +
+                "<table class='table text-center' id='TableListSubCategoria'>" +
+                    "<thead>" +
+                        "<tr>" +
+                            "<th class='text-center'>Nombre</th>" +
+                            "<th class='text-center'>Imagen</th>" +
+                            "<th class='text-center'>Acciones </th>" +
+                        "</tr>" +
+                    "</thead>" +
+                    "<tbody>";
+
+            if (data.length > 0) {
+                for (var b = 0; b < data.length; b++) {
+              Table += "<tr>" +
+                            "<td>" +
+                                data[b].Nombre +
+                            "</td>" +
+                            "<td>" + "<img src='https://" + data[b].Imagen + "' width='20%' />" +
+                            "</td>" +
+                            "<td>" +
+                                  "<div class='card-block icon-btn tooltip-icon'>" +
+                                      "<div>" +
+                                          "<button onclick='ConsultaClasifiacion(" + data[b].Id + ")' class='btn waves-effect waves-dark btn-primary btn-outline-primary btn-icon' onClic><i class='icofont icofont-list'></i></button>" +
+                                          "<button class='btn waves-effect waves-dark btn-success btn-outline-success btn-icon'><i class='icofont icofont-edit'></i></button>" +
+                                          "<button class='btn waves-effect waves-dark btn-danger btn-outline-danger btn-icon'><i class='icofont icofont-ui-delete'></i></button>" +
+                                      "</div>" +
+                                  "</div>" +
+                            "</td>" +
+                       "</tr>";
+                }
+            }
+
+        Table +=    "</tbody>"
+                "</table>"
+            "</div>"
+        "</div>";
+        $('#TablaSubCategorias').html(Table);
+
+        $('#TableListSubCategoria').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            },
+            "scrollY": "500px",
+            "scrollCollapse": true,
+        });
+
+    }
+
+
+    $('#BtnCerrarCategoria').click(function () {
+        $('#NombreCategoriaModal').css("border", "1px solid #cccccc");
+        $('#NombreCategoriaModal').val("");
+    });
+
+    $('#BtnGuardarCategoria').click(function () {
+        if (ValidarModalCategoria()) {
+            var obj = {};
+            obj['Nombre'] = $('#NombreCategoriaModal').val();
+
+            var jsonObject = {
+                "Cat_CategoriaProducto": obj
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Categoria_Agregar", "Categoria")",
+                async: false,
+                data: JSON.stringify(jsonObject),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: resultadoNewCategoria,
+                error: errores
+            });
+
+
+        } else {
+            $.notify({
+                message: "Formulario incompleto!."
+            }, {
+                type: 'danger'
+            });
+        }
+    });
+
+    function resultadoNewCategoria(data) {
+        console.log(data);
+        switch (data.Id) {
+            case -1:
+                $.notify({
+                    message: "La categoría que intentas agregar ya se encuentra registrada ."
+                }, {
+                    type: 'danger',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+                $('#NombreCategoriaModal').css("border", "1px solid #f44336");
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió !",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+
+        if (data.Id > 0)
+        {
+            $.notify({
+                message: "¡Nueva categoría agregada!."
+            }, {
+                type: 'success',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Categoria_Listar", "Categoria")",
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $("#SelectCategoria").empty();
+
+                    if (result.length > 0) {
+                        var option = $(document.createElement('option'));
+                        option.text("Seleccionar");
+                        option.val(0);
+
+                        $("#SelectCategoria").append(option);
+
+                        $(result).each(function () {
+                            var option = $(document.createElement('option'));
+
+                            option.text(this.Nombre);
+                            option.val(this.Id);
+
+                            $("#SelectCategoria").append(option);
+                        });
+
+                        $('#SelectCategoria option[value="' + data.Id + '"]').attr("selected", true);
+
+                        ConsultaSubCategoria(data.Id);
+                    }
+                },
+                error: errores
+            });
+            $("#BtnCerrarCategoria").trigger("click");
+            $('#NombreCategoriaModal').val('');
+        }
+    }
+
+    function ValidarModalCategoria() {
+        var respuesta = false;
+        $('#NombreCategoriaModal').css("border", "1px solid #f44336");
+
+        if ($('#NombreCategoriaModal').val().length > 0) {
+            $('#NombreCategoriaModal').css("border", "1px solid #cccccc");
+        }
+
+        if ($('#NombreCategoriaModal').val().length > 0) {
+            respuesta = true;
+        }
+        return respuesta;
+    }
+
+    function ValidaInput(name) {
+        if ($('#' + name).val().length > 0) {
+            $('#' + name).css("border", "1px solid #b5c3e7");
+        } else {
+            $('#' + name).css("border", "2px solid #f44336");
+        }
+    }
+
+    function ValidaSelect(name) {
+        if ($('#' + name + ' option:selected').val() > 0) {
+            $('#' + name).css("border", "1px solid #b5c3e7");
+        } else {
+            $('#' + name).css("border", "2px solid #f44336");
+        }
+    }
+
+    function errores() {
+        $.notify({
+            message: "Inténtelo mas tarde."
+        }, {
+            type: 'danger',
+            allow_dismiss: false,
+            animate: {
+                enter: 'animated rollIn',
+                exit: 'animated rollOut'
+            }
+        });
+    }
+
+
+
+
+
+    $('#BtnCerrarSubCategoria').click(function () {
+        $('#NombreSubCategoria').css("border", "1px solid #cccccc");
+        $('#NombreSubCategoria').val("");
+    });
+
+    $('#BtnGuardarSubCategoria').click(function () {
+        if (ValidarModalSubCategoria()) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ConsulltaImagenes", "Categoria")",
+                async: false,
+                data: '',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    if (result.length > 0) {
+
+                        var obj = {};
+                        obj['Nombre'] = $('#NombreSubCategoria').val();
+                        obj['IdCatCategoriaProducto'] = $("#SelectCategoria option:selected").val();
+
+                        var jsonObject = {
+                            "Cat_Subcategoria": obj
+                        };
+
+                         $.ajax({
+                            type: "POST",
+                            url: "@Url.Action("Subcategoria_Agregar", "Categoria")",
+                            async: false,
+                            data: JSON.stringify(jsonObject),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: resultadoNewSubCategoria,
+                            error: errores
+                        });
+
+                    } else {
+                        $.notify({
+                            message: "Sube una imagen representativa de la subcategoría !."
+                        }, {
+                            type: 'danger'
+                        });
+                    }
+                },
+                error: errores
+            });
+
+        } else {
+            $.notify({
+                message: "Formulario incompleto!."
+            }, {
+                type: 'danger'
+            });
+        }
+    });
+
+
+    function resultadoNewSubCategoria(data) {
+
+        switch (data.Id) {
+            case -1:
+                $.notify({
+                    message: "La Subcategoría  que intentas agregar ya se encuentra registrada ."
+                }, {
+                    type: 'danger',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+                $('#NombreSubCategoria').css("border", "1px solid #f44336");
+                break;
+            case 0:
+                swal({
+                    title: "Algo ocurrió !",
+                    text: '',
+                    icon: "warning",
+                    button: "Aceptar",
+                });
+                break;
+
+            default:
+            // code block
+        }
+
+        if (data.Id > 0)
+        {
+            $.notify({
+                message: "¡Nueva categoría agregada!."
+            }, {
+                type: 'success',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+
+            // Cargar SubCategorias
+            CargaSubCategorias();
+            ConsultaClasifiacion(data.Id);
+
+            $("#BtnCerrarSubCategoria").trigger("click");
+            $('#NombreSubCategoria').val('');
+            $('#GaleriaSubCategoria').html('');
+        }
+
+    }
+
+    function ValidarModalSubCategoria() {
+        var respuesta = false;
+        $('#NombreSubCategoria').css("border", "1px solid #f44336");
+
+        if ($('#NombreSubCategoria').val().length > 0) {
+            $('#NombreSubCategoria').css("border", "1px solid #cccccc");
+        }
+
+        if ($('#NombreSubCategoria').val().length > 0) {
+            respuesta = true;
+        }
+        return respuesta;
+    }
+
+    function BtnCargarImagen() {
+        $("#fileInput2").click();
+    }
+
+    $('#fileInput2').change(function () {
+        var fileInput = document.getElementById('fileInput2');
+
+
+        if (fileInput.files.length > 0) {
+            for (i = 0; i < fileInput.files.length; i++) {
+                var ext = fileInput.files[i].name.split('.').pop();
+                Extencion = fileInput.files[i].name.split('.').pop();
+
+                // Convertimos en minúscula porque
+                // la extensión del archivo puede estar en mayúscula
+                ext = ext.toLowerCase();
+
+                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
+
+                    Carga = true;
+                } else {
+                    Carga = false;
+                    Formato = ext;
+                    break;
+                }
+            }
+
+            for (i = 0; i < fileInput.files.length; i++) {
+                var filesize = ((fileInput.files[i].size / 1024) / 1024).toFixed(4);
+
+                if (filesize < 10) {
+                    CargaTam = true;
+                } else {
+                    CargaTam = false;
+                    Tam = filesize;
+                    break;
+                }
+            }
+
+            if (Carga) {
+                if (CargaTam) {
+
+                    $("#BtnCargarImagen").prop('disabled', true);
+                    var formData = new FormData();
+
+                    for (i = 0; i < fileInput.files.length; i++) {
+                        formData.append(fileInput.files[i].name, fileInput.files[i]);
+                    }
+
+                    $.ajax({
+                        url: '/api/FileAPI/UploadFilesSubCategoria',
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (ListIMG) {
+                            $("#fileProgress").hide();
+                            $("#BtnCargarImagen").prop('disabled', false);
+
+                            CargaImagenes(ListIMG);
+                        },
+                        xhr: function () {
+
+                            var fileXhr = $.ajaxSettings.xhr();
+                            if (fileXhr.upload) {
+                                $("progress").show();
+                                fileXhr.upload.addEventListener("progress", function (e) {
+                                    if (e.lengthComputable) {
+                                        $("#fileProgress").attr({
+                                            value: e.loaded,
+                                            max: e.total
+                                        });
+                                    }
+                                }, false);
+                            }
+                            return fileXhr;
+                        }
+                    });
+
+
+                } else {
+                    $.notify({
+                        message: "Intentas cargar una imagen muy pesada: " + Tam + " MG" + " Límite permitido 10 MG",
+                    }, {
+                        type: 'warning',
+                        allow_dismiss: false,
+                        animate: {
+                            enter: 'animated rollIn',
+                            exit: 'animated rollOut'
+                        }
+                    });
+                }
+            } else {
+                $.notify({
+                    message: "Intentas cargar un formato no permitido: " + Formato + " Formato de imágenes permitidos: .jpg, .jpeg ó.png ",
+                }, {
+                    type: 'warning',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            }
+
+        } else {
+            $("#BtnCargarImagen").prop('disabled', false);
+            $.notify({
+                message: "Selecciona un archivo."
+            }, {
+                type: 'danger',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    function CargaImagenes(ListIMG) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("CargaImagenes", "Categoria")",
+            async: false,
+            data: JSON.stringify(ListIMG),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Contenido) {
+                PintaGaleria(Contenido);
+	        },
+            error: Error
+        });
+    }
+
+    function PintaGaleria(Contenido) {
+        $('#GaleriaSubCategoria').html('');
+        var Galeria = '';
+
+        if (Contenido.length > 0) {
+            for (var b = 0; b < Contenido.length; b++) {
+                var imagen = Contenido[b].ImagenURL;
+                Galeria = "<img src='https://" + imagen + "' width='100%' />"
+            }
+        }
+
+        $('#GaleriaSubCategoria').html(Galeria);
+    }
+
+
+    function BtnCargarImagenClasificacion() {
+        $("#fileInput3").click();
+    }
+
+    $('#fileInput3').change(function () {
+        var fileInput = document.getElementById('fileInput3');
+
+
+        if (fileInput.files.length > 0) {
+            for (i = 0; i < fileInput.files.length; i++) {
+                var ext = fileInput.files[i].name.split('.').pop();
+                Extencion = fileInput.files[i].name.split('.').pop();
+
+                // Convertimos en minúscula porque
+                // la extensión del archivo puede estar en mayúscula
+                ext = ext.toLowerCase();
+
+                if (ext == 'png' || ext == 'jpg' || ext == 'jpeg') {
+
+                    Carga = true;
+                } else {
+                    Carga = false;
+                    Formato = ext;
+                    break;
+                }
+            }
+
+            for (i = 0; i < fileInput.files.length; i++) {
+                var filesize = ((fileInput.files[i].size / 1024) / 1024).toFixed(4);
+
+                if (filesize < 10) {
+                    CargaTam = true;
+                } else {
+                    CargaTam = false;
+                    Tam = filesize;
+                    break;
+                }
+            }
+
+            if (Carga) {
+                if (CargaTam) {
+
+                    $("#BtnCargarImagenClasificacion").prop('disabled', true);
+                    var formData = new FormData();
+
+                    for (i = 0; i < fileInput.files.length; i++) {
+                        formData.append(fileInput.files[i].name, fileInput.files[i]);
+                    }
+
+                    $.ajax({
+                        url: '/api/FileAPI/UploadFilesClasificacion',
+                        type: 'POST',
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (ListIMG) {
+                            $("#fileProgress3").hide();
+                            $("#BtnCargarImagenClasificacion").prop('disabled', false);
+
+                            CargaImagenesClasificacion(ListIMG);
+                        },
+                        xhr: function () {
+
+                            var fileXhr = $.ajaxSettings.xhr();
+                            if (fileXhr.upload) {
+                                $("progress").show();
+                                fileXhr.upload.addEventListener("progress", function (e) {
+                                    if (e.lengthComputable) {
+                                        $("#fileProgress3").attr({
+                                            value: e.loaded,
+                                            max: e.total
+                                        });
+                                    }
+                                }, false);
+                            }
+                            return fileXhr;
+                        }
+                    });
+
+
+                } else {
+                    $.notify({
+                        message: "Intentas cargar una imagen muy pesada: " + Tam + " MG" + " Límite permitido 10 MG",
+                    }, {
+                        type: 'warning',
+                        allow_dismiss: false,
+                        animate: {
+                            enter: 'animated rollIn',
+                            exit: 'animated rollOut'
+                        }
+                    });
+                }
+            } else {
+                $.notify({
+                    message: "Intentas cargar un formato no permitido: " + Formato + " Formato de imágenes permitidos: .jpg, .jpeg ó.png ",
+                }, {
+                    type: 'warning',
+                    allow_dismiss: false,
+                    animate: {
+                        enter: 'animated rollIn',
+                        exit: 'animated rollOut'
+                    }
+                });
+            }
+
+        } else {
+            $("#BtnCargarImagenClasificacion").prop('disabled', false);
+            $.notify({
+                message: "Selecciona un archivo."
+            }, {
+                type: 'danger',
+                allow_dismiss: false,
+                animate: {
+                    enter: 'animated rollIn',
+                    exit: 'animated rollOut'
+                }
+            });
+        }
+    });
+
+    function CargaImagenesClasificacion(ListIMG) {
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("CargaImagenesClasificacion", "Categoria")",
+            async: false,
+            data: JSON.stringify(ListIMG),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Contenido) {
+                PintaGaleriaClasificacion(Contenido);
+	        },
+            error: Error
+        });
+    }
+
+
+    function PintaGaleriaClasificacion(Contenido) {
+        $('#GaleriaClasificacion').html('');
+        var Galeria = '';
+
+        if (Contenido.length > 0) {
+            for (var b = 0; b < Contenido.length; b++) {
+                var imagen = Contenido[b].ImagenURL;
+                Galeria = "<img src='https://" + imagen + "' width='100%' />"
+            }
+        }
+
+        $('#GaleriaClasificacion').html(Galeria);
+    }
+
+</script>
+

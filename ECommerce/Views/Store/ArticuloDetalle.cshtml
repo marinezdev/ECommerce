@@ -1,0 +1,604 @@
+﻿
+@{
+    ViewBag.Title = "ArticuloDetalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="~/vendor/imagezoom/imagezoom.js"></script>
+<link href="~/assets/galeria/css/style.css" rel="stylesheet" />
+<style>
+    textarea.input {
+        padding: 15px;
+        min-height: 150px;
+    }
+
+    .primary-btn {
+        display: inline-block;
+        padding: 10px 30px;
+        background-color: #afce68;
+        border: none;
+        border-radius: 5px;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: center;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .product-details .add-to-cart .add-to-cart-btn {
+        position: relative;
+        border: 2px solid transparent;
+        height: 40px;
+        padding: 0 30px;
+        background-color: #afce68;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 40px;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+
+    .product-details .product-price {
+        display: inline-block;
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        color: #afce68;
+    }
+    .product-details .product-rating > i.fa-star {
+        color: #afce68;
+    }
+    .product-details .add-to-cart .add-to-cart-btn:hover {
+        background-color: #FFF;
+        color: #afce68;
+        border-color: #afce68;
+        padding: 0px 30px 0px 50px;
+    }
+
+
+    .product-details .add-to-cart .add-to-cart-btn > i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        color: #afce68;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .hov-btn3:hover {
+        border-color: #afce68 !important;
+        background-color: #afce68 !important;
+        color: #fff;
+    }
+    .rating-avg .rating-stars > i.fa-star, .rating .rating-stars > i.fa-star {
+        color: #afce68;
+    }
+
+    .rating .rating-progress > div {
+        background-color: #afce68;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-radius: 5px;
+    }
+
+    #product-tab .tab-nav li.active a {
+        color: #afce68;
+    }
+
+    #product-tab .tab-nav li a:after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: #afce68;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+</style>
+<br />
+<br />
+<br />
+
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="#!" class="stext-109 ">
+            Inicio
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            Tienda
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            @ViewBag.ArticuloConsulta.Cat_CategoriaProducto.Nombre
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            @ViewBag.ArticuloConsulta.Cat_Subcategoria.Nombre
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="#!" class="stext-109 ">
+            @ViewBag.ArticuloConsulta.Cat_Clasificacion.Nombre
+        </a>
+    </div>
+</div>
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-6 col-lg-7 p-b-30">
+                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                    @{
+                        if (ViewBag.Imgs.Count > 6)
+                        {
+                            <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel" data-interval="3000">
+                                <div class="carousel-inner" role="listbox">
+                                    @{
+                                        int acti = 0;
+                                        foreach (var cat in ViewBag.Imgs)
+                                        {
+                                            if (acti == 0)
+                                            {
+                                                <div class="carousel-item active"> <img class="d-block w-100" src="http://@cat.ImagenURL" data-imagezoom="true"> </div>
+
+                                                acti = acti + 1;
+                                            }
+                                            else
+                                            {
+                                                <div class="carousel-item"> <img class="d-block w-100" src="http://@cat.ImagenURL" data-imagezoom="true"> </div>
+                                            }
+                                        }
+                                    }
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                                <ol class="carousel-indicators">
+                                    @{
+                                        int acti2 = 0;
+                                        int cont = 0;
+                                        foreach (var cat in ViewBag.Imgs)
+                                        {
+                                            if (acti2 == 0)
+                                            {
+                                                <li data-target="#carousel-example-1" data-slide-to="@cont" class="active">
+                                                    <img class="d-block w-100 img-fluid" src="http://@cat.ImagenURL" alt="" />
+                                                </li>
+                                                acti2 = acti2 + 1;
+                                            }
+                                            else
+                                            {
+                                                <li data-target="#carousel-example-1" data-slide-to="@cont">
+                                                    <img class="d-block w-100 img-fluid" src="http://@cat.ImagenURL" alt="" />
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ol>
+                            </div>
+                                        }
+                                        else
+                                        {
+                            <div class="wrap-slick3 flex-sb flex-w">
+                                <div class="wrap-slick3-dots"></div>
+                                <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+
+                                <div class="slick3 gallery-lb">
+                                    @{
+                                        foreach (var cat in ViewBag.Imgs)
+                                        {
+                                            <div class="item-slick3" data-thumb="http://@cat.ImagenURL">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    <img src="http://@cat.ImagenURL" alt="IMG-PRODUCT" data-imagezoom="true">
+
+                                                    <a class="flex-c-m size-108  fs-16 cl10 hov-btn3 trans-04" style="background-color: #696969; color:#ffffff" href="http://@cat.ImagenURL">
+                                                        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                                        }
+                    }
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="product-details">
+                            <h2 class="product-name">@ViewBag.ArticuloConsulta.Articulo.Nombre </h2>
+                            <h2 class="product-name">SKU: @ViewBag.ArticuloConsulta.Articulo.SKU </h2>
+                            <div>
+                                <div class="product-rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <a class="review-link" href="#">Agrega tu evaluación</a>
+                            </div>
+                            <div>
+                                <h3 class="product-price"> $ @ViewBag.ArticuloConsulta.Articulo.PrecioPublico</h3>
+                                <span class="product-available">Articulo disponible </span>
+                                @*<p class="review-link">Tipo publicado : @ViewBag.Tiempo </p>*@
+                                <br />
+                            </div>
+                            <br />
+                            <h2 class="product-name">Descripción: </h2>
+                            <p>
+                                @ViewBag.ArticuloConsulta.Articulo.Descripcion
+                            </p>
+                            <br />
+                            <hr />
+
+                            <div class="add-to-cart">
+                                <div class="qty-label">
+                                    Cantidad
+                                    <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-minus"></i>
+                                        </div>
+
+                                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" id="NumeroCantidad" value="1" style="color:#808080; font-size: 15px;">
+
+                                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                            <i class="fs-16 zmdi zmdi-plus"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="add-to-cart-btn" onclick="AgregarCarrito(@ViewBag.ArticuloConsulta.Articulo.Id)"><i class="fa fa-shopping-cart"></i> Agregar al carro</button>
+                            </div>
+
+                            <ul class="product-btns">
+                                <li><a href="#"><i class="fa fa-heart-o"></i> AÑADIR A LA LISTA DE DESEOS</a></li>
+                            </ul>
+
+                            <ul class="product-links">
+                                <li><a href="#"> @ViewBag.ArticuloConsulta.Cat_CategoriaProducto.Nombre </a></li>
+                                <li><a href="#"> @ViewBag.ArticuloConsulta.Cat_Subcategoria.Nombre</a></li>
+                                <li><a href="#"> @ViewBag.ArticuloConsulta.Cat_Clasificacion.Nombre</a></li>
+                            </ul>
+
+                            <ul class="product-links">
+                                <li>Compartir :</li>
+                                <li><a href="#!"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-envelope"></i></a></li>
+                                <li><a href="#!"><i class="fa fa-whatsapp"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product tab -->
+            <div class="col-md-7">
+                <div class="container">
+                    <br />
+                    <h4 class="">
+                        <strong>CARACTERÍSTICAS PRINCIPALES</strong>
+                    </h4>
+                    <hr />
+                </div>
+
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        @{
+                            foreach (var dbAtributos in ViewBag.ArticuloAtributos)
+                            {
+                                <tr>
+                                    <th scope="row">@dbAtributos.Cat_Atributos.Atributo</th>
+                                    <td>@dbAtributos.ArticulosAtributos.Valor</td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-md-5">
+                <br />
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Medios de pago</h5>
+                        <br />
+                        <h6 class="card-subtitle mb-2 text-muted">Tarjetas de crédito y débito</h6>
+                        <div class="col-sm-12 ">
+                            <img src="~/images/icons/icon-pay-02.png" />
+                            <img src="~/images/icons/icon-pay-03.png" />
+                            <br /><br />
+                            <img src="~/images/icons/spei_brand.png" width="10%" />
+                            <br /><br />
+                            <img src="~/images/icons/paypal-logo-4.png" width="15%" />
+                            <br /><br />
+
+                        </div>
+
+                        <h6 class="card-subtitle mb-2 text-muted">Efectivo</h6>
+                        <div class="col-sm-12 ">
+                            <img src="~/images/icons/oxxopay_brand.png" width="20%" />
+                            <br /><br />
+                        </div>
+                        <a href="#" class="card-link">Términos y condiciones</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li class="active"><a data-toggle="tab" href="#tab">Opiniones del producto </a></li>
+                    </ul>
+                    <!-- /product tab nav -->
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <div class="row">
+                            <!-- Reviews -->
+                            <div class="col-md-5">
+                                <div id="reviews">
+                                    <p>Sin Opiniones</p>
+                                </div>
+                            </div>
+                            <!-- /Reviews -->
+                            <!-- Review Form -->
+                            <div class="col-md-4">
+                                <div id="review-form">
+                                    <form class="review-form" action="">
+                                        <textarea rows="10" class="input" id="R_Resena" placeholder="Tu Comentario "></textarea>
+                                        <div class="input-rating">
+                                            <span>
+                                                Calificación :
+                                            </span>
+                                            <div class="stars">
+                                                <input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
+                                                <input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
+                                                <input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
+                                                <input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
+                                                <input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="primary-btn" onclick="RegitraComentario(@ViewBag.Id)">Registrar</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- /Review Form -->
+                            <!-- Rating -->
+                            <div class="col-md-3">
+                                <div id="rating">
+                                    <div class="rating-avg">
+                                        <span>5</span>
+                                        <div class="rating-stars">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <ul class="rating">
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div style="width: 100%;"></div>
+                                            </div>
+                                            <span class="sum">1</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div style="width: 0%;"></div>
+                                            </div>
+                                            <span class="sum">0</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div></div>
+                                            </div>
+                                            <span class="sum">0</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div></div>
+                                            </div>
+                                            <span class="sum">0</span>
+                                        </li>
+                                        <li>
+                                            <div class="rating-stars">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                                <i class="fa fa-star-o"></i>
+                                            </div>
+                                            <div class="rating-progress">
+                                                <div></div>
+                                            </div>
+                                            <span class="sum">0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Rating -->
+                        </div>
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <br /><br /><br /><br />
+                <div class="bg6 flex-c-m flex-w" style=" background: linear-gradient(to right, #77a4b5, #b0cd68);">
+                    <span class="stext-107 cl6 p-lr-25">
+                        <label id="m_TipoCategoriaS"></label>
+                    </span>
+                    <span class="stext-107 cl6 p-lr-25">
+                    </span>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+
+<!-- Related Products -->
+<section class="sec-relate-product bg0">
+    <div class="container">
+        <div class="p-b-45">
+            <h3 class="ltext-106 cl5">
+                <strong>TAMBIÉN TE PUEDE INTERESAR.</strong>
+            </h3>
+        </div>
+
+        <div class="tab01">
+
+
+        </div>
+    </div>
+</section>
+
+
+<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
+    <span class="stext-107 cl6 p-lr-25">
+
+    </span>
+
+    <span class="stext-107 cl6 p-lr-25">
+
+
+    </span>
+</div>
+
+
+<div class="sec-banner bg0">
+
+    <div class="bg6 flex-c-m flex-w size-301">
+        <span class="stext-107 cl6 p-lr-25">
+
+        </span>
+
+        <span class="stext-107 cl6 p-lr-25">
+
+        </span>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/assets/galeria/js/slick.min.js"></script>
+<script>
+    function AgregarCarrito(IdArticulo)
+    {
+        var Cantidad = 0;
+        if ($('#NumeroCantidad').val() == "" || $('#NumeroCantidad').val() == 0) {
+            Cantidad = 1;
+        } else {
+            Cantidad = $('#NumeroCantidad').val();
+        }
+
+        var obj = {};
+        obj['IdArticulo'] = IdArticulo;
+        obj['Item'] = Cantidad;
+        var jsonObject = {
+            "Carro_Electronico": obj
+        };
+
+        console.log(obj);
+
+        $.ajax({
+            url: "@Url.Action("Agregar_Carrito", "Store")",
+            type: "POST",
+            data: JSON.stringify(jsonObject),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            error: function (response) {
+                alert("MANDAR MENSAJE SE ERROR");
+            },
+            success: function (response) {
+                if (response.Respuesta) {
+                    swal({
+                        title: "Agregado a carrito !",
+                        text: response.RespuestaText,
+                        icon: "success",
+                        button: "Aceptar",
+                    });
+                    //alert(response.Contenido);
+                    $('#BtCartShowp').attr('data-notify', response.Contenido);
+                }
+                else {
+                    swal({
+                        title: "Algo ocurrió !",
+                        text: response.RespuestaText,
+                        icon: "warning",
+                        button: "Aceptar",
+                    });
+                }
+            }
+        });
+    }
+
+
+</script>
